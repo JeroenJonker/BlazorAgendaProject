@@ -18,27 +18,11 @@ namespace BlazorAgenda.Server.Controllers
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
-        static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
-        static string ApplicationName = "Google Calendar API .NET Quickstart";
-        private static string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        static string[] Scopes = { CalendarService.Scope.Calendar };
+        static string ApplicationName = "Blazor agenda";
 
         [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            });
-        }
-
-        [HttpGet("[action]")]
-        public string Test()
+        public List<CalendarEvent> Test()
         {
             UserCredential credential;
 
@@ -53,8 +37,7 @@ namespace BlazorAgenda.Server.Controllers
                     Scopes,
                     "user",
                     CancellationToken.None,
-                    null).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
+                    new FileDataStore(credPath, true)).Result;
             }
 
             // Create Google Calendar API service.
@@ -74,25 +57,18 @@ namespace BlazorAgenda.Server.Controllers
 
             // List events.
             Events events = request.Execute();
-            Console.WriteLine("Upcoming events:");
+            List<CalendarEvent> results = new List<CalendarEvent>();
             if (events.Items != null && events.Items.Count > 0)
             {
                 foreach (var eventItem in events.Items)
                 {
-                    string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
-                    {
-                        when = eventItem.Start.Date;
-                    }
-                    return string.Format("{0} ({1})", eventItem.Summary, when);
+                    DateTime start = eventItem.Start.DateTime ?? DateTime.Parse(eventItem.Start.Date);
+                    DateTime end = eventItem.End.DateTime ?? DateTime.Parse(eventItem.End.Date);
+                    results.Add(new CalendarEvent { Start = start, End = end, Summary = eventItem.Summary });
                 }
             }
-            else
-            {
-                return string.Format("No upcoming events found.");
-            }
             //AuthCallbackController a = new AuthCallbackController();
-            return "succes";
+            return results;
         }
 
         [HttpGet("[action]")]

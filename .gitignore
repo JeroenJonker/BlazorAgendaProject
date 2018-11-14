@@ -1,3 +1,10 @@
 BlazorAgenda/.vs
-BlazorAgenda/BlazorAgenda/obj
-BlazorAgenda/BlazorAgenda/bin
+BlazorAgenda/BlazorAgenda.Client/bin
+BlazorAgenda/BlazorAgenda.Client/obj
+BlazorAgenda/BlazorAgenda.Server/bin
+BlazorAgenda/BlazorAgenda.Server/obj
+BlazorAgenda/BlazorAgenda.Server/credentials.json
+BlazorAgenda/BlazorAgenda.Server/token.json
+BlazorAgenda/BlazorAgenda.Shared/bin
+BlazorAgenda/BlazorAgenda.Shared/obj
+BlazorAgenda/global.json

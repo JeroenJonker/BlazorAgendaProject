@@ -1,8 +1,0 @@
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\bin\Debug\netstandard2.0\BlazorAgenda.Shared.deps.json
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\bin\Debug\netstandard2.0\BlazorAgenda.Shared.dll
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\bin\Debug\netstandard2.0\BlazorAgenda.Shared.pdb
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.csproj.CoreCompileInputs.cache
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.AssemblyInfoInputs.cache
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.AssemblyInfo.cs
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.dll
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.pdb

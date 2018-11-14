@@ -1,0 +1,46 @@
+﻿@using BlazorAgenda.Shared
+@page "/agenda"
+@inject HttpClient Http
+
+<h1>Blazor agenda</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (test == null)
+{
+    <button class="loginBtn" onclick="@LoginAsync">
+        Login with Google
+    </button>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Start</th>
+                <th>End</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in test)
+            {
+                <tr>
+                    <td>@item.Start.ToString("dd-MM-yyyy hh:mm")</td>
+                    <td>@item.End.ToString("dd-MM-yyyy hh:mm")</td>
+                    <td>@item.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@functions {
+    List<CalendarEvent> test;
+
+    async Task LoginAsync(UIMouseEventArgs e)
+    {
+        test = await Http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
+
+    }
+}
