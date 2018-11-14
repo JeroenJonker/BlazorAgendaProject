@@ -1,8 +1,8 @@
 ﻿using BlazorAgenda.Shared;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Requests;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +36,7 @@ namespace BlazorAgenda.Server.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
         }
+
         [HttpGet("[action]")]
         public string Test()
         {
@@ -52,7 +53,7 @@ namespace BlazorAgenda.Server.Controllers
                     Scopes,
                     "user",
                     CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
+                    null).Result;
                 Console.WriteLine("Credential file saved to: " + credPath);
             }
 
@@ -92,6 +93,56 @@ namespace BlazorAgenda.Server.Controllers
             }
             //AuthCallbackController a = new AuthCallbackController();
             return "succes";
+        }
+
+        [HttpGet("[action]")]
+        public async Task<string> AddTestAsync()
+        {
+            UserCredential credential;
+
+            using (var stream =
+                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                // The file token.json stores the user's access and refresh tokens, and is created
+                // automatically when the authorization flow completes for the first time.
+                string credPath = "token.json";
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    new[] { CalendarService.Scope.Calendar },
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore("Calendar.Sample.Store")).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
+            }
+
+            // Create Google Calendar API service.
+            var service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            BatchRequest addrequest = new BatchRequest(service);
+            addrequest.Queue<CalendarList>(service.CalendarList.List(),
+                 (content, error, i, message) =>
+                 {
+                     // Put your callback code here.
+                 });
+            addrequest.Queue<Event>(service.Events.Insert(
+             new Event
+             {
+                 Summary = "Eerste test",
+                 Start = new EventDateTime() { DateTime = new DateTime(2018, 11, 14, 12, 0, 0) },
+                 End = new EventDateTime() { DateTime = new DateTime(2018, 11, 14, 15, 0, 0) }
+             }, "primary"),
+             (content, error, i, message) =>
+             {
+                 // Put your callback code here.
+             });
+            // You can add more Queue calls here.
+
+            // Execute the batch request, which includes the 2 requests above.
+            await addrequest.ExecuteAsync();
+            return "ha";
         }
     }
 }

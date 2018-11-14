@@ -30,15 +30,6 @@
           "lib/netstandard2.0/Google.Apis.Auth.dll": {}
         }
       },
-      "Google.Apis.Auth.Mvc/1.36.1": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {}
-        }
-      },
       "Google.Apis.Calendar.v3/1.36.1.1403": {
         "type": "package",
         "dependencies": {
@@ -80,28 +71,6 @@
           "lib/netstandard2.0/MessagePack.dll": {}
         }
       },
-      "Microsoft.AspNet.Mvc/5.2.6": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.6, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.6, 3.3.0)"
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.6": {
-        "type": "package",
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -113,25 +82,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.6": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.6, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.1.1": {
@@ -2918,15 +2868,6 @@
           "lib/netstandard2.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {}
         }
       },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        }
-      },
       "Microsoft.Win32.Registry/4.5.0": {
         "type": "package",
         "dependencies": {
@@ -4872,6 +4813,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "BlazorAgenda.Shared": "1.0.0",
+          "Google.Apis.Calendar.v3": "1.36.1.1403",
           "Microsoft.AspNetCore.Blazor.Browser": "0.6.0",
           "Microsoft.AspNetCore.Blazor.Build": "0.6.0"
         },
@@ -4937,19 +4879,6 @@
         "lib/netstandard2.0/Google.Apis.Auth.xml"
       ]
     },
-    "Google.Apis.Auth.Mvc/1.36.1": {
-      "sha512": "nivgPoTZAJWQ1niShHhjRwsWivVZ1/dQbMglFNNl57XN0OePoY80MFsNTx5ccS4Bzzu3d8VyLKeVXE1qAW4j0w==",
-      "type": "package",
-      "path": "google.apis.auth.mvc/1.36.1",
-      "files": [
-        ".signature.p7s",
-        "google.apis.auth.mvc.1.36.1.nupkg.sha512",
-        "google.apis.auth.mvc.nuspec",
-        "lib/net45/Google.Apis.Auth.Mvc.dll",
-        "lib/net45/Google.Apis.Auth.Mvc.pdb",
-        "lib/net45/Google.Apis.Auth.Mvc.xml"
-      ]
-    },
     "Google.Apis.Calendar.v3/1.36.1.1403": {
       "sha512": "1MpKyiRdyUKy8KmPeeO8h3/9EvqwDGoSorX+/tTto2S+BV52wLVgrCaOLRHKZczK6TbsDc7Ji27Va1pjlqoO8A==",
       "type": "package",
@@ -5011,32 +4940,6 @@
         "messagepack.nuspec"
       ]
     },
-    "Microsoft.AspNet.Mvc/5.2.6": {
-      "sha512": "OnH+WDHIv4d5lpYTsYr2HNph149N+Bw+DxjUEqpfODcx2Wlktnn52YFr7st7ur5XaJnMXj5BtMJ8k2oEs5JreA==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.6",
-      "files": [
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.2.6.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Razor/3.2.6": {
-      "sha512": "ov8Ujr3EgiZym1Ftky+jPshC8datSXY/6r9drlM3ThR7QIMN85gZCBZ5TsQXghcKpBiaIxRZdzXTU5/ztLuZHg==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.6",
-      "files": [
-        ".signature.p7s",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.2.6.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "rMDlyePoxggkmN/qgha1+BR2Uy+dOr38xKCQOPfVNKGY07R2nYJGMTKJFE1XFgwD70RYUNazf2fqutjJF18XgQ==",
       "type": "package",
@@ -5051,26 +4954,6 @@
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
         "microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebPages/3.2.6": {
-      "sha512": "y6YTVXUIG6dgXOQrOICR0Z9B+Mu49wzT0SFBLL+j182FLqrAgLAyMrlRNycSmddus9GLvW2ZvtXwUp8PIU3fzQ==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.6",
-      "files": [
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.2.6.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
       ]
     },
     "Microsoft.AspNetCore/2.1.1": {
@@ -8064,17 +7947,6 @@
         "lib/netstandard2.0/identitygeneratorfilesconfig.json",
         "microsoft.visualstudio.web.codegenerators.mvc.2.1.6.nupkg.sha512",
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
-      ]
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "n53z4bxLI6bly1tt4NzQx9vShfiEh3IB23vKVTFfKUOfUhbgoynhZMzn3aezHwTWUzxBmCe6j6hKHFYqDC9q9Q==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        ".signature.p7s",
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
       ]
     },
     "Microsoft.Win32.Registry/4.5.0": {
@@ -13037,9 +12909,7 @@
       "BlazorAgenda.Shared >= 1.0.0",
       "Google.Apis >= 1.36.1",
       "Google.Apis.Auth >= 1.36.1",
-      "Google.Apis.Auth.Mvc >= 1.36.1",
       "Google.Apis.Calendar.v3 >= 1.36.1.1403",
-      "Microsoft.AspNet.Mvc >= 5.2.6",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Blazor.Server >= 0.6.0",
       "Microsoft.NETCore.App >= 2.1.0",
@@ -13102,17 +12972,9 @@
             "target": "Package",
             "version": "[1.36.1, )"
           },
-          "Google.Apis.Auth.Mvc": {
-            "target": "Package",
-            "version": "[1.36.1, )"
-          },
           "Google.Apis.Calendar.v3": {
             "target": "Package",
             "version": "[1.36.1.1403, )"
-          },
-          "Microsoft.AspNet.Mvc": {
-            "target": "Package",
-            "version": "[5.2.6, )"
           },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
@@ -13141,57 +13003,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Google.Apis.Auth.Mvc 1.36.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Google.Apis.Auth.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

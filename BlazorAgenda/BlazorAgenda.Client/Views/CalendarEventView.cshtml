@@ -1,0 +1,16 @@
+﻿@using BlazorAgenda.Client.Viewmodels
+@page "/event"
+@inherits CalendarEventViewmodel
+
+<h1>Event</h1>
+
+<label>Summary</label>
+<input bind="@Summary" />
+<label>Begin</label>
+<input type="time" bind=BeginTime format-value="HH:mm" />
+<label>End</label>
+<input type="date" bind=BeginTime format-value="yyyy-MM-dd" />
+<label>Begin</label>
+<input type="time" bind=EndTime format-value="HH:mm" />
+<label>End</label>
+<input type="date" bind=EndTime format-value="yyyy-MM-dd" />

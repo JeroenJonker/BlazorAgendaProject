@@ -45,12 +45,12 @@ else
 }
 
 @functions {
-WeatherForecast[] forecasts;
-string test;
+    WeatherForecast[] forecasts;
+    string test;
 
-protected override async Task OnInitAsync()
-{
-    test = await Http.GetStringAsync("api/SampleData/Test");
+    protected override async Task OnInitAsync()
+    {
+        test = await Http.GetStringAsync("api/SampleData/AddTestAsync");
 
-}
+    }
 }

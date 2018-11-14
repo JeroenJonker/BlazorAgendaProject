@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "5860e1b7949cb5ec9b8482a70c649e000a4ac017"
+    "signature": "6c0a891499e68b3bc48ef7ab1fbc6b3427167ff4"
   },
   "compilationOptions": {
     "defines": [
@@ -28,9 +28,7 @@
           "BlazorAgenda.Shared": "1.0.0",
           "Google.Apis": "1.36.1",
           "Google.Apis.Auth": "1.36.1",
-          "Google.Apis.Auth.Mvc": "1.36.1",
           "Google.Apis.Calendar.v3": "1.36.1.1403",
-          "Microsoft.AspNet.Mvc": "5.2.6",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Blazor.Server": "0.6.0",
           "Microsoft.NETCore.App": "2.1.0",
@@ -78,17 +76,6 @@
           "lib/netstandard2.0/Google.Apis.Auth.dll": {}
         }
       },
-      "Google.Apis.Auth.Mvc/1.36.1": {
-        "runtime": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {
-            "assemblyVersion": "1.36.1.0",
-            "fileVersion": "1.36.1.0"
-          }
-        },
-        "compile": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {}
-        }
-      },
       "Google.Apis.Calendar.v3/1.36.1.1403": {
         "dependencies": {
           "Google.Apis": "1.36.1",
@@ -134,62 +121,6 @@
         },
         "compile": {
           "lib/netstandard2.0/MessagePack.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Mvc/5.2.6": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.2.6",
-          "Microsoft.AspNet.WebPages": "3.2.6"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {
-            "assemblyVersion": "5.2.6.0",
-            "fileVersion": "5.2.60510.0"
-          }
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.6": {
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          }
-        },
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.6": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.2.6",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          },
-          "lib/net45/System.Web.WebPages.Deployment.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          },
-          "lib/net45/System.Web.WebPages.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          },
-          "lib/net45/System.Web.WebPages.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          }
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
         }
       },
       "Microsoft.AspNetCore.Blazor/0.6.0": {
@@ -605,17 +536,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {}
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.20105.407"
-          }
-        },
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
         }
       },
       "Mono.Cecil/0.10.0-beta7": {
@@ -3807,13 +3727,6 @@
       "path": "google.apis.auth/1.36.1",
       "hashPath": "google.apis.auth.1.36.1.nupkg.sha512"
     },
-    "Google.Apis.Auth.Mvc/1.36.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-nivgPoTZAJWQ1niShHhjRwsWivVZ1/dQbMglFNNl57XN0OePoY80MFsNTx5ccS4Bzzu3d8VyLKeVXE1qAW4j0w==",
-      "path": "google.apis.auth.mvc/1.36.1",
-      "hashPath": "google.apis.auth.mvc.1.36.1.nupkg.sha512"
-    },
     "Google.Apis.Calendar.v3/1.36.1.1403": {
       "type": "package",
       "serviceable": true,
@@ -3834,27 +3747,6 @@
       "sha512": "sha512-QSKZVq6BmNaz/B4n0bAM/moQnc4E6XZ7uXRbJcEXxUzZufJiDYDE6awYqDtNz6acupYoPt2QupGV4rpyPCRRtg==",
       "path": "messagepack/1.7.3.4",
       "hashPath": "messagepack.1.7.3.4.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Mvc/5.2.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OnH+WDHIv4d5lpYTsYr2HNph149N+Bw+DxjUEqpfODcx2Wlktnn52YFr7st7ur5XaJnMXj5BtMJ8k2oEs5JreA==",
-      "path": "microsoft.aspnet.mvc/5.2.6",
-      "hashPath": "microsoft.aspnet.mvc.5.2.6.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Razor/3.2.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ov8Ujr3EgiZym1Ftky+jPshC8datSXY/6r9drlM3ThR7QIMN85gZCBZ5TsQXghcKpBiaIxRZdzXTU5/ztLuZHg==",
-      "path": "microsoft.aspnet.razor/3.2.6",
-      "hashPath": "microsoft.aspnet.razor.3.2.6.nupkg.sha512"
-    },
-    "Microsoft.AspNet.WebPages/3.2.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-y6YTVXUIG6dgXOQrOICR0Z9B+Mu49wzT0SFBLL+j182FLqrAgLAyMrlRNycSmddus9GLvW2ZvtXwUp8PIU3fzQ==",
-      "path": "microsoft.aspnet.webpages/3.2.6",
-      "hashPath": "microsoft.aspnet.webpages.3.2.6.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Blazor/0.6.0": {
       "type": "package",
@@ -4023,13 +3915,6 @@
       "sha512": "sha512-i33qFTwiTAkYOKx/movMXoL3t6z+mETIvsgCIrGzct1E9ZMQ6m1IU7yLs8oNMzmnOLBBhFXC631DP3+99Eth1g==",
       "path": "microsoft.visualstudio.web.codegenerators.mvc/2.1.6",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.2.1.6.nupkg.sha512"
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-n53z4bxLI6bly1tt4NzQx9vShfiEh3IB23vKVTFfKUOfUhbgoynhZMzn3aezHwTWUzxBmCe6j6hKHFYqDC9q9Q==",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
     },
     "Mono.Cecil/0.10.0-beta7": {
       "type": "package",

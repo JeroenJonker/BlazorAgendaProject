@@ -8,9 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Google.Apis" Version="1.36.1" />
     <PackageReference Include="Google.Apis.Auth" Version="1.36.1" />
-    <PackageReference Include="Google.Apis.Auth.Mvc" Version="1.36.1" />
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.36.1.1403" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
