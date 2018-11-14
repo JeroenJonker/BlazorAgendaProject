@@ -62,16 +62,8 @@ namespace BlazorAgenda.Server.Controllers
             {
                 foreach (var eventItem in events.Items)
                 {
-                    string start = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(start))
-                    {
-                        start = eventItem.Start.Date;
-                    }
-                    string end = eventItem.End.DateTime.ToString();
-                    if(String.IsNullOrEmpty(end))
-                    {
-                        end = eventItem.End.Date;
-                    }
+                    DateTime start = eventItem.Start.DateTime ?? DateTime.Parse(eventItem.Start.Date);
+                    DateTime end = eventItem.End.DateTime ?? DateTime.Parse(eventItem.End.Date);
                     results.Add(new CalendarEvent { Start = start, End = end, Summary = eventItem.Summary });
                 }
             }

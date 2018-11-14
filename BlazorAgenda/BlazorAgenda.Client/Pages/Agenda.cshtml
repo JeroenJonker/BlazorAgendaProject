@@ -8,7 +8,9 @@
 
 @if (test == null)
 {
-    <p><em>Loading...</em></p>
+    <button class="loginBtn" onclick="@LoginAsync">
+        Login with Google
+    </button>
 }
 else
 {
@@ -24,22 +26,21 @@ else
             @foreach (var item in test)
             {
                 <tr>
-                    <td>@item.Start</td>
-                    <td>@item.End</td>
+                    <td>@item.Start.ToString("dd-MM-yyyy hh:mm")</td>
+                    <td>@item.End.ToString("dd-MM-yyyy hh:mm")</td>
                     <td>@item.Summary</td>
                 </tr>
             }
         </tbody>
     </table>
-    @*<p>@test</p>*@
 }
 
 @functions {
-List<CalendarEvent> test;
+    List<CalendarEvent> test;
 
-protected override async Task OnInitAsync()
-{
-    test = await Http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
+    async Task LoginAsync(UIMouseEventArgs e)
+    {
+        test = await Http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
 
-}
+    }
 }
