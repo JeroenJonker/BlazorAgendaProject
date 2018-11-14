@@ -6,6 +6,15 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
+@if (test == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>@test</p>
+}
+
 @if (forecasts == null)
 {
     <p><em>Loading...</em></p>
@@ -36,10 +45,12 @@ else
 }
 
 @functions {
-    WeatherForecast[] forecasts;
+WeatherForecast[] forecasts;
+string test;
 
-    protected override async Task OnInitAsync()
-    {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("api/SampleData/WeatherForecasts");
-    }
+protected override async Task OnInitAsync()
+{
+    test = await Http.GetStringAsync("api/SampleData/Test");
+
+}
 }

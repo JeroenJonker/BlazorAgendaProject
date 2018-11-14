@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "Microsoft.AspNetCore.Blazor/0.5.1": {
+      "Microsoft.AspNetCore.Blazor/0.6.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.JSInterop": "0.5.1"
+          "Microsoft.JSInterop": "0.6.0"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.dll": {}
@@ -14,15 +14,15 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Blazor.Analyzers/0.5.1": {
+      "Microsoft.AspNetCore.Blazor.Analyzers/0.6.0": {
         "type": "package"
       },
-      "Microsoft.AspNetCore.Blazor.Browser/0.5.1": {
+      "Microsoft.AspNetCore.Blazor.Browser/0.6.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Blazor": "0.5.1",
+          "Microsoft.AspNetCore.Blazor": "0.6.0",
           "Microsoft.Extensions.DependencyInjection": "2.1.0",
-          "Mono.WebAssembly.Interop": "0.5.1"
+          "Mono.WebAssembly.Interop": "0.6.0"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.Browser.dll": {}
@@ -31,24 +31,24 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.Browser.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Blazor.Build/0.5.1": {
+      "Microsoft.AspNetCore.Blazor.Build/0.6.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Blazor.Analyzers": "0.5.1",
-          "Microsoft.AspNetCore.Razor.Design": "2.1.0"
+          "Microsoft.AspNetCore.Blazor.Analyzers": "0.6.0",
+          "Microsoft.AspNetCore.Razor.Design": "2.1.2"
         },
         "compile": {
-          "lib/netstandard1.0/_._": {}
+          "lib/netstandard1.0/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/_._": {}
+          "lib/netstandard1.0/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.dll": {}
         },
         "build": {
           "build/netstandard1.0/Microsoft.AspNetCore.Blazor.Build.props": {},
           "build/netstandard1.0/Microsoft.AspNetCore.Blazor.Build.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Razor.Design/2.1.0": {
+      "Microsoft.AspNetCore.Razor.Design/2.1.2": {
         "type": "package",
         "build": {
           "build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.props": {}
@@ -78,11 +78,8 @@
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.JSInterop/0.5.1": {
+      "Microsoft.JSInterop/0.6.0": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.TypeScript.MSBuild": "2.9.2"
-        },
         "compile": {
           "lib/netstandard2.0/Microsoft.JSInterop.dll": {}
         },
@@ -99,16 +96,10 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.TypeScript.MSBuild/2.9.2": {
-        "type": "package",
-        "build": {
-          "build/_._": {}
-        }
-      },
-      "Mono.WebAssembly.Interop/0.5.1": {
+      "Mono.WebAssembly.Interop/0.6.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.JSInterop": "0.5.1"
+          "Microsoft.JSInterop": "0.6.0"
         },
         "compile": {
           "lib/netstandard2.0/Mono.WebAssembly.Interop.dll": {}
@@ -145,51 +136,54 @@
     }
   },
   "libraries": {
-    "Microsoft.AspNetCore.Blazor/0.5.1": {
-      "sha512": "/JJRbrsx1Dx94Si1jRUCxppvCTRhl0TX0BlX5BAbjSPFGe2cDfDgiaE+Zpivb1LCt2OBpxWRs7FrpaDXELqr1w==",
+    "Microsoft.AspNetCore.Blazor/0.6.0": {
+      "sha512": "5fbtgq8125r25asDlgHk7LTroYPSGWRf7IhLyyf1vHGqo/LxLLsFdkAqaYpdM4+a/dC50esN2FxDFAqoOINyJQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.blazor/0.5.1",
+      "path": "microsoft.aspnetcore.blazor/0.6.0",
       "files": [
         ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.xml",
-        "microsoft.aspnetcore.blazor.0.5.1.nupkg.sha512",
+        "microsoft.aspnetcore.blazor.0.6.0.nupkg.sha512",
         "microsoft.aspnetcore.blazor.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Blazor.Analyzers/0.5.1": {
-      "sha512": "g/HnZGXHQC5212UXcwHn12702oN0s7Wwti6RVFmL4Z1/t0ITf8a6nkQaWc78LXppeBOqj4kskr4vAdzvZrWiTQ==",
+    "Microsoft.AspNetCore.Blazor.Analyzers/0.6.0": {
+      "sha512": "pWjX7uD/iQmvourOhVFqU8O+B5ArBRoflVz95zoOew8JSVwV5d0JoR5IsTeoMJ5VNFY1+SXSrKA3S/bL2a0RHQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.blazor.analyzers/0.5.1",
+      "path": "microsoft.aspnetcore.blazor.analyzers/0.6.0",
       "files": [
         ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
         "analyzers/dotnet/cs/Microsoft.AspNetCore.Blazor.Analyzers.dll",
-        "microsoft.aspnetcore.blazor.analyzers.0.5.1.nupkg.sha512",
+        "microsoft.aspnetcore.blazor.analyzers.0.6.0.nupkg.sha512",
         "microsoft.aspnetcore.blazor.analyzers.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Blazor.Browser/0.5.1": {
-      "sha512": "PFbaCWYONIRtnABbQt0Jvl0OC3KraqxNsh77I1JNRQaUeswAoPfm0aV40Y3xI8tBH2124JBw7gLXeJxb1NYJiQ==",
+    "Microsoft.AspNetCore.Blazor.Browser/0.6.0": {
+      "sha512": "YccFYiWR89O+35twMsJWtDGlJDrzEKq8gxbxqyq7QWOmsmSuGXWe3Hje4Lh0NY9MXZrgm/tdzQyv2V1n1p9vHg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.blazor.browser/0.5.1",
+      "path": "microsoft.aspnetcore.blazor.browser/0.6.0",
       "files": [
         ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.Browser.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.Browser.xml",
-        "microsoft.aspnetcore.blazor.browser.0.5.1.nupkg.sha512",
+        "microsoft.aspnetcore.blazor.browser.0.6.0.nupkg.sha512",
         "microsoft.aspnetcore.blazor.browser.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Blazor.Build/0.5.1": {
-      "sha512": "YiKXiiC112FXxREieol4rRFKZ1Vxo6AWNTem64XNhJTgMlypLzaDX+N9naktSh4LPV/yQQlRX3O0/00uFcr6LQ==",
+    "Microsoft.AspNetCore.Blazor.Build/0.6.0": {
+      "sha512": "BVsxRHZdrys71/unLirfic31OnISc21bKJFqwzSSdj031svichjlaZurUX5/VCKZsRWMoSvKspLgfpnwIE45+Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.blazor.build/0.5.1",
+      "path": "microsoft.aspnetcore.blazor.build/0.6.0",
       "files": [
         ".signature.p7s",
         "build/netstandard1.0/Microsoft.AspNetCore.Blazor.Build.props",
         "build/netstandard1.0/Microsoft.AspNetCore.Blazor.Build.targets",
-        "lib/netstandard1.0/_._",
-        "microsoft.aspnetcore.blazor.build.0.5.1.nupkg.sha512",
+        "lib/netstandard1.0/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.dll",
+        "microsoft.aspnetcore.blazor.build.0.6.0.nupkg.sha512",
         "microsoft.aspnetcore.blazor.build.nuspec",
         "targets/All.props",
         "targets/All.targets",
@@ -211,6 +205,9 @@
         "tools/Microsoft.AspNetCore.Blazor.Razor.Extensions.dll",
         "tools/Microsoft.AspNetCore.Blazor.Razor.Extensions.pdb",
         "tools/Microsoft.AspNetCore.Blazor.Razor.Extensions.xml",
+        "tools/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.dll",
+        "tools/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.pdb",
+        "tools/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.xml",
         "tools/Microsoft.AspNetCore.Blazor.dll",
         "tools/Microsoft.AspNetCore.Blazor.pdb",
         "tools/Microsoft.AspNetCore.Blazor.xml",
@@ -227,7 +224,6 @@
         "tools/Microsoft.Extensions.Primitives.dll",
         "tools/Microsoft.JSInterop.dll",
         "tools/Microsoft.JSInterop.pdb",
-        "tools/Microsoft.JSInterop.xml",
         "tools/Mono.Cecil.Mdb.dll",
         "tools/Mono.Cecil.Pdb.dll",
         "tools/Mono.Cecil.Rocks.dll",
@@ -370,6 +366,7 @@
         "tools/mono/bcl/Facades/System.Text.RegularExpressions.dll",
         "tools/mono/bcl/Facades/System.Threading.AccessControl.dll",
         "tools/mono/bcl/Facades/System.Threading.Overlapped.dll",
+        "tools/mono/bcl/Facades/System.Threading.Tasks.Extensions.dll",
         "tools/mono/bcl/Facades/System.Threading.Tasks.Parallel.dll",
         "tools/mono/bcl/Facades/System.Threading.Tasks.dll",
         "tools/mono/bcl/Facades/System.Threading.Thread.dll",
@@ -433,16 +430,16 @@
         "tools/runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll"
       ]
     },
-    "Microsoft.AspNetCore.Razor.Design/2.1.0": {
-      "sha512": "OY1Ckol/tv7r25wuQmrNaCcdByw1KNXrquHD4yLM7g1CvNB6mmlfQJbVte5m2Wxn4YhlazNAyzNz/9QVh7hgdA==",
+    "Microsoft.AspNetCore.Razor.Design/2.1.2": {
+      "sha512": "sa/cztXesLyTgCiYuef0RK2EAImnak0w2wrjCh/YBTvbn4iV2eTy0q3F8CyUkGiaYEyxUKGVTko6+7SMRBL4Gg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.razor.design/2.1.0",
+      "path": "microsoft.aspnetcore.razor.design/2.1.2",
       "files": [
         ".signature.p7s",
         "build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets",
         "build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.props",
         "buildMultiTargeting/Microsoft.AspNetCore.Razor.Design.props",
-        "microsoft.aspnetcore.razor.design.2.1.0.nupkg.sha512",
+        "microsoft.aspnetcore.razor.design.2.1.2.nupkg.sha512",
         "microsoft.aspnetcore.razor.design.nuspec",
         "tasks/net46/Microsoft.AspNetCore.Razor.Tasks.dll",
         "tasks/netstandard2.0/Microsoft.AspNetCore.Razor.Tasks.dll",
@@ -486,15 +483,14 @@
         "microsoft.extensions.dependencyinjection.abstractions.nuspec"
       ]
     },
-    "Microsoft.JSInterop/0.5.1": {
-      "sha512": "+C5ce9UvLLONp4YZV3wNe2wj4nnIcKpFBlW5/C4iut5qVgMYHwDWNlsRH9BqVrqfKuyHhzsvKbpZ4HS3UZkzvw==",
+    "Microsoft.JSInterop/0.6.0": {
+      "sha512": "H0FtGqfWWKcbHGofquZAJZgZw/YQ9zF475O2EAWWCI5OD6ALhSUS53TFwUD3DgueLOOgG0vm2axr6HHRhDwsVQ==",
       "type": "package",
-      "path": "microsoft.jsinterop/0.5.1",
+      "path": "microsoft.jsinterop/0.6.0",
       "files": [
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.JSInterop.dll",
-        "lib/netstandard2.0/Microsoft.JSInterop.xml",
-        "microsoft.jsinterop.0.5.1.nupkg.sha512",
+        "microsoft.jsinterop.0.6.0.nupkg.sha512",
         "microsoft.jsinterop.nuspec"
       ]
     },
@@ -511,86 +507,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.TypeScript.MSBuild/2.9.2": {
-      "sha512": "ICJkzcfpVUzU5UDAUj4lE4Lp+x8CZ456bSa4n5P9xTwrGF01eZOMeEq4IQV71w6Xkkw/la5xT4xMwp8lcJbK1Q==",
+    "Mono.WebAssembly.Interop/0.6.0": {
+      "sha512": "L9dTo61lnJ/8/cvsrEUN34KX1D1/H2s08bRq9hMD37ZReFHg5OC2N5DlgKzsGYMd66UBFwFny/XhDgMsk5QK9Q==",
       "type": "package",
-      "path": "microsoft.typescript.msbuild/2.9.2",
-      "files": [
-        ".signature.p7s",
-        "build/Microsoft.TypeScript.MSBuild.props",
-        "build/Microsoft.TypeScript.MSBuild.targets",
-        "microsoft.typescript.msbuild.2.9.2.nupkg.sha512",
-        "microsoft.typescript.msbuild.nuspec",
-        "tools/Microsoft.TypeScript.Default.props",
-        "tools/Microsoft.TypeScript.targets",
-        "tools/net45/System.IO.FileSystem.Primitives.dll",
-        "tools/net45/System.IO.FileSystem.dll",
-        "tools/net45/TypeScript.Tasks.dll",
-        "tools/netstandard1.3/TypeScript.Tasks.dll",
-        "tools/tsc/chakracore.dll",
-        "tools/tsc/cs/diagnosticMessages.generated.json",
-        "tools/tsc/de/diagnosticMessages.generated.json",
-        "tools/tsc/en/diagnosticMessages.generated.json",
-        "tools/tsc/es/diagnosticMessages.generated.json",
-        "tools/tsc/fr/diagnosticMessages.generated.json",
-        "tools/tsc/it/diagnosticMessages.generated.json",
-        "tools/tsc/ja/diagnosticMessages.generated.json",
-        "tools/tsc/ko/diagnosticMessages.generated.json",
-        "tools/tsc/lib.d.ts",
-        "tools/tsc/lib.dom.d.ts",
-        "tools/tsc/lib.dom.iterable.d.ts",
-        "tools/tsc/lib.es2015.collection.d.ts",
-        "tools/tsc/lib.es2015.core.d.ts",
-        "tools/tsc/lib.es2015.d.ts",
-        "tools/tsc/lib.es2015.generator.d.ts",
-        "tools/tsc/lib.es2015.iterable.d.ts",
-        "tools/tsc/lib.es2015.promise.d.ts",
-        "tools/tsc/lib.es2015.proxy.d.ts",
-        "tools/tsc/lib.es2015.reflect.d.ts",
-        "tools/tsc/lib.es2015.symbol.d.ts",
-        "tools/tsc/lib.es2015.symbol.wellknown.d.ts",
-        "tools/tsc/lib.es2016.array.include.d.ts",
-        "tools/tsc/lib.es2016.d.ts",
-        "tools/tsc/lib.es2016.full.d.ts",
-        "tools/tsc/lib.es2017.d.ts",
-        "tools/tsc/lib.es2017.full.d.ts",
-        "tools/tsc/lib.es2017.intl.d.ts",
-        "tools/tsc/lib.es2017.object.d.ts",
-        "tools/tsc/lib.es2017.sharedmemory.d.ts",
-        "tools/tsc/lib.es2017.string.d.ts",
-        "tools/tsc/lib.es2017.typedarrays.d.ts",
-        "tools/tsc/lib.es2018.d.ts",
-        "tools/tsc/lib.es2018.full.d.ts",
-        "tools/tsc/lib.es2018.intl.d.ts",
-        "tools/tsc/lib.es2018.promise.d.ts",
-        "tools/tsc/lib.es2018.regexp.d.ts",
-        "tools/tsc/lib.es5.d.ts",
-        "tools/tsc/lib.es6.d.ts",
-        "tools/tsc/lib.esnext.array.d.ts",
-        "tools/tsc/lib.esnext.asynciterable.d.ts",
-        "tools/tsc/lib.esnext.d.ts",
-        "tools/tsc/lib.esnext.full.d.ts",
-        "tools/tsc/lib.scriptHost.d.ts",
-        "tools/tsc/lib.webworker.d.ts",
-        "tools/tsc/pl/diagnosticMessages.generated.json",
-        "tools/tsc/pt-BR/diagnosticMessages.generated.json",
-        "tools/tsc/ru/diagnosticMessages.generated.json",
-        "tools/tsc/tr/diagnosticMessages.generated.json",
-        "tools/tsc/tsc.exe",
-        "tools/tsc/tsc.js",
-        "tools/tsc/zh-CN/diagnosticMessages.generated.json",
-        "tools/tsc/zh-TW/diagnosticMessages.generated.json"
-      ]
-    },
-    "Mono.WebAssembly.Interop/0.5.1": {
-      "sha512": "UfPlTd50W1q0+HX+5YwfUGdFBTP8bWh1lKFcdfD3FCygMGk84SNuvvxE320ciJFOagGcl1WmpoJCU2y74QwGjQ==",
-      "type": "package",
-      "path": "mono.webassembly.interop/0.5.1",
+      "path": "mono.webassembly.interop/0.6.0",
       "files": [
         ".signature.p7s",
         "lib/netstandard2.0/Mono.WebAssembly.Interop.dll",
-        "lib/netstandard2.0/Mono.WebAssembly.Interop.xml",
-        "mono.webassembly.interop.0.5.1.nupkg.sha512",
+        "mono.webassembly.interop.0.6.0.nupkg.sha512",
         "mono.webassembly.interop.nuspec"
       ]
     },
@@ -730,8 +654,8 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "BlazorAgenda.Shared >= 1.0.0",
-      "Microsoft.AspNetCore.Blazor.Browser >= 0.5.1",
-      "Microsoft.AspNetCore.Blazor.Build >= 0.5.1",
+      "Microsoft.AspNetCore.Blazor.Browser >= 0.6.0",
+      "Microsoft.AspNetCore.Blazor.Build >= 0.6.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -782,11 +706,11 @@
         "dependencies": {
           "Microsoft.AspNetCore.Blazor.Browser": {
             "target": "Package",
-            "version": "[0.5.1, )"
+            "version": "[0.6.0, )"
           },
           "Microsoft.AspNetCore.Blazor.Build": {
             "target": "Package",
-            "version": "[0.5.1, )"
+            "version": "[0.6.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
