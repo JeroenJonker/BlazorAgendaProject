@@ -6,3 +6,12 @@ C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Sh
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.AssemblyInfo.cs
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.dll
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.pdb
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\bin\Debug\netstandard2.0\BlazorAgenda.Shared.deps.json
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\bin\Debug\netstandard2.0\BlazorAgenda.Shared.dll
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\bin\Debug\netstandard2.0\BlazorAgenda.Shared.pdb
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.csprojAssemblyReference.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.csproj.CoreCompileInputs.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.AssemblyInfoInputs.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.AssemblyInfo.cs
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.dll
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Shared\obj\Debug\netstandard2.0\BlazorAgenda.Shared.pdb

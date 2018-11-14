@@ -176,23 +176,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jeroe\\.nuget\\packages\\": {},
+    "C:\\Users\\denny\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj",
+      "projectUniqueName": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj",
       "projectName": "BlazorAgenda.Shared",
-      "projectPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj",
-      "packagesPath": "C:\\Users\\Jeroe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\obj\\",
+      "projectPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj",
+      "packagesPath": "C:\\Users\\denny\\.nuget\\packages\\",
+      "outputPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jeroe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\denny\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

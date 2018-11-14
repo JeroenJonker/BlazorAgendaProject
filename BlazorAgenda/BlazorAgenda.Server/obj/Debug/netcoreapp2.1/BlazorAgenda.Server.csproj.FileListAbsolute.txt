@@ -18,3 +18,24 @@ C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Se
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CopyComplete
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.dll
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.pdb
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Client.blazor.config
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\credentials.json
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.deps.json
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.runtimeconfig.json
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.runtimeconfig.dev.json
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.dll
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.pdb
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Client.dll
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Shared.dll
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Client.pdb
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Shared.pdb
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csprojAssemblyReference.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CoreCompileInputs.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cs
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.AssemblyInfoInputs.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.AssemblyInfo.cs
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorTargetAssemblyInfo.cache
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CopyComplete
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.dll
+D:\denny\NHL\Minor 2\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.pdb

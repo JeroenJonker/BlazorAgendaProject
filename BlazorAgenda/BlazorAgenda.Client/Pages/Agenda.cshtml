@@ -1,0 +1,45 @@
+﻿@using BlazorAgenda.Shared
+@page "/agenda"
+@inject HttpClient Http
+
+<h1>Blazor agenda</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (test == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Start</th>
+                <th>End</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in test)
+            {
+                <tr>
+                    <td>@item.Start</td>
+                    <td>@item.End</td>
+                    <td>@item.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*<p>@test</p>*@
+}
+
+@functions {
+List<CalendarEvent> test;
+
+protected override async Task OnInitAsync()
+{
+    test = await Http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
+
+}
+}

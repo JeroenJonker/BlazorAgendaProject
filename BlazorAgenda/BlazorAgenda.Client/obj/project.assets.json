@@ -660,23 +660,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jeroe\\.nuget\\packages\\": {},
+    "C:\\Users\\denny\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj",
+      "projectUniqueName": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj",
       "projectName": "BlazorAgenda.Client",
-      "projectPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj",
-      "packagesPath": "C:\\Users\\Jeroe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\obj\\",
+      "projectPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj",
+      "packagesPath": "C:\\Users\\denny\\.nuget\\packages\\",
+      "outputPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jeroe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\denny\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -689,8 +689,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj": {
-              "projectPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj"
+            "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj": {
+              "projectPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj"
             }
           }
         }

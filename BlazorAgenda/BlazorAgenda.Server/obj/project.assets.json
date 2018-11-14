@@ -8067,11 +8067,10 @@
       ]
     },
     "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "n53z4bxLI6bly1tt4NzQx9vShfiEh3IB23vKVTFfKUOfUhbgoynhZMzn3aezHwTWUzxBmCe6j6hKHFYqDC9q9Q==",
+      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
       "type": "package",
       "path": "microsoft.web.infrastructure/1.0.0",
       "files": [
-        ".signature.p7s",
         "lib/net40/Microsoft.Web.Infrastructure.dll",
         "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
         "microsoft.web.infrastructure.nuspec"
@@ -8276,10 +8275,11 @@
       ]
     },
     "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "sha512": "znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
       "type": "package",
       "path": "newtonsoft.json/11.0.2",
       "files": [
+        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -13047,23 +13047,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jeroe\\.nuget\\packages\\": {},
+    "C:\\Users\\denny\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Server\\BlazorAgenda.Server.csproj",
+      "projectUniqueName": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Server\\BlazorAgenda.Server.csproj",
       "projectName": "BlazorAgenda.Server",
-      "projectPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Server\\BlazorAgenda.Server.csproj",
-      "packagesPath": "C:\\Users\\Jeroe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Server\\obj\\",
+      "projectPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Server\\BlazorAgenda.Server.csproj",
+      "packagesPath": "C:\\Users\\denny\\.nuget\\packages\\",
+      "outputPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jeroe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\denny\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13076,11 +13076,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj": {
-              "projectPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj"
+            "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj": {
+              "projectPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Client\\BlazorAgenda.Client.csproj"
             },
-            "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj": {
-              "projectPath": "C:\\Users\\Jeroe\\Documents\\GitHub\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj"
+            "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj": {
+              "projectPath": "D:\\denny\\NHL\\Minor 2\\BlazorAgendaProject\\BlazorAgenda\\BlazorAgenda.Shared\\BlazorAgenda.Shared.csproj"
             }
           }
         }
