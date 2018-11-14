@@ -19,10 +19,4 @@
     <ProjectReference Include="..\BlazorAgenda.Shared\BlazorAgenda.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="credentials.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
