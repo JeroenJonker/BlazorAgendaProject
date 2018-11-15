@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlazorAgenda.Shared
 {
-    public class CalendarEvent
+    public class CalendarEvent : BaseObject
     {
         public DateTime Start { get; set; }
         public DateTime End { get; set; }

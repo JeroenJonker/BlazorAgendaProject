@@ -7,4 +7,6 @@ BlazorAgenda/BlazorAgenda.Server/credentials.json
 BlazorAgenda/BlazorAgenda.Server/token.json
 BlazorAgenda/BlazorAgenda.Shared/bin
 BlazorAgenda/BlazorAgenda.Shared/obj
+BlazorAgenda/BlazorAgenda.Services/bin
+BlazorAgenda/BlazorAgenda.Services/obj
 BlazorAgenda/global.json
