@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using BlazorAgenda.Services;
+using BlazorAgenda.Shared;
 
 namespace BlazorAgenda.Client
 {
@@ -7,6 +9,7 @@ namespace BlazorAgenda.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<CalendarEventService>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

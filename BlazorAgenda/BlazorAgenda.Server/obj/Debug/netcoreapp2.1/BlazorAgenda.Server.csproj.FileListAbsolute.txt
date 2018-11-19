@@ -5,9 +5,11 @@ C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Se
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.dll
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.pdb
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Client.dll
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Services.dll
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Shared.dll
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Client.pdb
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Shared.pdb
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Services.pdb
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csprojAssemblyReference.cache
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CoreCompileInputs.cache
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cache

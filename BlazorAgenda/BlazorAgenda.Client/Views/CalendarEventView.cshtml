@@ -2,15 +2,18 @@
 @page "/event"
 @inherits CalendarEventViewmodel
 
-<h1>Event</h1>
+<div>
+    <h1>Afspraak</h1>
 
-<label>Summary</label>
-<input bind="@Summary" />
-<label>Begin</label>
-<input type="time" bind=BeginTime format-value="HH:mm" />
-<label>End</label>
-<input type="date" bind=BeginTime format-value="yyyy-MM-dd" />
-<label>Begin</label>
-<input type="time" bind=EndTime format-value="HH:mm" />
-<label>End</label>
-<input type="date" bind=EndTime format-value="yyyy-MM-dd" />
+    <label>Afspraak omschrijving</label>
+    <input bind="CurrentObject.CurrentObject.Summary" />
+    <label>Begindatum</label>
+    <input type="date" bind=CurrentObject.CurrentObject.Start format-value="yyyy-MM-dd" />
+    <label>Begintijd</label>
+    <input type="time" bind=CurrentObject.CurrentObject.Start format-value="HH:mm" />
+    <label>Einddatum</label>
+    <input type="date" bind=CurrentObject.CurrentObject.End format-value="yyyy-MM-dd" />
+    <label>Eindtijd</label>
+    <input type="time" bind=CurrentObject.CurrentObject.End format-value="HH:mm" />
+    <button onclick=@PostAsync>Opslaan</button>
+</div>

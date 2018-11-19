@@ -4812,6 +4812,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "BlazorAgenda.Services": "1.0.0",
           "BlazorAgenda.Shared": "1.0.0",
           "Google.Apis.Calendar.v3": "1.36.1.1403",
           "Microsoft.AspNetCore.Blazor.Browser": "0.6.0",
@@ -4822,6 +4823,20 @@
         },
         "runtime": {
           "bin/placeholder/BlazorAgenda.Client.dll": {}
+        }
+      },
+      "BlazorAgenda.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "BlazorAgenda.Shared": "1.0.0",
+          "Microsoft.AspNetCore.Blazor": "0.6.0"
+        },
+        "compile": {
+          "bin/placeholder/BlazorAgenda.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BlazorAgenda.Services.dll": {}
         }
       },
       "BlazorAgenda.Shared/1.0.0": {
@@ -12896,6 +12911,11 @@
       "type": "project",
       "path": "../BlazorAgenda.Client/BlazorAgenda.Client.csproj",
       "msbuildProject": "../BlazorAgenda.Client/BlazorAgenda.Client.csproj"
+    },
+    "BlazorAgenda.Services/1.0.0": {
+      "type": "project",
+      "path": "../BlazorAgenda.Services/BlazorAgenda.Services.csproj",
+      "msbuildProject": "../BlazorAgenda.Services/BlazorAgenda.Services.csproj"
     },
     "BlazorAgenda.Shared/1.0.0": {
       "type": "project",
