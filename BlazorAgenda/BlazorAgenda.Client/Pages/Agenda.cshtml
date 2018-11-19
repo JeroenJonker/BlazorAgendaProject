@@ -1,31 +1,32 @@
-﻿@using BlazorAgenda.Client.Views;
-@page "/agenda"
+﻿@page "/agenda"
 
-<h1>Blazor agenda</h1>
+<div class=@(IsFocus ? null : "greyout" )>
+    <h1>Blazor agenda</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
-@if (!isButtonClicked)
-{
-    <button class="loginBtn" onclick="@ClickButton">
-        Login with Google
-    </button>
-}
-else
-{
-    if (isLoaded)
+    <p>This component demonstrates fetching data from the server.</p>
+    @if (!isButtonClicked)
     {
-        <button onclick=@Show>Show</button>
-        <CalendarEventView IsVisible=collapse />
+        <button class="loginBtn" onclick="@ClickButton">
+            Login with Google
+        </button>
     }
-    <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
-}
+    else
+    {
+        if (isLoaded)
+        {
+            <button onclick=@Show>Show</button>
+            <CalendarEventView IsVisible=!IsFocus />
+        }
+        <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
+    }
+</div>
 
 @functions
 {
-    bool collapse = true;
+    bool IsFocus = true;
     void Show()
     {
-        collapse = !collapse;
+    IsFocus = !IsFocus;
     }
 
     bool isButtonClicked = false;
@@ -33,12 +34,12 @@ else
 
     void ClickButton()
     {
-        isButtonClicked = true;
+    isButtonClicked = true;
     }
 
     void ChildLoadedEvent(bool _isLoaded)
     {
-        isLoaded = _isLoaded;
-        StateHasChanged();
+    isLoaded = _isLoaded;
+    StateHasChanged();
     }
 }

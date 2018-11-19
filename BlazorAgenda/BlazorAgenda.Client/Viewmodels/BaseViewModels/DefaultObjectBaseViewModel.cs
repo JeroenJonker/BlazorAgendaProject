@@ -16,16 +16,17 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
         [Parameter]
         protected RenderFragment ChildContent { get; set; }
         [Parameter]
-        protected bool IsVisible { get; set; }
+        internal bool IsVisible { get; set; }
 
-        public virtual async Task PostAsync()
-        {
-            await Service.PostAsync();
-        }
-
-        public void Collapse()
+        public void Close()
         {
             IsVisible = !IsVisible;
+        }
+
+        public virtual async Task Save()
+        {
+            await Service.PostAsync();
+            Close();
         }
     }
 }
