@@ -1,6 +1,8 @@
-﻿@using BlazorAgenda.Shared
-@page "/agenda"
-@inject HttpClient Http
+﻿@page "/agenda"
+@using BlazorAgenda.Shared
+@using BlazorAgenda.Client.Viewmodels
+
+@inherits AgendaViewModel
 
 <h1>Blazor agenda</h1>
 
@@ -33,14 +35,23 @@ else
             }
         </tbody>
     </table>
+    <button class="tes" onclick="@TestAsync">
+        GetStuff
+    </button>
 }
+<h2>@test2</h2>
 
 @functions {
     List<CalendarEvent> test;
+    string test2 = "";
 
     async Task LoginAsync(UIMouseEventArgs e)
     {
-        test = await Http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
+        test = await HttpClient.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
+    }
 
+    async Task TestAsync(UIMouseEventArgs e)
+    {
+        test2 = await HttpClient.GetStringAsync("api/SampleData/AddTestAsync");
     }
 }
