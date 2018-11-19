@@ -1,8 +1,12 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Client.Views.BaseViews
+@layout DefaultObjectBaseView
 @page "/event"
-@inherits CalendarEventViewmodel
+@*@inherits CalendarEventViewmodel*@
 
-<div>
+<p> BOOYA</p>
+
+@*<div>
     <h1>Afspraak</h1>
 
     <label>Afspraak omschrijving</label>
@@ -16,4 +20,4 @@
     <label>Eindtijd</label>
     <input type="time" bind=CurrentObject.CurrentObject.End format-value="HH:mm" />
     <button onclick=@PostAsync>Opslaan</button>
-</div>
+</div>*@

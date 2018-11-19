@@ -189,3 +189,5 @@ C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Cl
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Client\obj\Debug\netstandard2.0\blazor\linker\Google.Apis.pdb
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Client\obj\Debug\netstandard2.0\blazor\inputs.bootjson.cache
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Client\obj\Debug\netstandard2.0\blazor\blazor.boot.json
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Client\obj\Debug\netstandard2.0\Views\BaseViews\DefaultObjectBaseView.g.i.cs
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Client\obj\Debug\netstandard2.0\Views\BaseViews\DefaultObjectBaseView.g.cs
