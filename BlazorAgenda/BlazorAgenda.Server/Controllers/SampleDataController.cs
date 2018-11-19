@@ -57,7 +57,7 @@ namespace BlazorAgenda.Server.Controllers
         }
 
         [HttpGet("[action]")]
-        public List<CalendarEvent> Test()
+        public List<CalendarEvent> GetEvents()
         {
             // Define parameters of request.
             EventsResource.ListRequest request = Service.Events.List("primary");

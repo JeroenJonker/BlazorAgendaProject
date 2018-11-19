@@ -1,55 +1,35 @@
-﻿@page "/agenda"
-@using BlazorAgenda.Shared
-@using BlazorAgenda.Client.Viewmodels
-
+﻿@using BlazorAgenda.Client.Viewmodels
+@page "/agenda"
 @inherits AgendaViewModel
 
 <h1>Blazor agenda</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (test == null)
+@if (Events == null)
 {
-    <button class="loginBtn" onclick="@LoginAsync">
+    <button class="loginBtn" onclick="@(async () => await GetUpcomingEvents())">
         Login with Google
     </button>
 }
 else
 {
-    <CalendarEventView/>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Start</th>
-                <th>End</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in test)
-            {
-                <tr>
-                    <td>@item.Start.ToString("dd-MM-yyyy hh:mm")</td>
-                    <td>@item.End.ToString("dd-MM-yyyy hh:mm")</td>
-                    <td>@item.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <CalendarEventView />
+    <CalendarView Events=@Events Today=@Today Monday=@Monday></CalendarView>
+    @foreach (var item in Events)
+    {
+        <div class="row">
+            <span class="col-xs-4">@item.Start.ToString("dd-MM-yyyy hh:mm")</span>
+            <span class="col-xs-4">@item.End.ToString("dd-MM-yyyy hh:mm")</span>
+            <span class="col-xs-4">@item.Summary</span>
+        </div>
+    }
 }
-<h2>@test2</h2>
 
-@functions {
-    List<CalendarEvent> test;
-    string test2 = "";
-
-    async Task LoginAsync(UIMouseEventArgs e)
-    {
-        test = await HttpClient.GetJsonAsync<List<CalendarEvent>>("api/SampleData/Test");
-    }
-
-    async Task TestAsync(UIMouseEventArgs e)
-    {
-        test2 = await HttpClient.GetStringAsync("api/SampleData/AddTestAsync");
-    }
+@functions
+{
+protected override void OnInit()
+{
+    OnChange += StateHasChanged;
+}
 }
