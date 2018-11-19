@@ -17,10 +17,4 @@
     <ProjectReference Include="..\BlazorAgenda.Shared\BlazorAgenda.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Views\BaseViews\DefaultObjectBaseView.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-  </ItemGroup>
-
 </Project>

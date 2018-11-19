@@ -16,7 +16,8 @@
 }
 else
 {
-
+    <button onclick=@Show>Show</button>
+    <CalendarEventView IsVisible=collapse/>
     <table class="table">
         <thead>
             <tr>
@@ -51,5 +52,10 @@ else
     async Task TestAsync(UIMouseEventArgs e)
     {
         test2 = await HttpClient.GetStringAsync("api/SampleData/AddTestAsync");
+    }
+    bool collapse = true;
+    void Show()
+    {
+        collapse = !collapse;
     }
 }

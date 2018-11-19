@@ -1,5 +1,10 @@
-﻿@inherits BlazorLayoutComponent
+﻿@using BlazorAgenda.Client.Viewmodels.BaseViewModels
+@inherits DefaultObjectBaseViewModel
 
-<p>Testosaurus</p>
 
-@Body
+<div class=@(IsVisible ? null : "collapse")>
+    <span>&#10007</span>
+
+    @ChildContent
+
+</div>

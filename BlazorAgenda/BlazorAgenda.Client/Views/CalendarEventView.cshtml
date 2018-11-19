@@ -1,23 +1,15 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
-@using BlazorAgenda.Client.Views.BaseViews
-@*@layout DefaultObjectBaseView*@
-@page "/event"
-@*@inherits CalendarEventViewmodel*@
+@inherits CalendarEventViewmodel
 
-<p> BOOYA</p>
-
-@*<div>
-    <h1>Afspraak</h1>
-
+<DefaultObjectBaseView IsVisible=IsVisible Service="Service">
     <label>Afspraak omschrijving</label>
-    <input bind="CurrentObject.CurrentObject.Summary" />
+    <input bind="Service.CurrentObject.Summary" />
     <label>Begindatum</label>
-    <input type="date" bind=CurrentObject.CurrentObject.Start format-value="yyyy-MM-dd" />
+    <input type="date" bind=Service.CurrentObject.Start format-value="yyyy-MM-dd" />
     <label>Begintijd</label>
-    <input type="time" bind=CurrentObject.CurrentObject.Start format-value="HH:mm" />
+    <input type="time" bind=Service.CurrentObject.Start format-value="HH:mm" />
     <label>Einddatum</label>
-    <input type="date" bind=CurrentObject.CurrentObject.End format-value="yyyy-MM-dd" />
+    <input type="date" bind=Service.CurrentObject.End format-value="yyyy-MM-dd" />
     <label>Eindtijd</label>
-    <input type="time" bind=CurrentObject.CurrentObject.End format-value="HH:mm" />
-    <button onclick=@PostAsync>Opslaan</button>
-</div>*@
+    <input type="time" bind=Service.CurrentObject.End format-value="HH:mm" />
+</DefaultObjectBaseView>

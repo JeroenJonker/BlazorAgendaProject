@@ -1,3 +1,8 @@
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CoreCompileInputs.cache
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cache
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cs
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.AssemblyInfoInputs.cache
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.AssemblyInfo.cs
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Client.blazor.config
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.deps.json
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Server.runtimeconfig.json
@@ -11,11 +16,6 @@ C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Se
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Shared.pdb
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\bin\Debug\netcoreapp2.1\BlazorAgenda.Services.pdb
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csprojAssemblyReference.cache
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CoreCompileInputs.cache
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cache
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorAssemblyInfo.cs
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.AssemblyInfoInputs.cache
-C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.AssemblyInfo.cs
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.RazorTargetAssemblyInfo.cache
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.csproj.CopyComplete
 C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Server\obj\Debug\netcoreapp2.1\BlazorAgenda.Server.dll
