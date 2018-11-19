@@ -4,41 +4,41 @@
 
 @inherits AgendaViewModel
 
-<h1>Blazor agenda</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (test == null)
-{
-    <button class="loginBtn" onclick="@LoginAsync">
-        Login with Google
-    </button>
-}
-else
-{
-    <button onclick=@Show>Show</button>
-    <CalendarEventView IsVisible=collapse/>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Start</th>
-                <th>End</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in test)
-            {
+<div class=@(IsFocus ? null : "greyout")>
+    <h1>Blazor agenda</h1>
+    <p>This component demonstrates fetching data from the server.</p>
+    @if (test == null)
+    {
+        <button class="loginBtn" onclick="@LoginAsync">
+            Login with Google
+        </button>
+    }
+    else
+    {
+        <button onclick=@Show>Show</button>
+        <CalendarEventView IsVisible=!IsFocus />
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.Start.ToString("dd-MM-yyyy hh:mm")</td>
-                    <td>@item.End.ToString("dd-MM-yyyy hh:mm")</td>
-                    <td>@item.Summary</td>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Summary</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-<h2>@test2</h2>
+            </thead>
+            <tbody>
+                @foreach (var item in test)
+                {
+                    <tr>
+                        <td>@item.Start.ToString("dd-MM-yyyy hh:mm")</td>
+                        <td>@item.End.ToString("dd-MM-yyyy hh:mm")</td>
+                        <td>@item.Summary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <h2>@test2</h2>
+</div>
 
 @functions {
     List<CalendarEvent> test;
@@ -53,9 +53,9 @@ else
     {
         test2 = await HttpClient.GetStringAsync("api/SampleData/AddTestAsync");
     }
-    bool collapse = true;
+    bool IsFocus = true;
     void Show()
     {
-        collapse = !collapse;
+        IsFocus = !IsFocus;
     }
 }
