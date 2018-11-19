@@ -196,7 +196,7 @@ table {
         vertical-align: middle;
         position: relative;
         border-left: 1px solid #626E7E;
-        height: 10px;
+        padding: .5rem;
     }
 
     table tbody tr td:not(:first-child), table thead tr th .day {
@@ -224,4 +224,8 @@ table {
     table thead tr th .short {
         display: block;
     }
+}
+
+.collapse {
+    display: none;
 }

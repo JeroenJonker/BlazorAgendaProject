@@ -1,84 +1,91 @@
-﻿@using BlazorAgenda.Shared;
+﻿@using BlazorAgenda.Client.Viewmodels
+@inherits CalendarViewModel
 
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            @{
-                int today = Today.Day;
-                int start = Monday.Day;
-                for (int i = start; i < start + 7; i++)
-                {
-                    DateTime day = Monday.AddDays(i - start);
-                    string name = day.ToString("dddd");
-                    <th>
-                        @if (i == today)
-                        {
-                            <span class="day active">@i</span>
-                        }
-                        else
-                        {
-                            <span class="day">@i</span>
-                        }
-                        <span class="long">@name</span>
-                        <span class="short">@name.Substring(0, 3)</span>
-                    </th>
+@if (Events != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                @{
+                    int today = CurrentDate.Day;
+                    int start = StartOfWeekDate.Day;
+                    for (int i = start; i < start + 7; i++)
+                    {
+                        DateTime day = StartOfWeekDate.AddDays(i - start);
+                        string name = day.ToString("dddd");
+                        <th>
+                            @if (i == today)
+                            {
+                                <span class="day active">@i</span>
+                            }
+                            else
+                            {
+                                <span class="day">@i</span>
+                            }
+                            <span class="long">@name</span>
+                            <span class="short">@name.Substring(0, 3)</span>
+                        </th>
+                    }
                 }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 24; i++)
+            {
+                <tr>
+                    <td class="hour" rowspan="4"><span>@i:00</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             }
-        </tr>
-    </thead>
-    <tbody>
-        @for (int i = 0; i < 24; i++)
-        {
-            <tr>
-                <td class="hour" rowspan="4"><span>@i:00</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    @foreach (var item in Events)
+    {
+        <div class="row">
+            <span class="col-xs-4">@item.Start.ToString("dd-MM-yyyy hh:mm")</span>
+            <span class="col-xs-4">@item.End.ToString("dd-MM-yyyy hh:mm")</span>
+            <span class="col-xs-4">@item.Summary</span>
+        </div>
+    }
+}
 
 @functions {
-    [Parameter]
-    public List<CalendarEvent> Events { get; set; }
-
-    [Parameter]
-    public DateTime Today { get; set; }
-
-    [Parameter]
-    public DateTime Monday { get; set; }
-
+    protected override async Task OnInitAsync()
+    {
+        await GetAsync();
+    }
 }

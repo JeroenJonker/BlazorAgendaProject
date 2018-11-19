@@ -1,35 +1,44 @@
-﻿@using BlazorAgenda.Client.Viewmodels
+﻿@using BlazorAgenda.Client.Views;
 @page "/agenda"
-@inherits AgendaViewModel
 
 <h1>Blazor agenda</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
-
-@if (Events == null)
+@if (!isButtonClicked)
 {
-    <button class="loginBtn" onclick="@(async () => await GetUpcomingEvents())">
+    <button class="loginBtn" onclick="@ClickButton">
         Login with Google
     </button>
 }
 else
 {
-    <CalendarEventView />
-    <CalendarView Events=@Events Today=@Today Monday=@Monday></CalendarView>
-    @foreach (var item in Events)
+    if (isLoaded)
     {
-        <div class="row">
-            <span class="col-xs-4">@item.Start.ToString("dd-MM-yyyy hh:mm")</span>
-            <span class="col-xs-4">@item.End.ToString("dd-MM-yyyy hh:mm")</span>
-            <span class="col-xs-4">@item.Summary</span>
-        </div>
+        <button onclick=@Show>Show</button>
+        <CalendarEventView IsVisible=collapse />
     }
+    <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
 }
 
 @functions
 {
-protected override void OnInit()
-{
-    OnChange += StateHasChanged;
-}
+    bool collapse = true;
+    void Show()
+    {
+        collapse = !collapse;
+    }
+
+    bool isButtonClicked = false;
+    bool isLoaded = false;
+
+    void ClickButton()
+    {
+        isButtonClicked = true;
+    }
+
+    void ChildLoadedEvent(bool _isLoaded)
+    {
+        isLoaded = _isLoaded;
+        StateHasChanged();
+    }
 }

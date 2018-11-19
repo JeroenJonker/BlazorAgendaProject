@@ -1,0 +1,10 @@
+﻿@using BlazorAgenda.Client.Viewmodels.BaseViewModels
+@inherits DefaultObjectBaseViewModel
+
+
+<div class=@(IsVisible ? null : "collapse")>
+    <span>&#10007</span>
+
+    @ChildContent
+
+</div>

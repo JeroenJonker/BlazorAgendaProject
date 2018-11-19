@@ -7,8 +7,11 @@ using BlazorAgenda.Client.Viewmodels.BaseViewModels;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
-    public class CalendarEventViewmodel : DefaultObjectBaseViewModel<CalendarEventService>
+    public class CalendarEventViewmodel : BlazorComponent
     {
-
+        [Inject]
+        protected CalendarEventService Service { get; set; }
+        [Parameter]
+        protected bool IsVisible { get; set; }
     }
 }

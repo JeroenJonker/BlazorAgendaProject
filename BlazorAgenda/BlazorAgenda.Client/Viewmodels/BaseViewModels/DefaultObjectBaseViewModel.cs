@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Services;
 using BlazorAgenda.Shared;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,23 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
-    public abstract class DefaultObjectBaseViewModel<T> : BlazorComponent where T : IDefaultService
+    public class DefaultObjectBaseViewModel: BlazorComponent
     {
-        [Inject]
-        protected T CurrentObject { get; set; }
+        [Parameter]
+        protected IDefaultService Service { get; set; }
+        [Parameter]
+        protected RenderFragment ChildContent { get; set; }
+        [Parameter]
+        protected bool IsVisible { get; set; }
 
         public virtual async Task PostAsync()
         {
-            await CurrentObject.PostAsync();
+            await Service.PostAsync();
+        }
+
+        public void Collapse()
+        {
+            IsVisible = !IsVisible;
         }
     }
 }
