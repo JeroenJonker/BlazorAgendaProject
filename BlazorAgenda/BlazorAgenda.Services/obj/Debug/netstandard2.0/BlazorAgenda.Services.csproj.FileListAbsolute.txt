@@ -1,0 +1,12 @@
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\bin\Debug\netstandard2.0\BlazorAgenda.Services.deps.json
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\bin\Debug\netstandard2.0\BlazorAgenda.Services.dll
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\bin\Debug\netstandard2.0\BlazorAgenda.Services.pdb
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\bin\Debug\netstandard2.0\BlazorAgenda.Shared.dll
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\bin\Debug\netstandard2.0\BlazorAgenda.Shared.pdb
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.csprojAssemblyReference.cache
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.csproj.CoreCompileInputs.cache
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.AssemblyInfoInputs.cache
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.AssemblyInfo.cs
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.csproj.CopyComplete
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.dll
+C:\Users\Jeroe\Documents\GitHub\BlazorAgendaProject\BlazorAgenda\BlazorAgenda.Services\obj\Debug\netstandard2.0\BlazorAgenda.Services.pdb

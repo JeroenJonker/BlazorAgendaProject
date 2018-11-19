@@ -20,9 +20,21 @@ namespace BlazorAgenda.Server.Controllers
     {
         static string[] Scopes = { CalendarService.Scope.Calendar };
         static string ApplicationName = "Blazor agenda";
+        CalendarService Service { get; set; }
 
-        [HttpGet("[action]")]
-        public List<CalendarEvent> Test()
+        public SampleDataController()
+        {
+            UserCredential credential = GetCredential();
+
+            // Create Google Calendar API service.
+            Service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+        }
+
+        private static UserCredential GetCredential()
         {
             UserCredential credential;
 
@@ -34,21 +46,21 @@ namespace BlazorAgenda.Server.Controllers
                 string credPath = "token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
+                    new[] { CalendarService.Scope.Calendar },
                     "user",
                     CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
+                    new FileDataStore("Calendar.Sample.Store")).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
             }
 
-            // Create Google Calendar API service.
-            var service = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
+            return credential;
+        }
 
+        [HttpGet("[action]")]
+        public List<CalendarEvent> Test()
+        {
             // Define parameters of request.
-            EventsResource.ListRequest request = service.Events.List("primary");
+            EventsResource.ListRequest request = Service.Events.List("primary");
             request.TimeMin = DateTime.Now;
             request.ShowDeleted = false;
             request.SingleEvents = true;
@@ -71,44 +83,21 @@ namespace BlazorAgenda.Server.Controllers
             return results;
         }
 
-        [HttpGet("[action]")]
-        public async Task<string> AddTestAsync()
+        [HttpPost("[action]")]
+        public IActionResult PostEvent([FromBody] CalendarEvent calendarEvent)
         {
-            UserCredential credential;
-
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
-            {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    new[] { CalendarService.Scope.Calendar },
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore("Calendar.Sample.Store")).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Google Calendar API service.
-            var service = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-            BatchRequest addrequest = new BatchRequest(service);
-            addrequest.Queue<CalendarList>(service.CalendarList.List(),
+            BatchRequest addrequest = new BatchRequest(Service);
+            addrequest.Queue<CalendarList>(Service.CalendarList.List(),
                  (content, error, i, message) =>
                  {
                      // Put your callback code here.
                  });
-            addrequest.Queue<Event>(service.Events.Insert(
+            addrequest.Queue<Event>(Service.Events.Insert(
              new Event
              {
-                 Summary = "Eerste test",
-                 Start = new EventDateTime() { DateTime = new DateTime(2018, 11, 14, 12, 0, 0) },
-                 End = new EventDateTime() { DateTime = new DateTime(2018, 11, 14, 15, 0, 0) }
+                 Summary = calendarEvent.Summary,
+                 Start = new EventDateTime() { DateTime = calendarEvent.Start },
+                 End = new EventDateTime() { DateTime = calendarEvent.End }
              }, "primary"),
              (content, error, i, message) =>
              {
@@ -117,8 +106,8 @@ namespace BlazorAgenda.Server.Controllers
             // You can add more Queue calls here.
 
             // Execute the batch request, which includes the 2 requests above.
-            await addrequest.ExecuteAsync();
-            return "ha";
+            addrequest.ExecuteAsync();
+            return Ok();
         }
     }
 }
