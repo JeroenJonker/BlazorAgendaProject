@@ -12,7 +12,7 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
     public class DefaultObjectBaseViewModel: BlazorComponent
     {
         [Parameter]
-        protected IDefaultService Service { get; set; }
+        protected IDefaultObjectService Service { get; set; }
         [Parameter]
         protected RenderFragment ChildContent { get; set; }
         [Parameter]

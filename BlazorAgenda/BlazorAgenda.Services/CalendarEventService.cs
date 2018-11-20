@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Blazor;
 
 namespace BlazorAgenda.Services
 {
-    public class CalendarEventService : IDefaultService
+    public class CalendarEventService : IDefaultObjectService
     {
         private CalendarEvent currentobject;
         private readonly HttpClient http;

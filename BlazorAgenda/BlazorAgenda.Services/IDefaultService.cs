@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public interface IDefaultService
+    public interface IDefaultObjectService
     {
         Task PostAsync();
     }
