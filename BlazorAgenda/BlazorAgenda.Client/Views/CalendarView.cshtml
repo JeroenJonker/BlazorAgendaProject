@@ -3,6 +3,10 @@
 
 @if (Loaded)
 {
+    <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
+    <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
+    <button onclick=@(() => GoToNextWeek())>&gt;</button>
+    @CurrentMonthAndYear
     <table class="table">
         <thead>
             @Head
@@ -25,6 +29,6 @@
     protected override async Task OnInitAsync()
     {
         await GetAsync();
-        BuildTable();
+        GoToCurrentWeek();
     }
 }

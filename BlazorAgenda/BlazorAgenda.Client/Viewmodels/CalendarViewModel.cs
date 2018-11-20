@@ -20,9 +20,10 @@ namespace BlazorAgenda.Client.Viewmodels
         protected Action<bool> LoadedChanged { get; set; }
 
         public List<CalendarEvent> Events { get; set; }
-        public DateTime CurrentDate { get; set; } = DateTime.Today;
+        public DateTime Today { get; set; }
         public DateTime StartOfWeekDate { get; set; }
 
+        public RenderFragment CurrentMonthAndYear { get; set; }
         public RenderFragment Head { get; set; }
         public RenderFragment Body { get; set; }
 
@@ -30,14 +31,59 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             Events = await Service.GetAsync();
         }
-
-        public void BuildTable()
+        
+        public void GoToPreviousWeek()
         {
-            int delta = DayOfWeek.Monday - CurrentDate.DayOfWeek;
+            StartOfWeekDate = StartOfWeekDate.AddDays(-7);
+            GetCurrentMonthAndYear();
+            GetCalendar();
+        }
+
+        public void GoToCurrentWeek()
+        {
+            Today = DateTime.Today;
+            int delta = DayOfWeek.Monday - Today.DayOfWeek;
             if (delta > 0)
                 delta -= 7;
-            StartOfWeekDate = CurrentDate.AddDays(delta);
-            int today = CurrentDate.Day;
+            StartOfWeekDate = Today.AddDays(delta);
+            GetCurrentMonthAndYear();
+            GetCalendar();
+        }
+
+        public void GoToNextWeek()
+        {
+            StartOfWeekDate = StartOfWeekDate.AddDays(7);
+            GetCurrentMonthAndYear();
+            GetCalendar();
+        }
+
+        public void GetCurrentMonthAndYear()
+        {
+            string startMonth = StartOfWeekDate.ToString("MMMM");
+            string startYear = StartOfWeekDate.ToString("yyyy");
+            DateTime endOfWeekDate = StartOfWeekDate.AddDays(6);
+            string endMonth = endOfWeekDate.ToString("MMMM");
+            string endYear = endOfWeekDate.ToString("yyyy");
+            string monthAndYear;
+            if (endYear == startYear)
+            {
+                if (endMonth == startMonth)
+                    monthAndYear = startMonth + " " + startYear;
+                else
+                    monthAndYear = startMonth + " - " + endMonth + " " + startYear;
+            }
+            else
+                monthAndYear = startMonth + " " + startYear + " - " + endMonth + " " + endYear;
+            CurrentMonthAndYear = builder =>
+            {
+                builder.OpenElement(0, "h2");
+                builder.AddContent(1, monthAndYear);
+                builder.CloseElement();
+            };
+        }
+
+        public void GetCalendar()
+        {
             int start = StartOfWeekDate.Day;
             Head = builder =>
             {
@@ -51,10 +97,10 @@ namespace BlazorAgenda.Client.Viewmodels
                     string name = day.ToString("dddd");
 
                     builder.OpenElement(++seq, "th");
-                    string columnClass = (col == today) ? "day active" : "day";
+                    string columnClass = (day == Today) ? "day active" : "day";
                     builder.OpenElement(++seq, "span");
                     builder.AddAttribute(++seq, "class", columnClass);
-                    builder.AddContent(++seq, col.ToString());
+                    builder.AddContent(++seq, day.Day);
                     builder.CloseElement();
                     builder.OpenElement(++seq, "span");
                     builder.AddAttribute(++seq, "class", "long");
