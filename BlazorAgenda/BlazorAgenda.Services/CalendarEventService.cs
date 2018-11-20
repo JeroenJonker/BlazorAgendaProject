@@ -10,28 +10,8 @@ namespace BlazorAgenda.Services
 {
     public class CalendarEventService : IDefaultObjectService
     {
-        private CalendarEvent currentobject;
         private readonly HttpClient http;
-
-        public CalendarEvent CurrentObject
-        {
-            get
-            {
-                if (currentobject == null)
-                {
-                    currentobject = new CalendarEvent
-                    {
-                        Start = DateTime.Now,
-                        End = DateTime.Now
-                    };
-                }
-                return currentobject;
-            }
-            set
-            {
-                CurrentObject = value;
-            }
-        }
+        public CalendarEvent CurrentObject { get; set; }
 
         public CalendarEventService(HttpClient client)
         {
@@ -42,5 +22,16 @@ namespace BlazorAgenda.Services
         {
             await http.PostJsonAsync("api/SampleData/PostEvent", CurrentObject);
         }
+
+        public void ChangeCurrentObject(CalendarEvent calendarEvent)
+        {
+            CurrentObject = calendarEvent;
+            NotifyStateChanged();
+            Console.WriteLine("Changed");
+        }
+
+        public event Action OnChange;
+
+        private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }
