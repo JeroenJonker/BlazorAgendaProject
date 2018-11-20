@@ -1,76 +1,14 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @inherits CalendarViewModel
 
-@if (Events != null)
+@if (Loaded)
 {
     <table class="table">
         <thead>
-            <tr>
-                <th></th>
-                @{
-                    int today = CurrentDate.Day;
-                    int start = StartOfWeekDate.Day;
-                    for (int i = start; i < start + 7; i++)
-                    {
-                        DateTime day = StartOfWeekDate.AddDays(i - start);
-                        string name = day.ToString("dddd");
-                        <th>
-                            @if (i == today)
-                            {
-                                <span class="day active">@i</span>
-                            }
-                            else
-                            {
-                                <span class="day">@i</span>
-                            }
-                            <span class="long">@name</span>
-                            <span class="short">@name.Substring(0, 3)</span>
-                        </th>
-                    }
-                }
-            </tr>
+            @Head
         </thead>
         <tbody>
-            @for (int i = 0; i < 24; i++)
-            {
-                <tr>
-                    <td class="hour" rowspan="4"><span>@i:00</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            }
+            @Body
         </tbody>
     </table>
     @foreach (var item in Events)
@@ -87,5 +25,6 @@
     protected override async Task OnInitAsync()
     {
         await GetAsync();
+        BuildTable();
     }
 }
