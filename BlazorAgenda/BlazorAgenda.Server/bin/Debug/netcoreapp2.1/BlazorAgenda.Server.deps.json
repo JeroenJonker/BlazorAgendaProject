@@ -762,6 +762,9 @@
       "BlazorAgenda.Services/1.0.0": {
         "dependencies": {
           "BlazorAgenda.Shared": "1.0.0",
+          "Google.Apis": "1.36.1",
+          "Google.Apis.Auth": "1.36.1",
+          "Google.Apis.Calendar.v3": "1.36.1.1403",
           "Microsoft.AspNetCore.Blazor": "0.6.0"
         },
         "runtime": {

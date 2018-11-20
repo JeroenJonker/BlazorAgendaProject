@@ -24,14 +24,6 @@ namespace BlazorAgenda.Server.Controllers
 
         public SampleDataController()
         {
-            UserCredential credential = GetCredential();
-
-            // Create Google Calendar API service.
-            Service = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
         }
 
         private static UserCredential GetCredential()
@@ -57,8 +49,17 @@ namespace BlazorAgenda.Server.Controllers
         }
 
         [HttpGet("[action]")]
-        public List<CalendarEvent> Test()
+        public List<CalendarEvent> GetEvents()
         {
+            UserCredential credential = GetCredential();
+
+            // Create Google Calendar API service.
+            Service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
             // Define parameters of request.
             EventsResource.ListRequest request = Service.Events.List("primary");
             request.TimeMin = DateTime.Now;
@@ -86,6 +87,15 @@ namespace BlazorAgenda.Server.Controllers
         [HttpPost("[action]")]
         public IActionResult PostEvent([FromBody] CalendarEvent calendarEvent)
         {
+            UserCredential credential = GetCredential();
+
+            // Create Google Calendar API service.
+            Service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
             BatchRequest addrequest = new BatchRequest(Service);
             addrequest.Queue<CalendarList>(Service.CalendarList.List(),
                  (content, error, i, message) =>
