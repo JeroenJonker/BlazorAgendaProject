@@ -2,15 +2,12 @@
 @inherits DefaultObjectBaseViewModel
 
 
-<div class=@(IsVisible ? "visible" : "collapse")>
-    <button onclick=@Close>
-        <span>&#10007</span>
-    </button>
+<button onclick=@Close>
+    <span>&#10007</span>
+</button>
 
-    @ChildContent
+@ChildContent
 
-    <button onclick=@Save>
-        <span>&#10003</span>
-    </button>
-
-</div>
+<button onclick=@Save>
+    <span>&#10003</span>
+</button>

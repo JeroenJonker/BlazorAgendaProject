@@ -1,4 +1,6 @@
-﻿@page "/agenda"
+﻿@using BlazorAgenda.Client.Viewmodels
+@page "/agenda"
+@inherits AgendaViewmodel
 
 <div class=@(IsFocus ? null : "greyout" )>
     <h1>Blazor agenda</h1>
@@ -14,32 +16,12 @@
     {
         if (isLoaded)
         {
-            <button onclick=@Show>Show</button>
-            <CalendarEventView IsVisible=!IsFocus />
+            <button onclick="@AddNewEvent">Show</button>
+            if (Service.CurrentObject != null)
+            {
+                <CalendarEventView CalendarEvent=Service.CurrentObject Post=Post />
+            }
         }
         <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
     }
 </div>
-
-@functions
-{
-    bool IsFocus = true;
-    void Show()
-    {
-    IsFocus = !IsFocus;
-    }
-
-    bool isButtonClicked = false;
-    bool isLoaded = false;
-
-    void ClickButton()
-    {
-    isButtonClicked = true;
-    }
-
-    void ChildLoadedEvent(bool _isLoaded)
-    {
-    isLoaded = _isLoaded;
-    StateHasChanged();
-    }
-}
