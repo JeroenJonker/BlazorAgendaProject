@@ -9,25 +9,21 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
-    public class DefaultObjectBaseViewModel: BlazorComponent
+    public class DefaultObjectBaseViewModel<BaseObjectType> : BlazorComponent
     {
         [Parameter]
-        protected BaseObject CurrentObject { get; set; }
-        [Parameter]
         protected RenderFragment ChildContent { get; set; }
-        [Parameter]
-        internal bool IsVisible { get; set; }
-        [Parameter] protected Action<BaseObject> Post { get; set; }
+        [Parameter] protected IDefaultObjectService<BaseObjectType> Service { get; set; }
 
         public void Close()
         {
-            CurrentObject = null;
-            Post(CurrentObject as CalendarEvent);
+            Service.CurrentObject = default;
+            Service.NotifyStateChanged();
         }
 
         public virtual async Task Save()
         {
-            //await Service.PostAsync();
+            await Service.PostAsync();
             Close();
         }
     }

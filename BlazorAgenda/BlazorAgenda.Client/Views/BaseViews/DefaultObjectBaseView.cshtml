@@ -1,6 +1,6 @@
 ﻿@using BlazorAgenda.Client.Viewmodels.BaseViewModels
-@inherits DefaultObjectBaseViewModel
-
+@typeparam BaseObjectType
+@inherits DefaultObjectBaseViewModel<BaseObjectType>
 
 <button onclick=@Close>
     <span>&#10007</span>

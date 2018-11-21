@@ -66,6 +66,7 @@ namespace BlazorAgenda.Server.Controllers
             request.ShowDeleted = false;
             request.SingleEvents = true;
             //request.MaxResults = 10;
+            request.TimeMin = new DateTime(DateTime.Now.Year, 1, 1);
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
             // List events.
