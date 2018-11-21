@@ -1,7 +1,7 @@
 ﻿using BlazorAgenda.Shared;
 using BlazorAgenda.Services;
 using Microsoft.AspNetCore.Blazor;
-    using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.RenderTree;
 using System;
 using System.Collections.Generic;
@@ -37,16 +37,13 @@ namespace BlazorAgenda.Client.Viewmodels
         public RenderFragment Head { get; set; }
         public RenderFragment Body { get; set; }
 
-        public async Task GetColors()
+        protected override async Task OnInitAsync()
         {
             Colors = await Service.GetColors();
-        }
-
-        public async Task GetEvents()
-        {
             Events = await Service.GetEvents();
+            GoToCurrentWeek();
         }
-        
+                
         public void GoToPreviousWeek()
         {
             StartOfWeekDate = StartOfWeekDate.AddDays(-7);
@@ -165,8 +162,13 @@ namespace BlazorAgenda.Client.Viewmodels
                                     builder.AddAttribute(++seq, "rowspan", quarterHours);
                                     builder.OpenElement(++seq, "div");
                                     Color activeColor = Colors.Find(x => x.ColorId == ev.ColorId);
-                                    builder.AddAttribute(++seq, "style", "background-color:" + ((activeColor != null) ? activeColor.Background : "#039BE5"));
+                                    string background = (activeColor != null) ? activeColor.Background : "#039be5";
+                                    string foreground = (activeColor != null) ? activeColor.Foreground : "#1d1d1d";
+                                    builder.AddAttribute(++seq, "style", "background-color: " + background + "; color: " + foreground);
                                     builder.AddContent(++seq, ev.Summary);
+                                    builder.OpenElement(++seq, "br");
+                                    builder.CloseElement();
+                                    builder.AddContent(++seq, ev.Start.ToString("HH:mm") + " - " + ev.End.ToString("HH:mm"));
                                     builder.CloseElement();
                                     builder.CloseElement();
                                 }
@@ -199,10 +201,15 @@ namespace BlazorAgenda.Client.Viewmodels
                                         builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
                                         double quarterHours = (ev.End - ev.Start).TotalHours * 4;
                                         builder.AddAttribute(++seq, "rowspan", quarterHours);
-                                        builder.OpenElement(++seq, "span");
+                                        builder.OpenElement(++seq, "div");
                                         Color activeColor = Colors.Find(x => x.ColorId == ev.ColorId);
-                                        builder.AddAttribute(++seq, "style", "background-color:" + ((activeColor != null) ? activeColor.Background : "#039BE5"));
+                                        string background = (activeColor != null) ? activeColor.Background : "#039be5";
+                                        string foreground = (activeColor != null) ? activeColor.Foreground : "#1d1d1d";
+                                        builder.AddAttribute(++seq, "style", "background-color: " + background + "; color: " + foreground);
                                         builder.AddContent(++seq, ev.Summary);
+                                        builder.OpenElement(++seq, "br");
+                                        builder.CloseElement();
+                                        builder.AddContent(++seq, ev.Start.ToString("HH:mm") + " - " + ev.End.ToString("HH:mm"));
                                         builder.CloseElement();
                                         builder.CloseElement();
                                     }

@@ -26,12 +26,3 @@
         </tbody>
     </table>
 }
-
-@functions {
-    protected override async Task OnInitAsync()
-    {
-        await GetColors();
-        await GetEvents();
-        GoToCurrentWeek();
-    }
-}
