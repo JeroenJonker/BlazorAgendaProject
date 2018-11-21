@@ -191,29 +191,43 @@ table {
             display: none;
         }
 
-    table tbody tr td {
-        text-align: center;
-        vertical-align: middle;
-        position: relative;
-        border-left: 1px solid #626E7E;
-        padding: .5rem;
+    table tbody tr {
+        height: 1px;
     }
+
+        table tbody tr td {
+            height: inherit;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+            border-left: 1px solid #626E7E;
+            padding: .5rem !important;
+        }
+
+            table tbody tr td div {
+                height: 100%;
+            }
+
+        table tbody tr td:not(:empty) {
+            padding: 0;
+        }
+
+        table tbody tr:nth-child(4n+0) td {
+            border-bottom: 1px solid #626E7E;
+        }
+
+        table tbody tr td:last-child {
+            border-right: 1px solid #626E7E;
+        }
+
+        table tbody tr td.hour {
+            color: #626E7E;
+            vertical-align: top;
+            border-bottom: 1px solid #626E7E;
+        }
 
     table tbody tr td:not(.hour), table thead tr th .day {
         cursor: pointer;
-    }
-
-    table tbody tr:nth-child(4n+0) td {
-        border-bottom: 1px solid #626E7E;
-    }
-
-    table tbody tr td:last-child {
-        border-right: 1px solid #626E7E;
-    }
-
-    table tbody tr td.hour {
-        color: #626E7E;
-        border-bottom: 1px solid #626E7E;
     }
 
 @media (max-width: 768px) {

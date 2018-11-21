@@ -163,7 +163,7 @@ namespace BlazorAgenda.Client.Viewmodels
                                     builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
                                     double quarterHours = (ev.End - ev.Start).TotalHours * 4;
                                     builder.AddAttribute(++seq, "rowspan", quarterHours);
-                                    builder.OpenElement(++seq, "span");
+                                    builder.OpenElement(++seq, "div");
                                     Color activeColor = Colors.Find(x => x.ColorId == ev.ColorId);
                                     builder.AddAttribute(++seq, "style", "background-color:" + ((activeColor != null) ? activeColor.Background : "#039BE5"));
                                     builder.AddContent(++seq, ev.Summary);
