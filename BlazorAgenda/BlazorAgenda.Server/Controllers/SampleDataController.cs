@@ -62,10 +62,10 @@ namespace BlazorAgenda.Server.Controllers
 
             // Define parameters of request.
             EventsResource.ListRequest request = Service.Events.List("primary");
-            request.TimeMin = DateTime.Now;
+            //request.TimeMin = DateTime.Now;
             request.ShowDeleted = false;
             request.SingleEvents = true;
-            request.MaxResults = 10;
+            //request.MaxResults = 10;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
             // List events.
@@ -77,10 +77,44 @@ namespace BlazorAgenda.Server.Controllers
                 {
                     DateTime start = eventItem.Start.DateTime ?? DateTime.Parse(eventItem.Start.Date);
                     DateTime end = eventItem.End.DateTime ?? DateTime.Parse(eventItem.End.Date);
-                    results.Add(new CalendarEvent { Start = start, End = end, Summary = eventItem.Summary });
+                    results.Add(new CalendarEvent {
+                        Start = start.AddHours(1),
+                        End = end.AddHours(1),
+                        Summary = eventItem.Summary,
+                        ColorId = eventItem.ColorId,
+                        ICalUID = eventItem.ICalUID,
+                        Location = eventItem.Location
+                    });
                 }
             }
-            //AuthCallbackController a = new AuthCallbackController();
+            return results;
+        }
+
+        [HttpGet("[action]")]
+        public List<Color> GetColors()
+        {
+            UserCredential credential = GetCredential();
+
+            // Create Google Calendar API service.
+            Service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            // Define parameters of request.
+            ColorsResource.GetRequest request = Service.Colors.Get();
+
+            // List colors.
+            Colors colors = request.Execute();
+            List<Color> results = new List<Color>();
+            if (colors.Event__ != null && colors.Event__.Count > 0)
+            {
+                foreach (KeyValuePair<string, ColorDefinition> colorItem in colors.Event__)
+                {
+                    results.Add(new Color { ColorId = colorItem.Key, Background = colorItem.Value.Background, Foreground = colorItem.Value.Foreground });
+                }
+            }
             return results;
         }
 

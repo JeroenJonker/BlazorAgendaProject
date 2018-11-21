@@ -1,12 +1,11 @@
 ﻿using BlazorAgenda.Shared;
 using BlazorAgenda.Services;
-using BlazorAgenda.Client.Viewmodels.BaseViewModels;
-using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor;
+    using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Blazor.RenderTree;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Blazor.RenderTree;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -20,16 +19,32 @@ namespace BlazorAgenda.Client.Viewmodels
         protected Action<bool> LoadedChanged { get; set; }
 
         public List<CalendarEvent> Events { get; set; }
-        public DateTime Today { get; set; }
-        public DateTime StartOfWeekDate { get; set; }
+        public List<Color> Colors { get; set; }
 
+        private DateTime selectedDate;
+        public DateTime SelectedDate
+        {
+            get { return selectedDate; }
+            set
+            {
+                selectedDate = value;
+                GoToSelectedDate();
+            }
+        }
+        public DateTime StartOfWeekDate { get; set; }
+        
         public RenderFragment CurrentMonthAndYear { get; set; }
         public RenderFragment Head { get; set; }
         public RenderFragment Body { get; set; }
 
-        public async Task GetAsync()
+        public async Task GetColors()
         {
-            Events = await Service.GetAsync();
+            Colors = await Service.GetColors();
+        }
+
+        public async Task GetEvents()
+        {
+            Events = await Service.GetEvents();
         }
         
         public void GoToPreviousWeek()
@@ -41,18 +56,22 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void GoToCurrentWeek()
         {
-            Today = DateTime.Today;
-            int delta = DayOfWeek.Monday - Today.DayOfWeek;
-            if (delta > 0)
-                delta -= 7;
-            StartOfWeekDate = Today.AddDays(delta);
-            GetCurrentMonthAndYear();
-            GetCalendar();
+            SelectedDate = DateTime.Today;
         }
 
         public void GoToNextWeek()
         {
             StartOfWeekDate = StartOfWeekDate.AddDays(7);
+            GetCurrentMonthAndYear();
+            GetCalendar();
+        }
+
+        public void GoToSelectedDate()
+        {
+            int delta = DayOfWeek.Monday - SelectedDate.DayOfWeek;
+            if (delta > 0)
+                delta -= 7;
+            StartOfWeekDate = SelectedDate.AddDays(delta);
             GetCurrentMonthAndYear();
             GetCalendar();
         }
@@ -97,7 +116,8 @@ namespace BlazorAgenda.Client.Viewmodels
                     string name = day.ToString("dddd");
 
                     builder.OpenElement(++seq, "th");
-                    string columnClass = (day == Today) ? "day active" : "day";
+                    builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
+                    string columnClass = (day == SelectedDate) ? "day active" : "day";
                     builder.OpenElement(++seq, "span");
                     builder.AddAttribute(++seq, "class", columnClass);
                     builder.AddContent(++seq, day.Day);
@@ -117,6 +137,7 @@ namespace BlazorAgenda.Client.Viewmodels
             Body = builder =>
             {
                 int seq = 0;
+                DateTime cellDateTime = StartOfWeekDate;
                 for (int hour = 0; hour < 24; hour++)
                 {
                     builder.OpenElement(++seq, "tr");
@@ -129,24 +150,83 @@ namespace BlazorAgenda.Client.Viewmodels
                     builder.CloseElement();
                     for (int col = 0; col < 7; col++)
                     {
-                        builder.OpenElement(++seq, "td");
-                        builder.CloseElement();
+                        DateTime cellStart = cellDateTime.AddDays(col);
+                        DateTime cellEnd = cellStart.AddMinutes(15);
+                        List<CalendarEvent> activeEvents = Events.FindAll(x => x.Start <= cellStart && x.End >= cellEnd);
+                        if (activeEvents.Count > 0)
+                        {
+                            foreach (CalendarEvent ev in activeEvents)
+                            {
+                                if (ev.Start == cellStart)
+                                {
+                                    builder.OpenElement(++seq, "td");
+                                    builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
+                                    double quarterHours = (ev.End - ev.Start).TotalHours * 4;
+                                    builder.AddAttribute(++seq, "rowspan", quarterHours);
+                                    builder.OpenElement(++seq, "span");
+                                    Color activeColor = Colors.Find(x => x.ColorId == ev.ColorId);
+                                    builder.AddAttribute(++seq, "style", "background-color:" + ((activeColor != null) ? activeColor.Background : "#039BE5"));
+                                    builder.AddContent(++seq, ev.Summary);
+                                    builder.CloseElement();
+                                    builder.CloseElement();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            builder.OpenElement(++seq, "td");
+                            builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
+                            builder.CloseElement();
+                        }
                     }
                     builder.CloseElement();
                     for (int row = 0; row < 3; row++)
                     {
+                        cellDateTime = cellDateTime.AddMinutes(15);
                         builder.OpenElement(++seq, "tr");
                         for(int innerCol = 0; innerCol < 7; innerCol++)
                         {
-                            builder.OpenElement(++seq, "td");
-                            builder.CloseElement();
+                            DateTime cellStart = cellDateTime.AddDays(innerCol);
+                            DateTime cellEnd = cellStart.AddMinutes(15);
+                            List<CalendarEvent> activeEvents = Events.FindAll(x => x.Start <= cellStart && x.End >= cellEnd);
+                            if (activeEvents.Count > 0)
+                            {
+                                foreach (CalendarEvent ev in activeEvents)
+                                {
+                                    if (ev.Start == cellStart)
+                                    {
+                                        builder.OpenElement(++seq, "td");
+                                        builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
+                                        double quarterHours = (ev.End - ev.Start).TotalHours * 4;
+                                        builder.AddAttribute(++seq, "rowspan", quarterHours);
+                                        builder.OpenElement(++seq, "span");
+                                        Color activeColor = Colors.Find(x => x.ColorId == ev.ColorId);
+                                        builder.AddAttribute(++seq, "style", "background-color:" + ((activeColor != null) ? activeColor.Background : "#039BE5"));
+                                        builder.AddContent(++seq, ev.Summary);
+                                        builder.CloseElement();
+                                        builder.CloseElement();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                builder.OpenElement(++seq, "td");
+                                builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
+                                builder.CloseElement();
+                            }
                         }
                         builder.CloseElement();
                     }
+                    cellDateTime = cellDateTime.AddMinutes(15);
                 }
             };
             Loaded = true;
             LoadedChanged?.Invoke(Loaded);
+        }
+
+        protected void CalendarClickHandler(UIMouseEventArgs e)
+        {
+            Console.WriteLine("Clicked at {0}, {1}", e.ClientX, e.ClientY);
         }
     }
 }

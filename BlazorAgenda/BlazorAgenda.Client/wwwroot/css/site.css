@@ -199,7 +199,7 @@ table {
         padding: .5rem;
     }
 
-    table tbody tr td:not(:first-child), table thead tr th .day {
+    table tbody tr td:not(.hour), table thead tr th .day {
         cursor: pointer;
     }
 

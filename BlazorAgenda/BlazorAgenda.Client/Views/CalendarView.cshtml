@@ -1,11 +1,21 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Shared
 @inherits CalendarViewModel
 
 @if (Loaded)
 {
-    <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
-    <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
-    <button onclick=@(() => GoToNextWeek())>&gt;</button>
+    <div class="row">
+        <span class="col">
+            <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
+            <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
+            <button onclick=@(() => GoToNextWeek())>&gt;</button>
+        </span>
+        <span class="col">
+            <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
+        </span>
+        <span class="col"></span>
+        <span class="col"></span>
+    </div>
     @CurrentMonthAndYear
     <table class="table">
         <thead>
@@ -15,20 +25,13 @@
             @Body
         </tbody>
     </table>
-    @foreach (var item in Events)
-    {
-        <div class="row">
-            <span class="col-xs-4">@item.Start.ToString("dd-MM-yyyy hh:mm")</span>
-            <span class="col-xs-4">@item.End.ToString("dd-MM-yyyy hh:mm")</span>
-            <span class="col-xs-4">@item.Summary</span>
-        </div>
-    }
 }
 
 @functions {
     protected override async Task OnInitAsync()
     {
-        await GetAsync();
+        await GetColors();
+        await GetEvents();
         GoToCurrentWeek();
     }
 }

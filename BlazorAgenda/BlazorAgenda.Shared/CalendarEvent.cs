@@ -9,5 +9,8 @@ namespace BlazorAgenda.Shared
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public string Summary { get; set; }
+        public string ColorId { get; set; }
+        public string ICalUID { get; set; }
+        public string Location { get; set; }
     }
 }

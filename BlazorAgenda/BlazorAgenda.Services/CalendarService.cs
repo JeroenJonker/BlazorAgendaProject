@@ -10,22 +10,39 @@ namespace BlazorAgenda.Services
 {
     public class CalendarService
     {
-        private List<CalendarEvent> currentObject;
+        private List<CalendarEvent> events;
+        private List<Color> colors;
         private readonly HttpClient http;
 
-        public List<CalendarEvent> CurrentObject
+        public List<CalendarEvent> Events
         {
             get
             {
-                if (currentObject == null)
+                if (events == null)
                 {
-                    currentObject = new List<CalendarEvent>();
+                    events = new List<CalendarEvent>();
                 }
-                return currentObject;
+                return events;
             }
             set
             {
-                currentObject = value;
+                events = value;
+            }
+        }
+
+        public List<Color> Colors
+        {
+            get
+            {
+                if (colors == null)
+                {
+                    colors = new List<Color>();
+                }
+                return colors;
+            }
+            set
+            {
+                colors = value;
             }
         }
 
@@ -34,10 +51,16 @@ namespace BlazorAgenda.Services
             http = client;
         }
 
-        public async Task<List<CalendarEvent>> GetAsync()
+        public async Task<List<CalendarEvent>> GetEvents()
         {
-            CurrentObject = await http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/GetEvents");
-            return CurrentObject;
+            Events = await http.GetJsonAsync<List<CalendarEvent>>("api/SampleData/GetEvents");
+            return Events;
+        }
+
+        public async Task<List<Color>> GetColors()
+        {
+            Colors = await http.GetJsonAsync<List<Color>>("api/SampleData/GetColors");
+            return Colors;
         }
     }
 }
