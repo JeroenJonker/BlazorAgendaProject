@@ -1,21 +1,22 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Shared
 @inherits CalendarEventViewmodel
 
-<DefaultObjectBaseView CurrentObject=CalendarEvent Post=Post>
+<DefaultObjectBaseView BaseObjectType=CalendarEvent Service=Service>
     <div class="row">
         <label class="col">Afspraak omschrijving</label>
-        <input class="col" bind=CalendarEvent.Summary />
+        <input class="col" bind=Service.CurrentObject.Summary />
     </div>
     <div class="row">
         <label class="col">Begindatum</label>
-        <input class="col" type="date" bind=CalendarEvent.Start format-value="yyyy-MM-dd" />
+        <input class="col" type="date" bind=Service.CurrentObject.Start format-value="yyyy-MM-dd" />
         <label class="col">Begintijd</label>
-        <input class="col" type="time" bind=CalendarEvent.Start format-value="HH:mm" />
+        <input class="col" type="time" bind=Service.CurrentObject.Start format-value="HH:mm" />
     </div>
     <div class="row">
         <label class="col">Einddatum</label>
-        <input class="col" type="date" bind=CalendarEvent.End format-value="yyyy-MM-dd" />
+        <input class="col" type="date" bind=Service.CurrentObject.End format-value="yyyy-MM-dd" />
         <label class="col">Eindtijd</label>
-        <input class="col" type="time" bind=CalendarEvent.End format-value="HH:mm" />
+        <input class="col" type="time" bind=Service.CurrentObject.End format-value="HH:mm" />
     </div>
 </DefaultObjectBaseView>

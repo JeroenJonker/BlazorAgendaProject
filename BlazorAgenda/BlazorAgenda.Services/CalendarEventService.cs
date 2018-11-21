@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Blazor;
 
 namespace BlazorAgenda.Services
 {
-    public class CalendarEventService : IDefaultObjectService
+    public class CalendarEventService : IDefaultObjectService<CalendarEvent>
     {
         private readonly HttpClient http;
         public CalendarEvent CurrentObject { get; set; }
@@ -23,15 +23,12 @@ namespace BlazorAgenda.Services
             await http.PostJsonAsync("api/SampleData/PostEvent", CurrentObject);
         }
 
-        public void ChangeCurrentObject(CalendarEvent calendarEvent)
-        {
-            CurrentObject = calendarEvent;
-            NotifyStateChanged();
-            Console.WriteLine("Changed");
-        }
-
         public event Action OnChange;
 
-        private void NotifyStateChanged() => OnChange?.Invoke();
+        public void NotifyStateChanged()
+        {
+            Console.WriteLine("Changed");
+            OnChange?.Invoke();
+        }
     }
 }

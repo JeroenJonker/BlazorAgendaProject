@@ -10,21 +10,18 @@ namespace BlazorAgenda.Client.Viewmodels
 {
     public class CalendarEventViewmodel : BlazorComponent
     {
+        //[Parameter]
+        //protected CalendarEvent CalendarEvent { get; set; }
+
         [Parameter]
-        protected CalendarEvent CalendarEvent { get; set; }
+        protected CalendarEventService Service { get; set; }
 
-        [Parameter] protected Action<BaseObject> Post { get; set; }
+        //[Parameter] protected Action<BaseObject> Post { get; set; }
 
-        //protected bool IsVisible
-        //{
-        //    get
-        //    {
-        //        if (Service.CurrentObject != null)
-        //        {
-        //            return true;
-        //        }
-        //        return false;
-        //    }
-        //}
+        protected override void OnInit()
+        {
+            Service.OnChange += StateHasChanged;
+        }
+
     }
 }

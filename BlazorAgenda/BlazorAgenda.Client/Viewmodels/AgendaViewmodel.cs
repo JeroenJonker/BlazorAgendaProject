@@ -31,10 +31,6 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             Service.OnChange += StateHasChanged;
         }
-        public void Post(BaseObject calendarEvent)
-        {
-            Service.ChangeCurrentObject(calendarEvent as CalendarEvent);
-        }
 
         public void ClickButton()
         {
