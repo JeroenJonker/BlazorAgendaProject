@@ -19,7 +19,7 @@
             <button onclick="@AddNewEvent">Show</button>
             if (Service.CurrentObject != null)
             {
-                <CalendarEventView Service=Service/>
+                <CalendarEventView />
             }
         }
         <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />

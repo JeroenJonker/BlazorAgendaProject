@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public interface IDefaultObjectService<T>
+    public interface IDefaultObjectService
     {
         Task PostAsync();
+        event Action OnChange;
         void NotifyStateChanged();
-        T CurrentObject { get; set; }
+        void CurrentObjectToNull();
+        //T CurrentObject { get; set; }
     }
 }

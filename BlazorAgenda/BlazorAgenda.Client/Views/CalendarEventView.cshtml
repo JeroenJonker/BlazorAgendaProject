@@ -1,8 +1,8 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
-@using BlazorAgenda.Shared
+@using BlazorAgenda.Services.Interfaces
 @inherits CalendarEventViewmodel
 
-<DefaultObjectBaseView BaseObjectType=CalendarEvent Service=Service>
+<DefaultObjectBaseView ServiceInterface=ICalendarEventService>
     <div class="row">
         <label class="col">Afspraak omschrijving</label>
         <input class="col" bind=Service.CurrentObject.Summary />

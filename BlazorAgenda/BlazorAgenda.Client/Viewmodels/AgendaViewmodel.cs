@@ -6,13 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorAgenda.Services.Interfaces;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
     public class AgendaViewmodel : BlazorComponent
     {
         [Inject]
-        protected CalendarEventService Service {get;set;}
+        protected ICalendarEventService Service {get;set;}
         public bool IsFocus = true;
         public bool isButtonClicked = false;
         public bool isLoaded = false;
