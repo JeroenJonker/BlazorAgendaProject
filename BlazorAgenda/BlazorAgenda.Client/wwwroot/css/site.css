@@ -165,58 +165,74 @@ table {
     border-spacing: 0;
     border-bottom: 1px solid #000;
 }
-
-    table thead tr th {
-        background: #626E7E;
-        color: #d1d5db;
-        padding: 0.5em;
-        text-align: center;
+    table thead tr {
+        background-image: linear-gradient(0deg, rgb(5, 39, 103) 0%, #3a0647 70%);
     }
 
-        table thead tr th .day {
-            display: block;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            margin: 0 auto 5px;
-            line-height: 1.8;
+        table thead tr th {
+            color: #d1d5db;
+            padding: 0.5em;
+            text-align: center;
         }
 
-            table thead tr th .day.active {
-                background: #d1d5db;
-                color: #626E7E;
+            table thead tr th .day {
+                display: block;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                margin: 0 auto 5px;
+                line-height: 1.8;
             }
 
-        table thead tr th .short {
-            display: none;
+                table thead tr th .day.active {
+                    background: #d1d5db;
+                    color: #626E7E;
+                }
+
+            table thead tr th .short {
+                display: none;
+            }
+
+    table tbody tr {
+        height: 1px;
+    }
+
+        table tbody tr td {
+            height: inherit;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+            border-left: 1px solid #626E7E;
+            padding: .5rem !important;
         }
 
-    table tbody tr td {
-        text-align: center;
-        vertical-align: middle;
-        position: relative;
-        border-left: 1px solid #626E7E;
-        padding: .5rem;
-    }
+            table tbody tr td div {
+                height: 100%;
+            }
+
+        table tbody tr td:not(:empty) {
+            padding: 0 !important;
+        }
+
+        table tbody tr:nth-child(4n+0) td {
+            border-bottom: 1px solid #626E7E;
+        }
+
+        table tbody tr td:last-child {
+            border-right: 1px solid #626E7E;
+        }
+
+        table tbody tr td.hour {
+            color: #626E7E;
+            vertical-align: top;
+            border-bottom: 1px solid #626E7E;
+        }
 
     table tbody tr td:not(.hour), table thead tr th .day {
         cursor: pointer;
     }
 
-    table tbody tr:nth-child(4n+0) td {
-        border-bottom: 1px solid #626E7E;
-    }
-
-    table tbody tr td:last-child {
-        border-right: 1px solid #626E7E;
-    }
-
-    table tbody tr td.hour {
-        color: #626E7E;
-        border-bottom: 1px solid #626E7E;
-    }
-
-@media (max-width: 768px) {
+@media (max-width: 72em) {
     table thead tr th .long {
         display: none;
     }
