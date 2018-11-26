@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorAgenda.Shared;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.PeopleService.v1;
 using Google.Apis.PeopleService.v1.Data;
@@ -42,7 +43,7 @@ namespace BlazorAgenda.Server.Controllers
         }
 
         [HttpGet("[action]")]
-        public List<Person> GetPeople()
+        public List<Contact> GetContacts()
         {
             UserCredential credential = GetCredential();
             var Pservice = new PeopleServiceService(new BaseClientService.Initializer()
@@ -50,12 +51,27 @@ namespace BlazorAgenda.Server.Controllers
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
-            PeopleResource.ConnectionsResource.ListRequest peopleRequest =
-            Pservice.People.Connections.List("people/me");
+            PeopleResource.ConnectionsResource.ListRequest peopleRequest = Pservice.People.Connections.List("people/me");
             peopleRequest.PersonFields = "names,emailAddresses";
             ListConnectionsResponse connectionsResponse = peopleRequest.Execute();
             List<Person> connections = connectionsResponse.Connections.ToList();
-            return connections;
+            return ConvertGooglePersonToContact(connections);
+        }
+
+        public List<Contact> ConvertGooglePersonToContact(List<Person> connections)
+        {
+            List<Contact> result = new List<Contact>();
+            foreach (Person person in connections)
+            {
+                result.Add(
+                    new Contact
+                    {
+                        EmailAdress = person.EmailAddresses.First().Value,
+                        FirstName = person.Names.First().GivenName,
+                        LastName = person.Names.First().FamilyName
+                    });
+            }
+            return result;
         }
     }
 }

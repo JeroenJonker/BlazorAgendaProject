@@ -19,14 +19,12 @@ namespace BlazorAgenda.Client.Viewmodels
         public bool isButtonClicked = false;
         public bool isLoaded = false;
         public RenderFragment LoadComponent { get; set; }
-        //public string myMarkup = "<CalendarEventView/>"; //string.Format("<{0}/>", CalendarEventView);
 
         public void AddNewEvent()
         {
             LoadComponent = builder =>
             {
                 builder.OpenComponent(0, typeof(CalendarEventView));
-                //builder.AddAttribute
                 builder.CloseComponent();
             };
             Service.CurrentObject = new CalendarEvent

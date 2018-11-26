@@ -2,10 +2,6 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
-//using Google.Apis.People.v1;
-//using Google.Apis.People.v1.Data;
-//using Google.Apis.PeopleService.v1;
-//using Google.Apis.PeopleService.v1.Data;
 using Google.Apis.Requests;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
@@ -63,8 +59,11 @@ namespace BlazorAgenda.Server.Controllers
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
+
             // Define parameters of request.
-            EventsResource.ListRequest request = Service.Events.List("bijl1507@student.nhl.nl");
+            EventsResource.ListRequest request = Service.Events.List("primary");
+            //to see calendars of others use emailadress
+            //EventsResource.ListRequest request = Service.Events.List("name@name.com");
             //request.TimeMin = DateTime.Now;
             request.ShowDeleted = false;
             request.SingleEvents = true;
