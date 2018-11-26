@@ -1,0 +1,11 @@
+﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Shared
+@inherits ContactsViewModel
+
+@if (Service.CurrentCollection != null)
+{
+    @foreach (Contact contact in Service.CurrentCollection)
+    {
+        <p>@contact.EmailAdress</p>
+    }
+}

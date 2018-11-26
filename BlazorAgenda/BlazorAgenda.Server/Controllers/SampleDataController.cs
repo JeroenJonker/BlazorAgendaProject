@@ -62,6 +62,8 @@ namespace BlazorAgenda.Server.Controllers
 
             // Define parameters of request.
             EventsResource.ListRequest request = Service.Events.List("primary");
+            //to see calendars of others use emailadress
+            //EventsResource.ListRequest request = Service.Events.List("name@name.com");
             //request.TimeMin = DateTime.Now;
             request.ShowDeleted = false;
             request.SingleEvents = true;
