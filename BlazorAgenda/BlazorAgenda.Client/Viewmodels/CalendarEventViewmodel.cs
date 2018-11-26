@@ -5,6 +5,7 @@ using BlazorAgenda.Shared;
 using BlazorAgenda.Services;
 using BlazorAgenda.Client.Viewmodels.BaseViewModels;
 using System;
+using BlazorAgenda.Services.Interfaces;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -13,8 +14,8 @@ namespace BlazorAgenda.Client.Viewmodels
         //[Parameter]
         //protected CalendarEvent CalendarEvent { get; set; }
 
-        [Parameter]
-        protected CalendarEventService Service { get; set; }
+        [Inject]
+        protected ICalendarEventService Service { get; set; }
 
         //[Parameter] protected Action<BaseObject> Post { get; set; }
 

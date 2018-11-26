@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
-    public class DefaultObjectBaseViewModel<BaseObjectType> : BlazorComponent
+    public class DefaultObjectBaseViewModel<ServiceInterface> : BlazorComponent
     {
         [Parameter]
         protected RenderFragment ChildContent { get; set; }
-        [Parameter] protected IDefaultObjectService<BaseObjectType> Service { get; set; }
+        [Inject] protected ServiceInterface Service { get; set; }
 
         public void Close()
         {
-            Service.CurrentObject = default;
-            Service.NotifyStateChanged();
+            ((IDefaultObjectService)Service).CurrentObjectToNull();
+            ((IDefaultObjectService)Service).NotifyStateChanged();
         }
 
         public virtual async Task Save()
         {
-            await Service.ExecuteAsync();
+            await ((IDefaultObjectService)Service).ExecuteAsync();
             Close();
         }
     }

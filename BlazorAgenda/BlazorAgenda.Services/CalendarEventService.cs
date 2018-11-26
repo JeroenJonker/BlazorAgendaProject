@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared;
 using Microsoft.AspNetCore.Blazor;
 
 namespace BlazorAgenda.Services
 {
-    public class CalendarEventService : IDefaultObjectService<CalendarEvent>
+    public class CalendarEventService : ICalendarEventService
     {
         private readonly HttpClient http;
         public CalendarEvent CurrentObject { get; set; }
@@ -20,6 +21,7 @@ namespace BlazorAgenda.Services
 
         public async Task ExecuteAsync()
         {
+            Console.WriteLine("Succeeded");
             await http.PostJsonAsync("api/SampleData/PostEvent", CurrentObject);
         }
 
@@ -29,6 +31,11 @@ namespace BlazorAgenda.Services
         {
             Console.WriteLine("Changed");
             OnChange?.Invoke();
+        }
+
+        public void CurrentObjectToNull()
+        {
+            CurrentObject = null;
         }
     }
 }

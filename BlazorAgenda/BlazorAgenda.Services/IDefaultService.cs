@@ -10,6 +10,7 @@ namespace BlazorAgenda.Services
     {
         Task ExecuteAsync();
         void NotifyStateChanged();
-        T CurrentObject { get; set; }
+        void CurrentObjectToNull();
+        //T CurrentObject { get; set; }
     }
 }
