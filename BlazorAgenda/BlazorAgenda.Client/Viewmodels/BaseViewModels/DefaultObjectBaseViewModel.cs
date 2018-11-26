@@ -23,7 +23,7 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 
         public virtual async Task Save()
         {
-            await Service.PostAsync();
+            await Service.ExecuteAsync();
             Close();
         }
     }
