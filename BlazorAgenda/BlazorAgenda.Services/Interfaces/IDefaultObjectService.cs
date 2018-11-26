@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public interface IDefaultObjectService<T> where T : BaseObject
+    public interface IDefaultObjectService
     {
         Task ExecuteAsync();
         event Action OnChange;

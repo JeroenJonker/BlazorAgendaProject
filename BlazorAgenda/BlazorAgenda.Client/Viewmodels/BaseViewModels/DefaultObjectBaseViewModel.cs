@@ -17,13 +17,13 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 
         public void Close()
         {
-            ((IDefaultObjectService<BaseObject>)Service).CurrentObjectToNull();
-            ((IDefaultObjectService<BaseObject>)Service).NotifyStateChanged();
+            ((IDefaultObjectService)Service).CurrentObjectToNull();
+            ((IDefaultObjectService)Service).NotifyStateChanged();
         }
 
         public virtual async Task Save()
         {
-            await ((IDefaultObjectService<BaseObject>)Service).ExecuteAsync();
+            await ((IDefaultObjectService)Service).ExecuteAsync();
             Close();
         }
     }

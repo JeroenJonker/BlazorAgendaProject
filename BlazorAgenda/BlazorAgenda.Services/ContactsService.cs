@@ -37,7 +37,7 @@ namespace BlazorAgenda.Services
             OnChange?.Invoke();
         }
 
-        public Task PostAsync()
+        public Task ExecuteAsync()
         {
             throw new NotImplementedException();
         }
