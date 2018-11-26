@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public interface IDefaultObjectService
+    public interface IDefaultObjectService<T> where T : BaseObject
     {
-        Task PostAsync();
+        Task ExecuteAsync();
         event Action OnChange;
         void NotifyStateChanged();
         void CurrentObjectToNull();

@@ -19,7 +19,7 @@ namespace BlazorAgenda.Services
             http = client;
         }
 
-        public async Task PostAsync()
+        public async Task ExecuteAsync()
         {
             Console.WriteLine("Succeeded");
             await http.PostJsonAsync("api/SampleData/PostEvent", CurrentObject);

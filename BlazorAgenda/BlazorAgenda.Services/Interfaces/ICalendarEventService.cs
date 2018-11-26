@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BlazorAgenda.Services.Interfaces
 {
-    public interface ICalendarEventService : IDefaultObjectService
+    public interface ICalendarEventService : IDefaultObjectService<CalendarEvent>
     {
         CalendarEvent CurrentObject { get; set; }
     }

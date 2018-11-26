@@ -197,7 +197,7 @@ table {
         height: 1px;
     }
 
-        table tbody tr td {
+        table tbody tr td, table table tr:empty {
             height: inherit;
             text-align: center;
             vertical-align: middle;
@@ -214,8 +214,8 @@ table {
             padding: 0 !important;
         }
 
-        table tbody tr:nth-child(4n+0) td {
-            border-bottom: 1px solid #626E7E;
+        table tbody tr:nth-child(4n+1) td {
+            border-top: 1px solid #626E7E;
         }
 
         table tbody tr td:last-child {
@@ -230,6 +230,14 @@ table {
 
     table tbody tr td:not(.hour), table thead tr th .day {
         cursor: pointer;
+    }
+    
+    table table {
+        height: 100%;
+    }
+
+    table table, table table tr, table table td {
+        border: 0 !important;
     }
 
 @media (max-width: 72em) {

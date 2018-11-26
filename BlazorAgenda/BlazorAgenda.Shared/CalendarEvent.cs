@@ -12,5 +12,6 @@ namespace BlazorAgenda.Shared
         public string ColorId { get; set; }
         public string ICalUID { get; set; }
         public string Location { get; set; }
+        public bool Added { get; set; } = false;
     }
 }
