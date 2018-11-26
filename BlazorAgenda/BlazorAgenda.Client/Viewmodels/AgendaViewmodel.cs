@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorAgenda.Services.Interfaces;
+using Microsoft.AspNetCore.Blazor;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -17,9 +18,17 @@ namespace BlazorAgenda.Client.Viewmodels
         public bool IsFocus = true;
         public bool isButtonClicked = false;
         public bool isLoaded = false;
+        public RenderFragment LoadComponent { get; set; }
+        //public string myMarkup = "<CalendarEventView/>"; //string.Format("<{0}/>", CalendarEventView);
 
         public void AddNewEvent()
         {
+            LoadComponent = builder =>
+            {
+                builder.OpenComponent(0, typeof(CalendarEventView));
+                //builder.AddAttribute
+                builder.CloseComponent();
+            };
             Service.CurrentObject = new CalendarEvent
             {
                 Start = DateTime.Now,

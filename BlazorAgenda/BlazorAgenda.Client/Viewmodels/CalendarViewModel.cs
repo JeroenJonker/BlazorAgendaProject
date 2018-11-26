@@ -39,7 +39,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         protected override async Task OnInitAsync()
         {
-            Colors = await Service.GetColors();
+            //Colors = await Service.GetColors();
             Events = await Service.GetEvents();
             GoToCurrentWeek();
         }
