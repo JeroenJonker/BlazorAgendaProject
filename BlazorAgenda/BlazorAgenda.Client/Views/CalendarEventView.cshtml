@@ -8,15 +8,13 @@
         <input class="col" bind=Service.CurrentObject.Summary />
     </div>
     <div class="row">
-        <label class="col">Begindatum</label>
-        <input class="col" type="date" bind=Service.CurrentObject.Start format-value="yyyy-MM-dd" />
-        <label class="col">Begintijd</label>
-        <input class="col" type="time" bind=Service.CurrentObject.Start format-value="HH:mm" />
+        <label class="col">Van</label>
+        <input class="col" type="date" bind=Start format-value="yyyy-MM-dd" />
+        <input class="col" type="time" bind=Start format-value="HH:mm" />
     </div>
     <div class="row">
-        <label class="col">Einddatum</label>
-        <input class="col" type="date" bind=Service.CurrentObject.End format-value="yyyy-MM-dd" />
-        <label class="col">Eindtijd</label>
-        <input class="col" type="time" bind=Service.CurrentObject.End format-value="HH:mm" />
+        <label class="col">Tot</label>
+        <input class="col" type="date" bind=End format-value="yyyy-MM-dd" />
+        <input class="col" type="time" bind=End format-value="HH:mm" />
     </div>
 </DefaultObjectBaseView>
