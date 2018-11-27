@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.36.1.1412" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" />
   </ItemGroup>

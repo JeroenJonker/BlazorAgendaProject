@@ -1,4 +1,5 @@
-﻿using BlazorAgenda.Shared;
+﻿using BlazorAgenda.Client.Views;
+using BlazorAgenda.Shared;
 using BlazorAgenda.Services;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
@@ -122,7 +123,6 @@ namespace BlazorAgenda.Client.Viewmodels
                     string name = day.ToString("dddd");
 
                     builder.OpenElement(++seq, "th");
-                    builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
                     string columnClass = (day == SelectedDate) ? "day active" : "day";
                     builder.OpenElement(++seq, "span");
                     builder.AddAttribute(++seq, "class", columnClass);
@@ -158,13 +158,13 @@ namespace BlazorAgenda.Client.Viewmodels
                     builder.AddContent(++seq, hour.ToString() + ":00");
                     builder.CloseElement();
                     builder.CloseElement();
-                    GenerateWeekColumns(builder, cellDateTime, ref seq);
+                    seq = GenerateWeekColumns(builder, seq, cellDateTime);
                     builder.CloseElement();
                     for (int row = 0; row < 3; row++)
                     {
                         cellDateTime = cellDateTime.AddMinutes(15);
                         builder.OpenElement(++seq, "tr");
-                        GenerateWeekColumns(builder, cellDateTime, ref seq);
+                        seq = GenerateWeekColumns(builder, seq, cellDateTime);
                         builder.CloseElement();
                     }
                     cellDateTime = cellDateTime.AddMinutes(15);
@@ -172,7 +172,7 @@ namespace BlazorAgenda.Client.Viewmodels
             };
         }
 
-        private void GenerateWeekColumns(RenderTreeBuilder builder, DateTime cellDateTime, ref int seq)
+        private int GenerateWeekColumns(RenderTreeBuilder builder, int seq, DateTime cellDateTime)
         {
             for (int col = 0; col < 7; col++)
             {
@@ -182,7 +182,6 @@ namespace BlazorAgenda.Client.Viewmodels
                 if (startEvents.Count > 0)
                 {
                     builder.OpenElement(++seq, "td");
-                    builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
                     CalendarEvent first = startEvents.OrderByDescending(x => (x.End - x.Start).TotalHours).First();
                     List<CalendarEvent> otherEvents = Events.FindAll(x => x.Start > first.Start && x.Start < first.End);
                     double quarterHours;
@@ -197,21 +196,9 @@ namespace BlazorAgenda.Client.Viewmodels
                     builder.OpenElement(++seq, "table");
                     builder.OpenElement(++seq, "tbody");
                     builder.OpenElement(++seq, "tr");
-                    foreach (CalendarEvent ev in startEvents)
+                    foreach (CalendarEvent startEvent in startEvents)
                     {
-                        builder.OpenElement(++seq, "td");
-                        builder.AddAttribute(++seq, "rowspan", (ev.End - ev.Start).TotalHours * 4);
-                        builder.OpenElement(++seq, "div");
-                        Color activeColor = Colors.Find(x => x.ColorId == ev.ColorId);
-                        string background = (activeColor != null) ? activeColor.Background : "#039be5";
-                        string foreground = (activeColor != null) ? activeColor.Foreground : "#1d1d1d";
-                        builder.AddAttribute(++seq, "style", "background-color: " + background + "; color: " + foreground);
-                        builder.AddContent(++seq, ev.Summary);
-                        builder.OpenElement(++seq, "br");
-                        builder.CloseElement();
-                        builder.AddContent(++seq, ev.Start.ToString("HH:mm") + " - " + ev.End.ToString("HH:mm"));
-                        builder.CloseElement();
-                        builder.CloseElement();
+                        seq = AddEventComponent(builder, seq, startEvent);
                     }
                     foreach (CalendarEvent oev in otherEvents)
                     {
@@ -231,19 +218,7 @@ namespace BlazorAgenda.Client.Viewmodels
                             foreach (CalendarEvent rowEvent in rowStartEvents)
                             {
                                 rowEvent.Added = true;
-                                builder.OpenElement(++seq, "td");
-                                builder.AddAttribute(++seq, "rowspan", (rowEvent.End - rowEvent.Start).TotalHours * 4);
-                                builder.OpenElement(++seq, "div");
-                                Color activeColor = Colors.Find(x => x.ColorId == rowEvent.ColorId);
-                                string background = (activeColor != null) ? activeColor.Background : "#039be5";
-                                string foreground = (activeColor != null) ? activeColor.Foreground : "#1d1d1d";
-                                builder.AddAttribute(++seq, "style", "background-color: " + background + "; color: " + foreground);
-                                builder.AddContent(++seq, rowEvent.Summary);
-                                builder.OpenElement(++seq, "br");
-                                builder.CloseElement();
-                                builder.AddContent(++seq, rowEvent.Start.ToString("HH:mm") + " - " + rowEvent.End.ToString("HH:mm"));
-                                builder.CloseElement();
-                                builder.CloseElement();
+                                seq = AddEventComponent(builder, seq, rowEvent);
                             }
                         }
                         int addedEvents = otherEvents.FindAll(x => x.Added == true).Count;
@@ -263,16 +238,23 @@ namespace BlazorAgenda.Client.Viewmodels
                 else if (Events.Find(x => x.Start < cellStart && x.End >= cellEnd) == null)
                 {
                     builder.OpenElement(++seq, "td");
-                    builder.AddAttribute(++seq, "onclick", CalendarClickHandler);
                     builder.CloseElement();
                 }
             }
-
+            return seq;
         }
 
-        protected void CalendarClickHandler(UIMouseEventArgs e)
+        private int AddEventComponent(RenderTreeBuilder builder, int seq, CalendarEvent ev)
         {
-            Console.WriteLine("Clicked at {0}, {1}", e.ClientX, e.ClientY);
+            builder.OpenElement(++seq, "td");
+            builder.AddAttribute(++seq, "rowspan", (ev.End - ev.Start).TotalHours * 4);
+            Color color = Colors.Find(x => x.ColorId == ev.ColorId);
+            builder.OpenComponent<EventView>(++seq);
+            builder.AddAttribute(++seq, "EventColor", color);
+            builder.AddAttribute(++seq, "Event", ev);
+            builder.CloseComponent();
+            builder.CloseElement();
+            return seq;
         }
     }
 }
