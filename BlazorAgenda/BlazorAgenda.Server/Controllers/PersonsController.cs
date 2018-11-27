@@ -21,7 +21,7 @@ namespace BlazorAgenda.Server.Controllers
         static string ApplicationName = "Blazor agenda";
         PeopleServiceService Service { get; set; }
 
-        private static UserCredential GetCredential()
+        private UserCredential GetCredential()
         {
             UserCredential credential;
 

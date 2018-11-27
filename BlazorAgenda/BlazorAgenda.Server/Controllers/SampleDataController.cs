@@ -73,6 +73,12 @@ namespace BlazorAgenda.Server.Controllers
 
             // List events.
             Events events = request.Execute();
+            List<CalendarEvent> results = ConvertGoogleEventsToCalendarEvents(events);
+            return results;
+        }
+
+        private static List<CalendarEvent> ConvertGoogleEventsToCalendarEvents(Events events)
+        {
             List<CalendarEvent> results = new List<CalendarEvent>();
             if (events.Items != null && events.Items.Count > 0)
             {
@@ -80,12 +86,14 @@ namespace BlazorAgenda.Server.Controllers
                 {
                     DateTime start = eventItem.Start.DateTime ?? DateTime.Parse(eventItem.Start.Date);
                     DateTime end = eventItem.End.DateTime ?? DateTime.Parse(eventItem.End.Date);
-                    results.Add(new CalendarEvent {
+                    results.Add(new CalendarEvent
+                    {
                         Start = start.AddHours(1),
                         End = end.AddHours(1),
                         Summary = eventItem.Summary,
                         ColorId = eventItem.ColorId,
                         ICalUID = eventItem.ICalUID,
+                        ID = eventItem.Id,
                         Location = eventItem.Location
                     });
                 }
@@ -143,6 +151,7 @@ namespace BlazorAgenda.Server.Controllers
              new Event
              {
                  Summary = calendarEvent.Summary,
+                 Id = calendarEvent.ID,
                  Start = new EventDateTime() { DateTime = calendarEvent.Start },
                  End = new EventDateTime() { DateTime = calendarEvent.End }
              }, "primary"),

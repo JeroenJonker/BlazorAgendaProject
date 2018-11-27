@@ -7,13 +7,14 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorAgenda.Services.Interfaces;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
     public class CalendarViewModel : BlazorComponent
     {
         [Inject]
-        protected CalendarService Service { get; set; }
+        protected ICalendarEventService Service { get; set; }
         [Parameter]
         protected bool Loaded { get; set; }
         [Parameter]
@@ -41,7 +42,7 @@ namespace BlazorAgenda.Client.Viewmodels
         protected override async Task OnInitAsync()
         {
             Colors = await Service.GetColors();
-            Events = await Service.GetEvents();
+            Events = await Service.GetCollection();
             GoToCurrentWeek();
         }
                 

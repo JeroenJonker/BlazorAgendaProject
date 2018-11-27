@@ -6,6 +6,9 @@
 {
     @foreach (Contact contact in Service.CurrentCollection)
     {
-        <p>@contact.EmailAdress</p>
+        <div>
+            <input type="checkbox" bind=contact.IsCalendarShown />
+            <content>@contact.FullName</content>
+        </div>
     }
 }

@@ -12,7 +12,6 @@ namespace BlazorAgenda.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ICalendarEventService, CalendarEventService>();
-            services.AddSingleton<CalendarService>();
             services.AddSingleton<IContactsService, ContactsService>();
         }
 
