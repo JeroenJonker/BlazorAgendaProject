@@ -1,9 +1,8 @@
 ﻿using System;
-using BlazorAgenda.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BlazorAgenda.Server.Models
+namespace BlazorAgenda.Shared.Models
 {
     public partial class AgendaDBContext : DbContext
     {
@@ -80,6 +79,10 @@ namespace BlazorAgenda.Server.Models
 
                 entity.Property(e => e.Lastname)
                     .HasColumnName("LASTNAME")
+                    .HasMaxLength(40);
+
+                entity.Property(e => e.Password)
+                    .HasColumnName("PASSWORD")
                     .HasMaxLength(40);
             });
         }

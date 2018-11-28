@@ -11,11 +11,19 @@ namespace BlazorAgenda.Server.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        //UserDataAccessLayer User = new UserDataAccessLayer();
-        //[HttpGet("[action]")]
-        //public List<User> GetUsers()
+        UserDataAccessLayer UserAccess = new UserDataAccessLayer();
+
+        [HttpGet("[action]")]
+        public List<User> GetUsers()
+        {
+            return UserAccess.GetAllUsers();
+        }
+
+        //[HttpGet("[action")]
+        //public bool IsUserValid(string password)
         //{
-        //    return User.GetAllUsers();
+        //    List<User> users = GetUsers();
+            
         //}
     }
 }
