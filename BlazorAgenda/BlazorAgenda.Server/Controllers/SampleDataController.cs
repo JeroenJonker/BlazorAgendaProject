@@ -92,7 +92,6 @@ namespace BlazorAgenda.Server.Controllers
                         End = end.AddHours(1),
                         Summary = eventItem.Summary,
                         ColorId = eventItem.ColorId,
-                        ICalUID = eventItem.ICalUID,
                         ID = eventItem.Id,
                         Location = eventItem.Location
                     });

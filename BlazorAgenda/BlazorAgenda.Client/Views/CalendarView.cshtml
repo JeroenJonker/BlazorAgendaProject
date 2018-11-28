@@ -16,13 +16,65 @@
         <span class="col"></span>
         <span class="col"></span>
     </div>
-    @CurrentMonthAndYear
-    <table class="table">
-        <thead>
-            @Head
-        </thead>
-        <tbody>
-            @Body
-        </tbody>
-    </table>
+    <h2>@CurrentMonthAndYear</h2>
+    <div id="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    @{
+                        int startDay = StartOfWeekDate.Day;
+                        for (int col = startDay; col < startDay + 7; col++)
+                        {
+                            DateTime day = StartOfWeekDate.AddDays(col - startDay);
+                            string name = day.ToString("dddd");
+                            <th>
+                                <span class="@(day == SelectedDate ? "day active" : "day")">@day.Day</span>
+                                <span class="long">@name</span>
+                                <span class="short">@name.Substring(0, 3)</span>
+                            </th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (int hour = 0; hour < 24; hour++)
+                {
+                    <tr>
+                        <td class="hour" rowspan="4">
+                            <span>@(hour.ToString() + ":00")</span>
+                        </td>
+                        @for (int col = 0; col < 7; col++)
+                        {
+                            <td></td>
+                        }
+                    </tr>
+                    @for (int row = 0; row < 3; row++)
+                    {
+                        <tr>
+                            @for (int col = 0; col < 7; col++)
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        @foreach (CalendarEvent calendarEvent in Events)
+        {
+            int delta = (int)(calendarEvent.Start - StartOfWeekDate).TotalDays;
+            if (delta < 7 && delta > 0)
+            {
+                Color eventColor = Colors.Find(x => x.ColorId == calendarEvent.ColorId) ?? new Color { Background = "#039be5", Foreground = "#1d1d1d" };
+                DateTime start = calendarEvent.Start, end = calendarEvent.End;
+                DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
+                int top = (int)((start - dayStart).TotalHours * 4);
+                int left = (int)(start.DayOfWeek + 6) % 7 + 1;
+                int rows = (int)((end - start).TotalHours * 4);
+                <EventView Event="@calendarEvent" EventColor="@eventColor" Top="@(OffsetTop + top * RowHeight)" Left="@(OffsetLeft + left * ColumnWidth)" Width="@(ColumnWidth - 1)" Height="@(rows * RowHeight - 1)" />
+            }
+        }
+    </div>
 }

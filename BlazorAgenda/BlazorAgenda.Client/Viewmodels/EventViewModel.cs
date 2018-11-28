@@ -18,6 +18,18 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected CalendarEvent Event { get; set; }
 
+        [Parameter]
+        protected double Top { get; set; }
+
+        [Parameter]
+        protected double Left { get; set; }
+
+        [Parameter]
+        protected double Height { get; set; }
+
+        [Parameter]
+        protected double Width { get; set; }
+
         public void PrintSummary()
         {
             Console.WriteLine(Event.Summary);

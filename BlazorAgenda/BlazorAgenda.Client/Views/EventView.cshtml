@@ -1,7 +1,7 @@
 @using BlazorAgenda.Client.Viewmodels
 @inherits EventViewModel
 
-<div style="background-color:@(EventColor.Background ?? "#039be5")" onclick="@(() => PrintSummary())">
+<div class="event" style="background-color:@(EventColor.Background); color:@(EventColor.Foreground); top:@(Top)px; left: @(Left)px; height: @(Height)px; Width:@(Width)px" onclick="@(() => PrintSummary())">
     @Event.Summary
     <br />
     @Event.Start.ToString("HH:mm") - @Event.End.ToString("HH:mm")
