@@ -4,25 +4,29 @@
 
 @if (Loaded)
 {
-    <div class="row">
-        <span class="col">
-            <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
-            <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
-            <button onclick=@(() => GoToNextWeek())>&gt;</button>
-        </span>
-        <span class="col">
-            <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
-        </span>
-        <span class="col"></span>
-        <span class="col"></span>
-    </div>
-    @CurrentMonthAndYear
-    <table class="table">
-        <thead>
-            @Head
-        </thead>
-        <tbody>
-            @Body
-        </tbody>
-    </table>
+    foreach (CalendarEvent calendarEvent in Service.CurrentCollection)
+    {
+        <p>@calendarEvent.Summary</p>
+    }
+    @*<div class="row">
+            <span class="col">
+                <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
+                <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
+                <button onclick=@(() => GoToNextWeek())>&gt;</button>
+            </span>
+            <span class="col">
+                <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
+            </span>
+            <span class="col"></span>
+            <span class="col"></span>
+        </div>
+        @CurrentMonthAndYear
+        <table class="table">
+            <thead>
+                @Head
+            </thead>
+            <tbody>
+                @Body
+            </tbody>
+        </table>*@
 }

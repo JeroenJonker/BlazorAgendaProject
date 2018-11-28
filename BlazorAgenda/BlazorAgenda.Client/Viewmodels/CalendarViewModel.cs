@@ -103,9 +103,9 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void GetCalendar()
         {
-            int start = StartOfWeekDate.Day;
-            GetHead(start);
-            GetBody();
+            //int start = StartOfWeekDate.Day;
+            //GetHead(start);
+            //GetBody();
             Loaded = true;
             LoadedChanged?.Invoke(Loaded);
         }
