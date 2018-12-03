@@ -229,9 +229,9 @@ table {
         cursor: pointer;
     }
 
-    #table-wrapper {
+    /*#table-wrapper {
         position: relative;
-    }
+    }*/
 
     div.event {
         position: absolute;
@@ -242,7 +242,13 @@ table {
         height: 0px;
         text-align: center;
         overflow: hidden;
+        word-break: break-word;
     }
+
+        div.event:hover {
+            z-index: 5;
+            height: fit-content;
+        }
 
 @media (max-width: 72em) {
     table thead tr th .long {

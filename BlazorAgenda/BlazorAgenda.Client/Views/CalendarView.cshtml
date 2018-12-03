@@ -41,12 +41,12 @@
                 @for (int hour = 0; hour < 24; hour++)
                 {
                     <tr>
-                        <td class="hour" rowspan="4">
+                        <td ondragover="event.preventDefault()" ondrop="@OnDrop" class="hour" rowspan="4">
                             <span>@(hour.ToString() + ":00")</span>
                         </td>
                         @for (int col = 0; col < 7; col++)
                         {
-                            <td></td>
+                            <td ondragover="event.preventDefault()" ondrop="@OnDrop"></td>
                         }
                     </tr>
                     @for (int row = 0; row < 3; row++)
@@ -54,7 +54,7 @@
                         <tr>
                             @for (int col = 0; col < 7; col++)
                             {
-                                <td></td>
+                                <td ondragover="event.preventDefault()" ondrop="@OnDrop"></td>
                             }
                         </tr>
                     }
@@ -70,10 +70,11 @@
                 Color eventColor = Colors.Find(x => x.ColorId == calendarEvent.ColorId) ?? new Color { Background = "#039be5", Foreground = "#1d1d1d" };
                 DateTime start = calendarEvent.Start, end = calendarEvent.End;
                 DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
-                int top = (int)((start - dayStart).TotalHours * 4);
-                int left = (int)(start.DayOfWeek + 6) % 7 + 1;
-                int rows = (int)((end - start).TotalHours * 4);
-                <EventView Event="@calendarEvent" EventColor="@eventColor" Top="@(OffsetTop + top * RowHeight)" Left="@(OffsetLeft + left * ColumnWidth)" Width="@(ColumnWidth - 1)" Height="@(rows * RowHeight - 1)" />
+                int row = (int)((start - dayStart).TotalHours * 4) + 1;
+                int col = (int)(start.DayOfWeek + 6) % 7 + 1;
+                int rowspan = (int)((end - start).TotalHours * 4);
+                int numEvents = Events.FindAll(x => x != calendarEvent && calendarEvent.Start < x.End && x.Start < calendarEvent.End).Count;
+                <EventView Event="@calendarEvent" EventColor="@eventColor" Row="@row" Column="@col" Rowspan="@rowspan" NumEvents="@numEvents" />
             }
         }
     </div>

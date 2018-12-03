@@ -24,12 +24,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public List<CalendarEvent> Events { get; set; }
         public List<Color> Colors { get; set; }
-
-        public double OffsetTop { get; set; }
-        public double OffsetLeft { get; set; }
-        public double ColumnWidth { get; set; }
-        public double RowHeight { get; set; }
-
+        
         private DateTime selectedDate;
         public DateTime SelectedDate
         {
@@ -51,17 +46,13 @@ namespace BlazorAgenda.Client.Viewmodels
             //Colors = new List<Color>();
             //Events = new List<CalendarEvent>();
             GoToCurrentWeek();
-            OffsetTop = await JSRuntime.Current.InvokeAsync<double>("interopFunctions.getOffsetTop");
-            OffsetLeft = await JSRuntime.Current.InvokeAsync<double>("interopFunctions.getOffsetLeft");
-            ColumnWidth = OffsetLeft - 1;
-            RowHeight = 16.8d;
         }
 
         public void GoToPreviousWeek()
         {
             StartOfWeekDate = StartOfWeekDate.AddDays(-7);
             CurrentMonthAndYear = GetCurrentMonthAndYear();
-            GetCalendar();
+            NotifyLoaded();
         }
 
         public void GoToCurrentWeek()
@@ -73,7 +64,7 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             StartOfWeekDate = StartOfWeekDate.AddDays(7);
             CurrentMonthAndYear = GetCurrentMonthAndYear();
-            GetCalendar();
+            NotifyLoaded();
         }
 
         public void GoToSelectedDate()
@@ -83,7 +74,7 @@ namespace BlazorAgenda.Client.Viewmodels
                 delta -= 7;
             StartOfWeekDate = SelectedDate.AddDays(delta);
             CurrentMonthAndYear = GetCurrentMonthAndYear();
-            GetCalendar();
+            NotifyLoaded();
         }
 
         public string GetCurrentMonthAndYear()
@@ -106,10 +97,15 @@ namespace BlazorAgenda.Client.Viewmodels
             return monthAndYear;
         }
 
-        public void GetCalendar()
+        public void NotifyLoaded()
         {
             Loaded = true;
             LoadedChanged?.Invoke(Loaded);
+        }
+
+        public void OnDrop()
+        {
+
         }
     }
 }
