@@ -1,5 +1,4 @@
-﻿using BlazorAgenda.Server.Models;
-using BlazorAgenda.Shared.Models;
+﻿using BlazorAgenda.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +10,29 @@ namespace BlazorAgenda.Server.DataAccess
     {
         AgendaDBContext db = new AgendaDBContext();
    
-        public IEnumerable<User> GetAllUsers()
+        public List<User> GetAllUsers()
         {
             try
             {
                 return db.User.ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return db.User.Find(email);
+        }
+
+        public void AddUser(User user)
+        {
+            try
+            {
+                db.User.Add(user);
+                db.SaveChanges();
             }
             catch
             {

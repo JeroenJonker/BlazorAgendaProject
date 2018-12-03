@@ -1,0 +1,25 @@
+﻿@page "/adduser"
+@using BlazorAgenda.Services.Interfaces;
+@using BlazorAgenda.Shared.Models;
+@inject IUserService Service
+
+<label>Email</label>
+<input type="text" bind=email />
+<label>Password</label>
+<input type="text" bind=password />
+<button onclick=@Add>Add</button>
+
+@functions {
+    string email { get; set; }
+    string password { get; set; }
+
+    public async Task Add()
+    {
+        Service.CurrentUser = new User()
+        {
+            Emailadress = email,
+            Password = Service.ConvertStringToHash(password)
+        };
+        await Service.AddUser();
+    }
+}
