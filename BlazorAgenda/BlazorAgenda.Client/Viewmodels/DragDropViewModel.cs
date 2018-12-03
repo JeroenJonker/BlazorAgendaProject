@@ -1,6 +1,7 @@
 ﻿using BlazorAgenda.Client.Services;
 using BlazorAgenda.Client.Views;
 using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
@@ -20,7 +21,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public string HighlightDropTargetStyle { get; set; }
 
-        public void OnItemDragStart(UIDragEventArgs e, CalendarEvent calendarEvent)
+        public void OnItemDragStart(UIDragEventArgs e, Event calendarEvent)
         {
             DragDropHelper.Item = calendarEvent;
         }
