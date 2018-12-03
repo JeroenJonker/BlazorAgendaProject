@@ -3,6 +3,7 @@ using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -28,12 +29,13 @@ namespace BlazorAgenda.Services
 
         public async Task<bool> CheckUser()
         {
-            if (await http.PostJsonAsync<bool>("api/User/IsValidUser", CurrentUser))
-            {
-                CurrentUser.Event = await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + CurrentUser.Emailadress);
-                return true;
-            }
-            return false;
+            return await http.PostJsonAsync<bool>("api/User/IsValidUser", CurrentUser);
+        }
+
+        public async Task<List<Event>> GetEvents()
+        {
+            CurrentUser.Event = await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + CurrentUser.Emailadress);
+            return CurrentUser.Event.ToList();
         }
 
         public byte[] ConvertStringToHash(string text)

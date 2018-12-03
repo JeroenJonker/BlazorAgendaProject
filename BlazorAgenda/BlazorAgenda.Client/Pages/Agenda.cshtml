@@ -16,15 +16,19 @@
     }
     else
     {
-        //if (isLoaded)
-        //{
+        @foreach (Event e in UserService.CurrentUser.Event)
+        {
+            <p>@e.Summary</p>
+        }
+        if (isLoaded)
+        {
         <button onclick="@AddNewEvent">Show</button>
         if (Service.CurrentEvent != null)
         {
             @LoadComponent
         }
         @*<ContactsView/>*@
-        @*}*@
-        @*<CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />*@
+        }
+        <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
     }
 </div>

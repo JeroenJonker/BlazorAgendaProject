@@ -10,19 +10,20 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
     public class CalendarViewModel : BlazorComponent
     {
         [Inject]
-        protected ICalendarEventService Service { get; set; }
+        protected IUserService Service { get; set; }
         [Parameter]
         protected bool Loaded { get; set; }
         [Parameter]
         protected Action<bool> LoadedChanged { get; set; }
 
-        public List<CalendarEvent> Events { get; set; }
+        public List<Event> Events { get; set; }
         public List<Color> Colors { get; set; }
         
         private DateTime selectedDate;
@@ -41,9 +42,9 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
-            Colors = await Service.GetColors();
-            Events = await Service.GetCollection();
-            //Colors = new List<Color>();
+            //Colors = await Service.GetColors();
+            Events = await Service.GetEvents();
+            Colors = new List<Color>();
             //Events = new List<CalendarEvent>();
             GoToCurrentWeek();
         }

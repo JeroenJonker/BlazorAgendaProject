@@ -1,5 +1,6 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @using BlazorAgenda.Shared
+@using BlazorAgenda.Shared.Models
 @inherits CalendarViewModel
 
 @if (Loaded)
@@ -62,12 +63,12 @@
             </tbody>
         </table>
 
-        @foreach (CalendarEvent calendarEvent in Events)
+        @foreach (Event calendarEvent in Events)
         {
             int delta = (int)(calendarEvent.Start - StartOfWeekDate).TotalDays;
             if (delta < 7 && delta > 0)
             {
-                Color eventColor = Colors.Find(x => x.ColorId == calendarEvent.ColorId) ?? new Color { Background = "#039be5", Foreground = "#1d1d1d" };
+                Color eventColor = Colors.Find(x => x.ColorId == calendarEvent.Color) ?? new Color { Background = "#039be5", Foreground = "#1d1d1d" };
                 DateTime start = calendarEvent.Start, end = calendarEvent.End;
                 DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
                 int row = (int)((start - dayStart).TotalHours * 4) + 1;
