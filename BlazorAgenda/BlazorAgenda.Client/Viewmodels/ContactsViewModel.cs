@@ -12,12 +12,12 @@ namespace BlazorAgenda.Client.Viewmodels
 {
     public class ContactsViewModel : BlazorComponent
     {
-        [Inject]
-        public IContactsService Service { get; set; }
+        //[Inject]
+        //public IContactsService Service { get; set; }
 
-        protected override async Task OnInitAsync()
-        {
-            await Service.GetContacts();
-        }
+        //protected override async Task OnInitAsync()
+        //{
+        //    await Service.GetContacts();
+        //}
     }
 }
