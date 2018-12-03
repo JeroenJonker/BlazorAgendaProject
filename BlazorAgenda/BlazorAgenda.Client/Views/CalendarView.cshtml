@@ -4,29 +4,78 @@
 
 @if (Loaded)
 {
-    foreach (CalendarEvent calendarEvent in Service.CurrentCollection)
-    {
-        <p>@calendarEvent.Summary</p>
-    }
-    @*<div class="row">
-            <span class="col">
-                <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
-                <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
-                <button onclick=@(() => GoToNextWeek())>&gt;</button>
-            </span>
-            <span class="col">
-                <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
-            </span>
-            <span class="col"></span>
-            <span class="col"></span>
-        </div>
-        @CurrentMonthAndYear
+    <div class="row">
+        <span class="col">
+            <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
+            <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
+            <button onclick=@(() => GoToNextWeek())>&gt;</button>
+        </span>
+        <span class="col">
+            <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
+        </span>
+        <span class="col"></span>
+        <span class="col"></span>
+    </div>
+    <h2>@CurrentMonthAndYear</h2>
+    <div id="table-wrapper">
         <table class="table">
             <thead>
-                @Head
+                <tr>
+                    <th></th>
+                    @{
+                        int startDay = StartOfWeekDate.Day;
+                        for (int col = startDay; col < startDay + 7; col++)
+                        {
+                            DateTime day = StartOfWeekDate.AddDays(col - startDay);
+                            string name = day.ToString("dddd");
+                            <th>
+                                <span class="@(day == SelectedDate ? "day active" : "day")">@day.Day</span>
+                                <span class="long">@name</span>
+                                <span class="short">@name.Substring(0, 3)</span>
+                            </th>
+                        }
+                    }
+                </tr>
             </thead>
             <tbody>
-                @Body
+                @for (int hour = 0; hour < 24; hour++)
+                {
+                    <tr>
+                        <td ondragover="event.preventDefault()" ondrop="@OnDrop" class="hour" rowspan="4">
+                            <span>@(hour.ToString() + ":00")</span>
+                        </td>
+                        @for (int col = 0; col < 7; col++)
+                        {
+                            <td ondragover="event.preventDefault()" ondrop="@OnDrop"></td>
+                        }
+                    </tr>
+                    @for (int row = 0; row < 3; row++)
+                    {
+                        <tr>
+                            @for (int col = 0; col < 7; col++)
+                            {
+                                <td ondragover="event.preventDefault()" ondrop="@OnDrop"></td>
+                            }
+                        </tr>
+                    }
+                }
             </tbody>
-        </table>*@
+        </table>
+
+        @foreach (CalendarEvent calendarEvent in Events)
+        {
+            int delta = (int)(calendarEvent.Start - StartOfWeekDate).TotalDays;
+            if (delta < 7 && delta > 0)
+            {
+                Color eventColor = Colors.Find(x => x.ColorId == calendarEvent.ColorId) ?? new Color { Background = "#039be5", Foreground = "#1d1d1d" };
+                DateTime start = calendarEvent.Start, end = calendarEvent.End;
+                DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
+                int row = (int)((start - dayStart).TotalHours * 4) + 1;
+                int col = (int)(start.DayOfWeek + 6) % 7 + 1;
+                int rowspan = (int)((end - start).TotalHours * 4);
+                int numEvents = Events.FindAll(x => x != calendarEvent && calendarEvent.Start < x.End && x.Start < calendarEvent.End).Count;
+                <EventView Event="@calendarEvent" EventColor="@eventColor" Row="@row" Column="@col" Rowspan="@rowspan" NumEvents="@numEvents" />
+            }
+        }
+    </div>
 }

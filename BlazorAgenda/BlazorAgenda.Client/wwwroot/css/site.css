@@ -160,7 +160,8 @@ app {
     }
 
 table {
-    width: 100%;
+    width: 102% !important;
+    max-width: 102% !important;
     table-layout: fixed;
     border-spacing: 0;
     border-bottom: 1px solid #000;
@@ -194,7 +195,7 @@ table {
             }
 
     table tbody tr {
-        height: 16px;
+        height: 1rem;
     }
 
         table tbody tr td {
@@ -205,10 +206,6 @@ table {
             border-left: 1px solid #626E7E;
             padding: .5rem !important;
         }
-
-            table tbody tr td div {
-                height: 100%;
-            }
 
         table tbody tr td:not(:empty) {
             padding: 0 !important;
@@ -231,14 +228,27 @@ table {
     table tbody tr td:not(.hour), table thead tr th .day {
         cursor: pointer;
     }
-    
-    table table {
-        height: 100%;
+
+    /*#table-wrapper {
+        position: relative;
+    }*/
+
+    div.event {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        width: 0px;
+        height: 0px;
+        text-align: center;
+        overflow: hidden;
+        word-break: break-word;
     }
 
-    table table, table table tr, table table td {
-        border: 0 !important;
-    }
+        div.event:hover {
+            z-index: 5;
+            height: fit-content;
+        }
 
 @media (max-width: 72em) {
     table thead tr th .long {
