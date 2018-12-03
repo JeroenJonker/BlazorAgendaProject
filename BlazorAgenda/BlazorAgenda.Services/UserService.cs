@@ -21,14 +21,19 @@ namespace BlazorAgenda.Services
             this.http = http;
         }
 
-        public async Task AddUser()
+        public async Task<bool> AddUser()
         {
-            await http.PostJsonAsync("api/User/AddUser", CurrentUser);
+            return await http.PostJsonAsync<bool>("api/User/AddUser", CurrentUser);
         }
 
-        public async Task CheckUser()
+        public async Task<bool> CheckUser()
         {
-            await http.PostJsonAsync("api/User/IsValidUser", CurrentUser);
+            if (await http.PostJsonAsync<bool>("api/User/IsValidUser", CurrentUser))
+            {
+                CurrentUser.Event = await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + CurrentUser.Emailadress);
+                return true;
+            }
+            return false;
         }
 
         public byte[] ConvertStringToHash(string text)

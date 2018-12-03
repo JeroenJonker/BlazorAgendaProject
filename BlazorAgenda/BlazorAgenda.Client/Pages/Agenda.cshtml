@@ -1,4 +1,5 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Shared.Models
 @page "/agenda"
 @inherits AgendaViewmodel
 
@@ -8,21 +9,22 @@
     <p>This component demonstrates fetching data from the server.</p>
     @if (!isButtonClicked)
     {
-        <button class="loginBtn" onclick="@ClickButton">
-            Login with Google
-        </button>
+        <Login OnLogin="@ClickButton" />
+        @*<button class="loginBtn" onclick="@ClickButton">
+                Login with Google
+            </button>*@
     }
     else
     {
-        if (isLoaded)
+        //if (isLoaded)
+        //{
+        <button onclick="@AddNewEvent">Show</button>
+        if (Service.CurrentEvent != null)
         {
-            <button onclick="@AddNewEvent">Show</button>
-            if (Service.CurrentObject != null)
-            {
-                @LoadComponent
-            }
-            <ContactsView/>
+            @LoadComponent
         }
-        <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
+        @*<ContactsView/>*@
+        @*}*@
+        @*<CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />*@
     }
 </div>

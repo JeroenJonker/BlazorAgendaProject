@@ -9,8 +9,8 @@ namespace BlazorAgenda.Services.Interfaces
     public interface IUserService
     {
         User CurrentUser { get; set; }
-        Task AddUser();
-        Task CheckUser();
+        Task<bool> AddUser();
+        Task<bool> CheckUser();
         byte[] ConvertStringToHash(string text);
     }
 }
