@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BlazorAgenda.Server.DataAccess;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail;
 
 namespace BlazorAgenda.Server.Controllers
 {
@@ -19,11 +20,28 @@ namespace BlazorAgenda.Server.Controllers
             return UserAccess.GetAllUsers();
         }
 
-        //[HttpGet("[action")]
-        //public bool IsUserValid(string password)
-        //{
-        //    List<User> users = GetUsers();
-            
-        //}
+        [HttpPost("[action]")]
+        public bool IsValidUser([FromBody] User loginuser)
+        {
+            User dbUser = UserAccess.GetUserByEmail(loginuser.Emailadress);
+            if (dbUser.Password.SequenceEqual(loginuser.Password) &&
+                new MailAddress(loginuser.Emailadress).Address == loginuser.Emailadress)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        [HttpPost("[action]")]
+        public bool AddUser([FromBody]User newuser)
+        {
+            if (UserAccess.GetUserByEmail(newuser.Emailadress) == null &&
+                new MailAddress(newuser.Emailadress).Address == newuser.Emailadress)
+            {
+                UserAccess.AddUser(newuser);
+                return true;
+            }
+            return false;
+        }
     }
 }

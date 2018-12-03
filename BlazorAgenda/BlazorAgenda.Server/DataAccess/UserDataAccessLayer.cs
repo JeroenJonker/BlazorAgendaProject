@@ -21,5 +21,23 @@ namespace BlazorAgenda.Server.DataAccess
                 throw;
             }
         }
+
+        public User GetUserByEmail(string email)
+        {
+            return db.User.Find(email);
+        }
+
+        public void AddUser(User user)
+        {
+            try
+            {
+                db.User.Add(user);
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
