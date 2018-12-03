@@ -1,6 +1,5 @@
-﻿using BlazorAgenda.Client.Views;
-using BlazorAgenda.Shared;
-using BlazorAgenda.Services;
+﻿using BlazorAgenda.Shared;
+using BlazorAgenda.Client.Services;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.RenderTree;
@@ -43,6 +42,7 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             Colors = await Service.GetColors();
             Events = await Service.GetCollection();
+            DragDropHelper.Items = Events;
             //Colors = new List<Color>();
             //Events = new List<CalendarEvent>();
             GoToCurrentWeek();

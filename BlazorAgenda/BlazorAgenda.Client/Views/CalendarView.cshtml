@@ -1,4 +1,5 @@
-﻿@using BlazorAgenda.Client.Viewmodels
+﻿@using BlazorAgenda.Client.Services;
+@using BlazorAgenda.Client.Viewmodels
 @using BlazorAgenda.Shared
 @inherits CalendarViewModel
 
@@ -38,30 +39,32 @@
                 </tr>
             </thead>
             <tbody>
+                @{ DateTime time = StartOfWeekDate; }
                 @for (int hour = 0; hour < 24; hour++)
                 {
                     <tr>
-                        <td ondragover="event.preventDefault()" ondrop="@OnDrop" class="hour" rowspan="4">
+                        <td class="hour" rowspan="4">
                             <span>@(hour.ToString() + ":00")</span>
                         </td>
                         @for (int col = 0; col < 7; col++)
                         {
-                            <td ondragover="event.preventDefault()" ondrop="@OnDrop"></td>
+                            <DragDropView Start="@(time.AddDays(col))" OnChange="@(() => StateHasChanged())" />
                         }
                     </tr>
                     @for (int row = 0; row < 3; row++)
                     {
+                        time = time.AddMinutes(15);
                         <tr>
                             @for (int col = 0; col < 7; col++)
                             {
-                                <td ondragover="event.preventDefault()" ondrop="@OnDrop"></td>
+                                <DragDropView Start="@(time.AddDays(col))" OnChange="@(() => StateHasChanged())" />
                             }
                         </tr>
                     }
+                    time = time.AddMinutes(15);
                 }
             </tbody>
         </table>
-
         @foreach (CalendarEvent calendarEvent in Events)
         {
             int delta = (int)(calendarEvent.Start - StartOfWeekDate).TotalDays;
@@ -70,11 +73,11 @@
                 Color eventColor = Colors.Find(x => x.ColorId == calendarEvent.ColorId) ?? new Color { Background = "#039be5", Foreground = "#1d1d1d" };
                 DateTime start = calendarEvent.Start, end = calendarEvent.End;
                 DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
-                int row = (int)((start - dayStart).TotalHours * 4) + 1;
+                int row = (int)((start - dayStart).TotalHours * 4);// + 1;
                 int col = (int)(start.DayOfWeek + 6) % 7 + 1;
                 int rowspan = (int)((end - start).TotalHours * 4);
                 int numEvents = Events.FindAll(x => x != calendarEvent && calendarEvent.Start < x.End && x.Start < calendarEvent.End).Count;
-                <EventView Event="@calendarEvent" EventColor="@eventColor" Row="@row" Column="@col" Rowspan="@rowspan" NumEvents="@numEvents" />
+            @*<EventView Event="@calendarEvent" EventColor="@eventColor" Row="@row" Column="@col" Rowspan="@rowspan" NumEvents="@numEvents" />*@
             }
         }
     </div>

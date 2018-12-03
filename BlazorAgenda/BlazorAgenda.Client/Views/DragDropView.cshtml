@@ -1,0 +1,17 @@
+﻿@using BlazorAgenda.Client.Services;
+@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Shared
+@inherits DragDropViewModel
+
+<td ondragenter="@(e => OnContainerDragEnter(e))" ondragover="event.preventDefault()" ondragleave="@(e => OnContainerDragLeave(e))" ondrop="@(e => OnContainerDrop(e, Start))" style="@HighlightDropTargetStyle">
+    @foreach(var item in DragDropHelper.Items)
+    {
+        if (item.Start == Start)
+        {
+            <div draggable="true" class="bm-3" ondragstart="@(e => OnItemDragStart(e, item))">
+                @item.Summary
+            </div>
+        }
+    }
+
+</td>

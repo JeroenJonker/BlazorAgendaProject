@@ -31,6 +31,8 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected int NumEvents { get; set; }
 
+        public int Index { get; set; } = 0;
+
         public double Top { get; set; }
         public double Left { get; set; }
         public double Width { get; set; }
@@ -43,7 +45,7 @@ namespace BlazorAgenda.Client.Viewmodels
             Width = await JSRuntime.Current.InvokeAsync<double>("interopFunctions.getColumnWidth", Row, Column) - 1;
             if(NumEvents > 0)
                 Width = Width / NumEvents;
-            Height = (Rowspan * 16.8d) - 1;
+            Height = (Rowspan * 16) - 1;
         }
 
         public void PrintSummary()

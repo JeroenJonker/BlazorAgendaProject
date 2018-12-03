@@ -7,13 +7,13 @@
 <input type="text" bind=email />
 <label>Password</label>
 <input type="text" bind=password />
-<button onclick=@Login>login</button>
+<button onclick=@LoginAsync>login</button>
 
 @functions {
     string email { get; set; }
     string password { get; set; }
 
-    public async Task Login()
+    public async Task LoginAsync()
     {
         Service.CurrentUser = new User()
         {
