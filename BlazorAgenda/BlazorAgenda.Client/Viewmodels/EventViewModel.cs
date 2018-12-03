@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -17,7 +18,7 @@ namespace BlazorAgenda.Client.Viewmodels
         protected Color EventColor { get; set; }
 
         [Parameter]
-        protected CalendarEvent Event { get; set; }
+        protected Event Event { get; set; }
 
         [Parameter]
         protected int Row { get; set; }

@@ -1,7 +1,7 @@
-﻿@page "/login"
-@using BlazorAgenda.Services.Interfaces;
+﻿@using BlazorAgenda.Services.Interfaces;
 @using BlazorAgenda.Shared.Models;
 @inject IUserService Service
+@inject HttpClient http
 
 <label>Email</label>
 <input type="text" bind=email />
@@ -12,14 +12,20 @@
 @functions {
     string email { get; set; }
     string password { get; set; }
+    [Parameter] Action OnLogin { get; set; }
 
     public async Task LoginAsync()
     {
+        //OnLogin();
         Service.CurrentUser = new User()
         {
             Emailadress = email,
             Password = Service.ConvertStringToHash(password)
         };
-        await Service.CheckUser();
+        //await Service.CheckUser();
+        if (await Service.CheckUser())
+        {
+            OnLogin();
+        }
     }
 }

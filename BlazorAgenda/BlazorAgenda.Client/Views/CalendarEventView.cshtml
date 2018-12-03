@@ -2,10 +2,10 @@
 @using BlazorAgenda.Services.Interfaces
 @inherits CalendarEventViewmodel
 
-<DefaultObjectBaseView ServiceInterface=ICalendarEventService>
+<DefaultObjectBaseView ServiceInterface=IEventService>
     <div class="row">
         <label class="col">Afspraak omschrijving</label>
-        <input class="col" bind=Service.CurrentObject.Summary />
+        <input class="col" bind=Service.CurrentEvent.Summary />
     </div>
     <div class="row">
         <label class="col">Van</label>

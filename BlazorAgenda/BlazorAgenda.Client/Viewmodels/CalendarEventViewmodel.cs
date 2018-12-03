@@ -12,23 +12,23 @@ namespace BlazorAgenda.Client.Viewmodels
     public class CalendarEventViewmodel : BlazorComponent
     {
         [Inject]
-        protected ICalendarEventService Service { get; set; }
+        protected IEventService Service { get; set; }
         public DateTime Start
         {
             get
             {
-                return Service.CurrentObject.Start;
+                return Service.CurrentEvent.Start;
             }
             set
             {
-                if (Service.CurrentObject.Start.Date != value.Date)
+                if (Service.CurrentEvent.Start.Date != value.Date)
                 {
-                    Service.CurrentObject.Start = new DateTime(value.Year, value.Month, value.Day, 
-                        Service.CurrentObject.Start.Hour, Service.CurrentObject.Start.Minute, Service.CurrentObject.Start.Second);
+                    Service.CurrentEvent.Start = new DateTime(value.Year, value.Month, value.Day, 
+                        Service.CurrentEvent.Start.Hour, Service.CurrentEvent.Start.Minute, Service.CurrentEvent.Start.Second);
                 }
                 else
                 {
-                    Service.CurrentObject.Start = value;
+                    Service.CurrentEvent.Start = value;
                 }
             }
         }
@@ -37,18 +37,18 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             get
             {
-                return Service.CurrentObject.End;
+                return Service.CurrentEvent.End;
             }
             set
             {
-                if (Service.CurrentObject.End.Date != value.Date)
+                if (Service.CurrentEvent.End.Date != value.Date)
                 {
-                    Service.CurrentObject.End = new DateTime(value.Year, value.Month, value.Day, 
-                        Service.CurrentObject.End.Hour, Service.CurrentObject.End.Minute, Service.CurrentObject.End.Second);
+                    Service.CurrentEvent.End = new DateTime(value.Year, value.Month, value.Day, 
+                        Service.CurrentEvent.End.Hour, Service.CurrentEvent.End.Minute, Service.CurrentEvent.End.Second);
                 }
                 else
                 {
-                    Service.CurrentObject.End = value;
+                    Service.CurrentEvent.End = value;
                 }
             }
         }
@@ -57,6 +57,5 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             Service.OnChange += StateHasChanged;
         }
-
     }
 }

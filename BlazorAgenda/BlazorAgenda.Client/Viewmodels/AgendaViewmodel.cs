@@ -8,13 +8,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlazorAgenda.Services.Interfaces;
 using Microsoft.AspNetCore.Blazor;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
     public class AgendaViewmodel : BlazorComponent
     {
         [Inject]
-        protected ICalendarEventService Service {get;set;}
+        protected IEventService Service {get;set;}
+        [Inject]
+        protected IUserService UserService { get; set; }
         public bool IsFocus = true;
         public bool isButtonClicked = false;
         public bool isLoaded = false;
@@ -27,9 +30,11 @@ namespace BlazorAgenda.Client.Viewmodels
                 builder.OpenComponent(0, typeof(CalendarEventView));
                 builder.CloseComponent();
             };
-            Service.CurrentObject = new CalendarEvent
+            Service.CurrentEvent = new Event
             {
                 Start = DateTime.Now,
+                Emailadress = UserService.CurrentUser.Emailadress,
+                //EmailadressNavigation = UserService.CurrentUser,
                 End = DateTime.Now,
                 Summary = "Afspraak"
             };
@@ -43,6 +48,7 @@ namespace BlazorAgenda.Client.Viewmodels
         public void ClickButton()
         {
             isButtonClicked = true;
+            StateHasChanged();
         }
 
         public void ChildLoadedEvent(bool _isLoaded)
