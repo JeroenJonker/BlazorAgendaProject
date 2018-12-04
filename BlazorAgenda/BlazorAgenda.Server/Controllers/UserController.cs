@@ -15,7 +15,7 @@ namespace BlazorAgenda.Server.Controllers
         UserDataAccessLayer UserAccess = new UserDataAccessLayer();
 
         [HttpGet("[action]")]
-        public List<User> GetUsers()
+        public List<User> GetAllUsers()
         {
             return UserAccess.GetAllUsers();
         }
@@ -24,7 +24,7 @@ namespace BlazorAgenda.Server.Controllers
         public bool IsValidUser([FromBody] User loginuser)
         {
             User dbUser = UserAccess.GetUserByEmail(loginuser.Emailadress);
-            if (dbUser.Password.SequenceEqual(loginuser.Password) &&
+            if (dbUser != null && dbUser.Password.SequenceEqual(loginuser.Password) &&
                 new MailAddress(loginuser.Emailadress).Address == loginuser.Emailadress)
             {
                 return true;
@@ -33,7 +33,7 @@ namespace BlazorAgenda.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public bool AddUser([FromBody]User newuser)
+        public bool Add([FromBody]User newuser)
         {
             if (UserAccess.GetUserByEmail(newuser.Emailadress) == null &&
                 new MailAddress(newuser.Emailadress).Address == newuser.Emailadress)
@@ -42,6 +42,15 @@ namespace BlazorAgenda.Server.Controllers
                 return true;
             }
             return false;
+        }
+
+        [HttpPut("[action]")]
+        public void Edit([FromBody]User user)
+        {
+            if (new MailAddress(user.Emailadress).Address == user.Emailadress)
+            {
+                UserAccess.UpdateUser(user);
+            }
         }
     }
 }

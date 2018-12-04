@@ -1,11 +1,6 @@
 ﻿using BlazorAgenda.Client.Views;
-using BlazorAgenda.Services;
 using Microsoft.AspNetCore.Blazor.Components;
-using BlazorAgenda.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BlazorAgenda.Services.Interfaces;
 using Microsoft.AspNetCore.Blazor;
 using BlazorAgenda.Shared.Models;
@@ -17,7 +12,7 @@ namespace BlazorAgenda.Client.Viewmodels
         [Inject]
         protected IEventService Service {get;set;}
         [Inject]
-        protected IUserService UserService { get; set; }
+        protected IStateService UserService { get; set; }
         public bool IsFocus = true;
         public bool isButtonClicked = false;
         public bool isLoaded = false;
@@ -30,13 +25,15 @@ namespace BlazorAgenda.Client.Viewmodels
                 builder.OpenComponent(0, typeof(CalendarEventView));
                 builder.CloseComponent();
             };
-            Service.CurrentEvent = new Event
+        }
+
+        public void EditUser()
+        {
+            LoadComponent = builder =>
             {
-                Start = DateTime.Now,
-                Emailadress = UserService.CurrentUser.Emailadress,
-                //EmailadressNavigation = UserService.CurrentUser,
-                End = DateTime.Now,
-                Summary = "Afspraak"
+                builder.OpenComponent(0, typeof(UserView));
+                builder.AddAttribute(1, "SetUser", UserService.LoginUser.CurrentUser);
+                builder.CloseComponent();
             };
         }
 

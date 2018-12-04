@@ -16,7 +16,7 @@ namespace BlazorAgenda.Client.Viewmodels
     public class CalendarViewModel : BlazorComponent
     {
         [Inject]
-        protected IUserService Service { get; set; }
+        protected IStateService Service { get; set; }
         [Parameter]
         protected bool Loaded { get; set; }
         [Parameter]
@@ -42,7 +42,7 @@ namespace BlazorAgenda.Client.Viewmodels
         protected override async Task OnInitAsync()
         {
             //Colors = await Service.GetColors();
-            Events = await Service.GetEvents();
+            Events = await Service.LoginUser.GetEvents();
             Colors = new List<Color>();
             DragDropHelper.Items = Events;
             //Events = new List<CalendarEvent>();

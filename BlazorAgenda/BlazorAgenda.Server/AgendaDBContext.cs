@@ -22,7 +22,6 @@ namespace BlazorAgenda.Shared.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=localhost;Database=AgendaDB;Trusted_Connection=True;User ID=ADMINLOG;Password=12345;");
             }
         }
@@ -83,7 +82,7 @@ namespace BlazorAgenda.Shared.Models
 
                 entity.Property(e => e.Password)
                     .HasColumnName("PASSWORD")
-                    .HasMaxLength(40);
+                    .HasMaxLength(65);
             });
         }
     }

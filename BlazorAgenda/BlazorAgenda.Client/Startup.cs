@@ -11,8 +11,9 @@ namespace BlazorAgenda.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IUserService, UserService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IEventService, EventService>();
+            services.AddSingleton<IStateService, StateService>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

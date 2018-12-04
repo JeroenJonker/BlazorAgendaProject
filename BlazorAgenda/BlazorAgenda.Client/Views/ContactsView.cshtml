@@ -1,14 +1,15 @@
-﻿@*@using BlazorAgenda.Client.Viewmodels
-@using BlazorAgenda.Shared
+﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Shared.Models
 @inherits ContactsViewModel
 
-@if (Service.CurrentCollection != null)
+@if (Contacts != null)
 {
-    @foreach (Contact contact in Service.CurrentCollection)
+    @foreach (User contact in Contacts)
     {
         <div>
-            <input type="checkbox" bind=contact.IsCalendarShown />
-            <content>@contact.FullName</content>
+            <input type="checkbox" />
+             @*bind=*@ 
+            <content>@contact.Firstname</content>
         </div>
     }
-}*@
+}

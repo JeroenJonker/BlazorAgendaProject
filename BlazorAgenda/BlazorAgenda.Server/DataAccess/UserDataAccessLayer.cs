@@ -39,5 +39,18 @@ namespace BlazorAgenda.Server.DataAccess
                 throw;
             }
         }
+
+        public void UpdateUser(User user)
+        {
+            try
+            {
+                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

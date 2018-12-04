@@ -17,9 +17,16 @@ namespace BlazorAgenda.Services
 
         public Event CurrentEvent { get; set; }
 
-        public EventService(HttpClient http)
+        public EventService(HttpClient http, IStateService state)
         {
             this.http = http;
+            CurrentEvent = new Event
+            {
+                Start = DateTime.Now,
+                Emailadress = state.LoginUser.CurrentUser.Emailadress,
+                //EmailadressNavigation = UserService.CurrentUser,
+                End = DateTime.Now
+            };
         }
 
         public async Task ExecuteAsync()

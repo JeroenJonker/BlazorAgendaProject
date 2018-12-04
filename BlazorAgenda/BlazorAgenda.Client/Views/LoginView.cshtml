@@ -1,31 +1,32 @@
 ﻿@using BlazorAgenda.Services.Interfaces;
 @using BlazorAgenda.Shared.Models;
-@inject IUserService Service
-@inject HttpClient http
+@inject IStateService Service
 
 <label>Email</label>
 <input type="text" bind=email />
 <label>Password</label>
 <input type="text" bind=password />
 <button onclick=@LoginAsync>login</button>
+@*<button onclick=@(() => ShowAddUser = true)>Add new user</button>
+
+@if (ShowAddUser)
+{
+    <UserView/>
+}*@
 
 @functions {
     string email { get; set; }
     string password { get; set; }
+    bool ShowAddUser { get; set; } = false;
     [Parameter] Action OnLogin { get; set; }
 
     public async Task LoginAsync()
     {
-        //OnLogin();
-        Service.CurrentUser = new User()
+        Service.LoginUser.CurrentUser.Emailadress = email;
+        Service.LoginUser.CurrentUser.Password = Service.LoginUser.ConvertStringToHash(password);
+        if (await Service.LoginUser.CheckUser())
         {
-            Emailadress = email,
-            Password = Service.ConvertStringToHash(password)
-        };
-        //await Service.CheckUser();
-        if (await Service.CheckUser())
-        {
-            OnLogin();
+            OnLogin?.Invoke();
         }
     }
 }

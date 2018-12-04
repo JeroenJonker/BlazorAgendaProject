@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IDefaultObjectService
     {
         User CurrentUser { get; set; }
-        Task<bool> AddUser();
         Task<bool> CheckUser();
+        Task<List<User>> GetContacts();
         Task<List<Event>> GetEvents();
-        byte[] ConvertStringToHash(string text);
+        string ConvertStringToHash(string text);
     }
 }

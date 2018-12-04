@@ -1,0 +1,32 @@
+﻿@using BlazorAgenda.Services.Interfaces;
+@using BlazorAgenda.Shared.Models;
+@inject IUserService Service
+
+<DefaultObjectBaseView ServiceInterface=IUserService BeforeSave=@ConvertPassword>
+    <label>Email</label>
+    <input type="text" bind=Service.CurrentUser.Emailadress />
+    <label>Firstname</label>
+    <input type="text" bind=Service.CurrentUser.Firstname />
+    <label>Lastname</label>
+    <input type="text" bind=Service.CurrentUser.Lastname />
+    <label>Password</label>
+    <input type="text" bind=Service.CurrentUser.Password />
+</DefaultObjectBaseView>
+
+@functions {
+    [Parameter] protected Action OnExit { get; set; }
+    [Parameter] protected User SetUser { get; set; }
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        if (SetUser != null)
+        {
+            Service.CurrentUser = SetUser;
+        }
+    }
+    public void ConvertPassword()
+    {
+        Service.CurrentUser.Password = Service.ConvertStringToHash(Service.CurrentUser.Password);
+    }
+}

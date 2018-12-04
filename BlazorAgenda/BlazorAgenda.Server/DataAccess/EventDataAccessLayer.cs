@@ -46,8 +46,7 @@ namespace BlazorAgenda.Server.DataAccess
                 throw;
             }
         }
-
-        //To Update the records of a particluar employee      
+    
         public void UpdateEvent(Event updatedEvent)
         {
             try

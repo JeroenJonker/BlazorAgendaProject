@@ -7,17 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
     public class ContactsViewModel : BlazorComponent
     {
-        //[Inject]
-        //public IContactsService Service { get; set; }
+        [Inject]
+        public IUserService Service { get; set; }
+        public List<User> Contacts { get; set; }
 
-        //protected override async Task OnInitAsync()
-        //{
-        //    await Service.GetContacts();
-        //}
+        protected override async Task OnInitAsync()
+        {
+            Contacts = await Service.GetContacts();
+        }
     }
 }

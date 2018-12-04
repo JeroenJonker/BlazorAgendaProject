@@ -9,25 +9,23 @@
     <p>This component demonstrates fetching data from the server.</p>
     @if (!isButtonClicked)
     {
-        <Login OnLogin="@ClickButton" />
-        @*<button class="loginBtn" onclick="@ClickButton">
-                Login with Google
-            </button>*@
+        <LoginView OnLogin="@ClickButton" />
     }
     else
     {
-        @foreach (Event e in UserService.CurrentUser.Event)
+        @foreach (Event e in UserService.LoginUser.CurrentUser.Event)
         {
             <p>@e.Summary</p>
         }
         if (isLoaded)
         {
-        <button onclick="@AddNewEvent">Show</button>
-        if (Service.CurrentEvent != null)
-        {
-            @LoadComponent
-        }
-        @*<ContactsView/>*@
+            <button onclick="@AddNewEvent">Show</button>
+            <button onclick="@EditUser">Edit user</button>
+            if (LoadComponent != default(RenderFragment))
+            {
+                @LoadComponent
+            }
+            <ContactsView />
         }
         <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
     }

@@ -11,9 +11,9 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
     public class DefaultObjectBaseViewModel<ServiceInterface> : BlazorComponent
     {
-        [Parameter]
-        protected RenderFragment ChildContent { get; set; }
+        [Parameter] protected RenderFragment ChildContent { get; set; }
         [Inject] protected ServiceInterface Service { get; set; }
+        [Parameter] protected Action BeforeSave { get; set; }
 
         public void Close()
         {
@@ -23,6 +23,7 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 
         public virtual async Task Save()
         {
+            BeforeSave?.Invoke();
             await ((IDefaultObjectService)Service).ExecuteAsync();
             Close();
         }
