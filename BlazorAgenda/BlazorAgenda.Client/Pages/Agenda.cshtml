@@ -13,7 +13,7 @@
     }
     else
     {
-        @foreach (Event e in UserService.LoginUser.CurrentUser.Event)
+        @foreach (Event e in UserService.CurrentUser.Event)
         {
             <p>@e.Summary</p>
         }

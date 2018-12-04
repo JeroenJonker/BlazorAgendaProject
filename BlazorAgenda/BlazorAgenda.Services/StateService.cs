@@ -8,11 +8,11 @@ namespace BlazorAgenda.Services
 {
     public class StateService : IStateService
     {
-        public IUserService LoginUser { get; set; }
+        public User LoginUser { get; set; }
 
-        public StateService(IUserService user)
+        public StateService()
         {
-            LoginUser = user;
+
         }
     }
 }

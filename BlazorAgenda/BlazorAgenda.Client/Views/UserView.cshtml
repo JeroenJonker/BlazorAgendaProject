@@ -23,6 +23,7 @@
         if (SetUser != null)
         {
             Service.CurrentUser = SetUser;
+            Service.CurrentUser.Password = "";
         }
     }
     public void ConvertPassword()

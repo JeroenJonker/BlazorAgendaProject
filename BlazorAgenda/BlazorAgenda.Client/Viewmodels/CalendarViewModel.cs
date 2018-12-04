@@ -16,7 +16,7 @@ namespace BlazorAgenda.Client.Viewmodels
     public class CalendarViewModel : BlazorComponent
     {
         [Inject]
-        protected IStateService Service { get; set; }
+        protected IUserService Service { get; set; }
         [Parameter]
         protected bool Loaded { get; set; }
         [Parameter]
@@ -38,7 +38,7 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
-            List<Event> events = await Service.LoginUser.GetEvents();
+            List<Event> events = await Service.GetEvents();
             DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
             GoToCurrentWeek();
         }

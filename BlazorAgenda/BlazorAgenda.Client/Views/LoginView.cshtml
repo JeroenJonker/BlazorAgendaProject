@@ -1,18 +1,18 @@
 ﻿@using BlazorAgenda.Services.Interfaces;
 @using BlazorAgenda.Shared.Models;
-@inject IStateService Service
+@inject IUserService Service
 
 <label>Email</label>
 <input type="text" bind=email />
 <label>Password</label>
 <input type="text" bind=password />
 <button onclick=@LoginAsync>login</button>
-@*<button onclick=@(() => ShowAddUser = true)>Add new user</button>
+<button onclick=@(() => ShowAddUser = true)>Add new user</button>
 
 @if (ShowAddUser)
 {
     <UserView/>
-}*@
+}
 
 @functions {
     string email { get; set; }
@@ -22,9 +22,9 @@
 
     public async Task LoginAsync()
     {
-        Service.LoginUser.CurrentUser.Emailadress = email;
-        Service.LoginUser.CurrentUser.Password = Service.LoginUser.ConvertStringToHash(password);
-        if (await Service.LoginUser.CheckUser())
+        Service.CurrentUser.Emailadress = email;
+        Service.CurrentUser.Password = Service.ConvertStringToHash(password);
+        if (await Service.CheckUser())
         {
             OnLogin?.Invoke();
         }
