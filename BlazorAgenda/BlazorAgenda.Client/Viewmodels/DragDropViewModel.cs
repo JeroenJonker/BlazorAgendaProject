@@ -39,7 +39,10 @@ namespace BlazorAgenda.Client.Viewmodels
         public void OnContainerDrop(UIDragEventArgs e, DateTime _start)
         {
             HighlightDropTargetStyle = "";
-            DragDropHelper.Item.Start = _start;
+            Event item = DragDropHelper.Item;
+            TimeSpan duration = item.End - item.Start;
+            item.Start = _start;
+            item.End = _start.Add(duration);
             OnChange();
         }
     }
