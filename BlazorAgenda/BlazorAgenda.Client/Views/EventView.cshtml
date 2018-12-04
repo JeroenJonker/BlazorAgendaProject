@@ -1,7 +1,9 @@
 @using BlazorAgenda.Client.Viewmodels
 @inherits EventViewModel
 
-<div class="event" draggable="true" ondragstart="@OnDragStart" style="background-color:@(EventColor.Background); color:@(EventColor.Foreground); top:@(Top)px; left: @(Left)px; min-height: @(Height)px; width: @(Width)px;" onclick="@(() => PrintSummary())">
+<div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, Event))"
+    style="background-color:@(Event.Color ?? "#039be5"); height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%"
+    onclick="@(() => PrintSummary())">
     @Event.Summary
     <br />
     @Event.Start.ToString("HH:mm") - @Event.End.ToString("HH:mm")

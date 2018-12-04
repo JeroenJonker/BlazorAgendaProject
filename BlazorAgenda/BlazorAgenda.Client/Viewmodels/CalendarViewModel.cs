@@ -21,9 +21,6 @@ namespace BlazorAgenda.Client.Viewmodels
         protected bool Loaded { get; set; }
         [Parameter]
         protected Action<bool> LoadedChanged { get; set; }
-
-        public List<Event> Events { get; set; }
-        public List<Color> Colors { get; set; }
         
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -41,11 +38,8 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
-            //Colors = await Service.GetColors();
-            Events = await Service.LoginUser.GetEvents();
-            Colors = new List<Color>();
-            DragDropHelper.Items = Events;
-            //Events = new List<CalendarEvent>();
+            List<Event> events = await Service.LoginUser.GetEvents();
+            DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
             GoToCurrentWeek();
         }
 
@@ -102,11 +96,6 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             Loaded = true;
             LoadedChanged?.Invoke(Loaded);
-        }
-
-        public void OnDrop()
-        {
-
         }
     }
 }

@@ -10,5 +10,12 @@
     getColumnWidth: function (row, col) {
         var col_width = $('tbody tr:nth-child(' + row + ') td:not(.hour)').get(col).getBoundingClientRect().width;
         return col_width;
+    },
+    changeMargin: function () {
+        $('.event').each(function () {
+            var width = parseFloat($(this).get(0).style.width);
+            var margin = (width * $(this).index()) + "%";
+            $(this).css('margin-left', margin);
+        });
     }
 };
