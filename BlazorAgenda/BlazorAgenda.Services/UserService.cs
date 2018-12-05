@@ -11,23 +11,18 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public class UserService : IUserService
+    public class UserService : DefaultObjectService, IUserService
     {
-        private readonly HttpClient http;
-
-        public event Action OnChange;
-
         public User CurrentUser { get; set; }
 
-        public UserService(HttpClient http)
+        public UserService(HttpClient client, User currentUser) : base(client)
         {
-            CurrentUser = new User();
-            this.http = http;
+            CurrentUser = currentUser;
         }
 
-        public async Task<bool> CheckUser()
+        public async Task<bool> CheckUser(User user)
         {
-            return await http.PostJsonAsync<bool>("api/User/IsValidUser", CurrentUser);
+            return await http.PostJsonAsync<bool>("api/User/IsValidUser", user);
         }
 
         public async Task<List<User>> GetContacts()
@@ -35,9 +30,9 @@ namespace BlazorAgenda.Services
             return await http.GetJsonAsync<List<User>>("api/User/GetAllUsers");
         }
 
-        public async Task<List<Event>> GetEvents()
+        public async Task<List<Event>> GetEvents(User user)
         {
-            CurrentUser.Event = await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + CurrentUser.Emailadress);
+            CurrentUser.Event = await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Emailadress);
             return CurrentUser.Event.ToList();
         }
 
@@ -56,7 +51,7 @@ namespace BlazorAgenda.Services
 
         public async Task ExecuteAsync()
         {
-            if (await CheckUser())
+            if (await CheckUser(CurrentUser))
             {
                 await http.PutJsonAsync("api/User/Edit", CurrentUser);
             }
@@ -64,11 +59,6 @@ namespace BlazorAgenda.Services
             {
                 await http.PostJsonAsync("api/User/Add", CurrentUser);
             }
-        }
-
-        public void NotifyStateChanged()
-        {
-            OnChange?.Invoke();
         }
 
         public void CurrentObjectToNull()

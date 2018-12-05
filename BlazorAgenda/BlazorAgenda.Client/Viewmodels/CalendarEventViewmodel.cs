@@ -1,61 +1,34 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor;
-using System.Threading.Tasks;
-using BlazorAgenda.Shared;
+﻿using BlazorAgenda.Shared;
 using BlazorAgenda.Services;
-using BlazorAgenda.Client.Viewmodels.BaseViewModels;
+using Microsoft.AspNetCore.Blazor;
+using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Blazor.RenderTree;
+using Microsoft.JSInterop;
 using System;
-using BlazorAgenda.Services.Interfaces;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
-    public class CalendarEventViewmodel : BlazorComponent
+    public class CalendarEventViewModel : BlazorComponent
     {
-        [Inject]
-        protected IEventService Service { get; set; }
-        public DateTime Start
-        {
-            get
-            {
-                return Service.CurrentEvent.Start;
-            }
-            set
-            {
-                if (Service.CurrentEvent.Start.Date != value.Date)
-                {
-                    Service.CurrentEvent.Start = new DateTime(value.Year, value.Month, value.Day, 
-                        Service.CurrentEvent.Start.Hour, Service.CurrentEvent.Start.Minute, Service.CurrentEvent.Start.Second);
-                }
-                else
-                {
-                    Service.CurrentEvent.Start = value;
-                }
-            }
-        }
+        [Parameter]
+        protected Event Event { get; set; }
 
-        public DateTime End
-        {
-            get
-            {
-                return Service.CurrentEvent.End;
-            }
-            set
-            {
-                if (Service.CurrentEvent.End.Date != value.Date)
-                {
-                    Service.CurrentEvent.End = new DateTime(value.Year, value.Month, value.Day, 
-                        Service.CurrentEvent.End.Hour, Service.CurrentEvent.End.Minute, Service.CurrentEvent.End.Second);
-                }
-                else
-                {
-                    Service.CurrentEvent.End = value;
-                }
-            }
-        }
+        [Parameter]
+        protected int Rowspan { get; set; }
 
-        protected override void OnInit()
+        [Parameter]
+        protected int NumEvents { get; set; }
+
+        [Parameter]
+        protected Action<UIDragEventArgs, Event> DragStart { get; set; }
+
+        public void PrintSummary()
         {
-            Service.OnChange += StateHasChanged;
+            Console.WriteLine(Event.Summary);
         }
     }
 }

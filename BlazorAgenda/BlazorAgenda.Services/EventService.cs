@@ -9,17 +9,12 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public class EventService : IEventService
+    public class EventService : DefaultObjectService, IEventService
     {
-        private readonly HttpClient http;
-
-        public event Action OnChange;
-
         public Event CurrentEvent { get; set; }
-
-        public EventService(HttpClient http, IUserService state)
+        public EventService(HttpClient client, Event currentEvent) : base(client)
         {
-            this.http = http;
+            CurrentEvent = currentEvent;
             //CurrentEvent = new Event
             //{
             //    Start = DateTime.Now,
@@ -39,11 +34,6 @@ namespace BlazorAgenda.Services
             {
                 await http.PostJsonAsync("api/Event/Add", CurrentEvent);
             }
-        }
-
-        public void NotifyStateChanged()
-        {
-            OnChange?.Invoke();
         }
 
         public void CurrentObjectToNull()

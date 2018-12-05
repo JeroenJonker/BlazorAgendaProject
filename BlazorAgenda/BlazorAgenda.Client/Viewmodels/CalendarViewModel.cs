@@ -17,6 +17,8 @@ namespace BlazorAgenda.Client.Viewmodels
     {
         [Inject]
         protected IUserService Service { get; set; }
+        [Inject]
+        protected IStateService StateService { get; set; }
         [Parameter]
         protected bool Loaded { get; set; }
         [Parameter]
@@ -38,7 +40,7 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
-            List<Event> events = await Service.GetEvents();
+            List<Event> events = await Service.GetEvents(StateService.LoginUser);
             DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
             GoToCurrentWeek();
         }
