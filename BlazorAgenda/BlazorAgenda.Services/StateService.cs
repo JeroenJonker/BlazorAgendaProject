@@ -10,9 +10,9 @@ namespace BlazorAgenda.Services
     {
         public User LoginUser { get; set; }
 
-        public StateService()
+        public StateService(User user)
         {
-
+            LoginUser = user;
         }
     }
 }

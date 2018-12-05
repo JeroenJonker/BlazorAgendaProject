@@ -4,6 +4,7 @@ using BlazorAgenda.Client.Viewmodels;
 using BlazorAgenda.Services;
 using BlazorAgenda.Shared;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client
 {
@@ -14,6 +15,8 @@ namespace BlazorAgenda.Client
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IEventService, EventService>();
             services.AddSingleton<IStateService, StateService>();
+            services.AddTransient<User>();
+            services.AddTransient<Event>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

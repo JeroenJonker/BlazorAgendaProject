@@ -55,7 +55,14 @@ namespace BlazorAgenda.Client.Viewmodels
 
         protected override void OnInit()
         {
+            Start = SetDateTime(Service.CurrentEvent.Start);
+            End = SetDateTime(Service.CurrentEvent.End);
             Service.OnChange += StateHasChanged;
+        }
+
+        protected DateTime SetDateTime(DateTime time)
+        {
+            return time == default ? DateTime.Now : time;
         }
     }
 }

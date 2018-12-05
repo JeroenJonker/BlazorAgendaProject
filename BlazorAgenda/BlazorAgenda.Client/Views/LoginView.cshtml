@@ -1,6 +1,7 @@
 ﻿@using BlazorAgenda.Services.Interfaces;
 @using BlazorAgenda.Shared.Models;
-@inject IUserService Service
+@inject IStateService Service
+@inject IUserService UserService
 
 <label>Email</label>
 <input type="text" bind=email />
@@ -22,9 +23,9 @@
 
     public async Task LoginAsync()
     {
-        Service.CurrentUser.Emailadress = email;
-        Service.CurrentUser.Password = Service.ConvertStringToHash(password);
-        if (await Service.CheckUser())
+        Service.LoginUser.Emailadress = email;
+        Service.LoginUser.Password = UserService.ConvertStringToHash(password);
+        if (await UserService.CheckUser(Service.LoginUser))
         {
             OnLogin?.Invoke();
         }
