@@ -1,20 +1,10 @@
-﻿@using BlazorAgenda.Client.Viewmodels
-@using BlazorAgenda.Services.Interfaces
-@inherits CalendarEventViewmodel
+@using BlazorAgenda.Client.Viewmodels
+@inherits CalendarEventViewModel
 
-<DefaultObjectBaseView ServiceInterface=IEventService>
-    <div class="row">
-        <label class="col">Afspraak omschrijving</label>
-        <input class="col" bind=Service.CurrentEvent.Summary />
-    </div>
-    <div class="row">
-        <label class="col">Van</label>
-        <input class="col" type="date" bind=Start format-value="yyyy-MM-dd" />
-        <input class="col" type="time" bind=Start format-value="HH:mm" />
-    </div>
-    <div class="row">
-        <label class="col">Tot</label>
-        <input class="col" type="date" bind=End format-value="yyyy-MM-dd" />
-        <input class="col" type="time" bind=End format-value="HH:mm" />
-    </div>
-</DefaultObjectBaseView>
+<div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, Event))"
+    style="background-color:@(Event.Color ?? "#039be5"); height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%"
+    onclick="@(() => PrintSummary())">
+    @Event.Summary
+    <br />
+    @Event.Start.ToString("HH:mm") - @Event.End.ToString("HH:mm")
+</div>

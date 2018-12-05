@@ -24,11 +24,10 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             LoadComponent = builder =>
             {
-                builder.OpenComponent(0, typeof(CalendarEventView));
+                builder.OpenComponent(0, typeof(EventView));
                 builder.CloseComponent();
             };
             Service.CurrentEvent.Emailadress = StateService.LoginUser.Emailadress;
-            Service.CurrentEvent.Summary = "Test";
         }
 
         public void EditUser()

@@ -15,7 +15,7 @@
             DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
             int rowspan = (int)((end - start).TotalHours * 4);
             int numEvents = DragDropHelper.Items.FindAll(x => x.Start == item.Start).Count;
-            <EventView Event="@item" Rowspan="@rowspan" NumEvents="@numEvents" DragStart="@OnItemDragStart" />
+            <CalendarEventView Event="@item" Rowspan="@rowspan" NumEvents="@numEvents" DragStart="@OnItemDragStart" />
         }
     }
 </td>
