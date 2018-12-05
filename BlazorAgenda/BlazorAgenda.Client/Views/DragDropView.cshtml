@@ -4,18 +4,18 @@
 @using BlazorAgenda.Shared.Models
 @inherits DragDropViewModel
 
-<td ondragenter="@(e => OnContainerDragEnter(e))" ondragover="event.preventDefault()"
-    ondragleave="@(e => OnContainerDragLeave(e))" ondrop="@(e => OnContainerDrop(e, Start))"
-    style="@HighlightDropTargetStyle">
-    @foreach (Event item in DragDropHelper.Items)
-    {
-        if (item.Start == Start)
+<td>
+    <div class="eventContainer" ondragenter="@(e => OnContainerDragEnter(e))" ondragover="event.preventDefault();"
+        ondragleave="@(e => OnContainerDragLeave(e))" ondrop="@(e => OnContainerDrop(e, Start))"
+        style="@HighlightDropTargetStyle">
+        @foreach (Event item in DragDropHelper.Items)
         {
-            DateTime start = item.Start, end = item.End;
-            DateTime dayStart = start.AddHours(-start.Hour).AddMinutes(-start.Minute);
-            int rowspan = (int)((end - start).TotalHours * 4);
-            int numEvents = DragDropHelper.Items.FindAll(x => x.Start == item.Start).Count;
-            <EventView Event="@item" Rowspan="@rowspan" NumEvents="@numEvents" DragStart="@OnItemDragStart" />
+            if (item.Start == Start)
+            {
+                int rowspan = (int)((item.End - item.Start).TotalHours * 4);
+                int numEvents = DragDropHelper.Items.FindAll(x => x.Start == item.Start).Count;
+                <EventView Event="@item" Rowspan="@rowspan" NumEvents="@numEvents" DragStart="@OnItemDragStart" />
+            }
         }
-    }
+    </div>
 </td>

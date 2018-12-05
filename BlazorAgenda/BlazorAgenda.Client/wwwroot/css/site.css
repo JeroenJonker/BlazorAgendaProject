@@ -227,14 +227,22 @@ table {
         cursor: pointer;
     }
 
-    /*#table-wrapper {
-        position: relative;
-    }*/
-
-    div.event {
+    .eventContainer {
         position: absolute;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        z-index: 5;
+    }
+
+    .eventContainer:hover {
+        z-index: unset;
+    }
+
+    div.event {
+        position: relative;
         z-index: 4;
         text-align: center;
         overflow: hidden;
@@ -242,7 +250,7 @@ table {
     }
 
         div.event:hover {
-            z-index: 5;
+            z-index: 6;
             min-height: fit-content;
         }
 

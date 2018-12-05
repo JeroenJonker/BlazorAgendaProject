@@ -2,11 +2,9 @@
 @using BlazorAgenda.Shared.Models;
 @inject IUserService Service
 
-<label>Email</label>
-<input type="text" bind=email />
-<label>Password</label>
-<input type="text" bind=password />
-<button onclick=@LoginAsync>login</button>
+<label for="email">Email</label> <input type="text" name="email" class="form-control" bind=email /><br />
+<label for="password">Password</label> <input type="password" name="password" class="form-control" bind=password /><br />
+<button onclick=@LoginAsync>Log in</button>
 <button onclick=@(() => ShowAddUser = true)>Add new user</button>
 
 @if (ShowAddUser)
