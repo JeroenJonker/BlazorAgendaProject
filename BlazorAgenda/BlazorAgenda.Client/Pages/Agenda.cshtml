@@ -6,27 +6,27 @@
 
 <h1>Blazor agenda</h1>
 
-@if (!isButtonClicked)
-{
-    <LoginView OnLogin="@ClickButton" />
-}
-else
-{
-    @foreach (Event e in StateService.LoginUser.Event)
+    @if (!IsLoginCompleted)
     {
-        <p>@e.Summary</p>
+        <LoginView OnLogin=OnLoginCompleted/>
     }
-    if (isLoaded)
+    else
     {
-        <button onclick="@AddNewEvent">Show</button>
-        <button onclick="@EditUser">Edit user</button>
-        <button type="button" class="btn btn-primary" onclick="@(e => OpenPopup())">Open Popup</button>
-        if (LoadComponent != default(RenderFragment))
+        if (isLoaded)
         {
-            @LoadComponent
+            <button onclick=@AddEvent>Show</button>
+            <button onclick=@EditUser>Edit user</button>
+            if (StateService.ObjectFocus == typeof(User))
+            {
+                <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog/>
+            }
+            else if (StateService.ObjectFocus == typeof(Event))
+            {
+                <EventView/>
+            }
+            <ContactsView />
+            <PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
         }
-        <ContactsView />
-        <PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
+        <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
     }
-    <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
-}
+</div>

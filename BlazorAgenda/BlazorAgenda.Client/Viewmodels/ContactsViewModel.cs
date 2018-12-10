@@ -14,12 +14,26 @@ namespace BlazorAgenda.Client.Viewmodels
     public class ContactsViewModel : BlazorComponent
     {
         [Inject]
-        public IUserService Service { get; set; }
+        public IUserService UserService { get; set; }
+        [Inject]
+        public IStateService StateService { get; set; }
         public List<User> Contacts { get; set; }
 
         protected override async Task OnInitAsync()
         {
-            Contacts = await Service.GetContacts();
+            Contacts = await UserService.GetContacts();
+        }
+
+        public void ClickContact(User user)
+        {
+            if (StateService.ChosenContacts.Contains(user))
+            {
+                StateService.ChosenContacts.Remove(user);
+            }
+            else
+            {
+                StateService.ChosenContacts.Add(user);
+            }
         }
     }
 }

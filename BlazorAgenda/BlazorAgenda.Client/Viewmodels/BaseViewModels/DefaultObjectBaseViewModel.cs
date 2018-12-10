@@ -17,7 +17,7 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 
         public void Close()
         {
-            ((IDefaultObjectService)Service).CurrentObjectToNull();
+            //((IDefaultObjectService)Service).CurrentObjectToNull();
             ((IDefaultObjectService)Service).NotifyStateChanged();
         }
 

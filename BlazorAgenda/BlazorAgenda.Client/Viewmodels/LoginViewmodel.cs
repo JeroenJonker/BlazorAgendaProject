@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
+﻿using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Models;
+using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +10,16 @@ namespace BlazorAgenda.Client.Viewmodels
 {
     public class LoginViewmodel : BlazorComponent
     {
+        public bool ShowAddUser { get; set; } = false;
+        [Parameter] Action<User> OnLogin { get; set; }
+        [Inject] protected IUserService UserService { get; set; }
+
+        public async Task LoginAsync()
+        {
+            if (await UserService.CheckUser(UserService.CurrentUser))
+            {
+                OnLogin?.Invoke(UserService.CurrentUser);
+            }
+        }
     }
 }

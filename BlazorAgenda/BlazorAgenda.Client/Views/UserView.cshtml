@@ -16,6 +16,7 @@
 @functions {
     [Parameter] protected Action OnExit { get; set; }
     [Parameter] protected User SetUser { get; set; }
+    [Parameter] Action OnClose { get; set; }
 
     protected override void OnInit()
     {
@@ -25,7 +26,12 @@
             Service.CurrentUser = SetUser;
             Service.CurrentUser.Password = "";
         }
+        if (OnClose != null)
+        {
+            Service.OnChange += OnClose;
+        }
     }
+
     public void ConvertPassword()
     {
         Service.CurrentUser.Password = Service.ConvertStringToHash(Service.CurrentUser.Password);
