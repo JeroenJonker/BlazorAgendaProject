@@ -34,6 +34,7 @@ namespace BlazorAgenda.Client.Viewmodels
         public void OnLoginCompleted(User user)
         {
             StateService.LoginUser = user;
+            StateService.ChosenContacts.Add(user);
             IsLoginCompleted = true;
             StateHasChanged();
         }

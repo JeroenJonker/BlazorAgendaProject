@@ -193,6 +193,10 @@ table {
             border-bottom: 1px solid #626E7E;
         }
 
+        table tbody tr td.active {
+            background-color: #d1d5db;
+        }
+
     table tbody tr td:not(.hour), table thead tr th .day {
         cursor: pointer;
     }

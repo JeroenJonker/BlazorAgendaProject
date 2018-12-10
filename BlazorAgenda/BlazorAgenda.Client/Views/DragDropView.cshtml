@@ -4,7 +4,7 @@
 @using BlazorAgenda.Shared.Models
 @inherits DragDropViewModel
 
-<td>
+<td class="@(Active ? "active" : null)" onclick="@(() => SelectDay?.Invoke(Start.Date))">
     <div class="eventContainer" ondragenter="@(e => OnContainerDragEnter(e))" ondragover="event.preventDefault();"
         ondragleave="@(e => OnContainerDragLeave(e))" ondrop="@(e => OnContainerDrop(e, Start))"
         style="@HighlightDropTargetStyle">

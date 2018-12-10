@@ -26,7 +26,7 @@
                         DateTime day = StartOfWeekDate.AddDays(col - startDay);
                         string name = day.ToString("dddd");
                         <th>
-                            <span class="@(day == SelectedDate ? "day active" : "day")">@day.Day</span>
+                            <span class="@(day == SelectedDate ? "day active" : "day")" onclick="@(() => OnSelectDay(day))">@day.Day</span>
                             <span class="long">@name</span>
                             <span class="short">@name.Substring(0, 3)</span>
                         </th>
@@ -44,7 +44,8 @@
                     </td>
                     @for (int col = 0; col < 7; col++)
                     {
-                        <DragDropView Start="@(time.AddDays(col))" MoveEvent="@OnMoveEvent" />
+                        DateTime start = time.AddDays(col);
+                        <DragDropView Start="@start" Active="@(start.Date == SelectedDate.Date)" MoveEvent="@OnMoveEvent" SelectDay="@OnSelectDay" />
                     }
                 </tr>
                 @for (int row = 0; row < 3; row++)
@@ -53,7 +54,8 @@
                     <tr>
                         @for (int col = 0; col < 7; col++)
                         {
-                            <DragDropView Start="@(time.AddDays(col))" MoveEvent="@OnMoveEvent" />
+                            DateTime start = time.AddDays(col);
+                            <DragDropView Start="@start" Active="@(start.Date == SelectedDate.Date)" MoveEvent="@OnMoveEvent" SelectDay="@OnSelectDay" />
                         }
                     </tr>
                 }

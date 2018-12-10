@@ -96,5 +96,10 @@ namespace BlazorAgenda.Client.Viewmodels
             EventService.ExecuteAsync();
             StateHasChanged();
         }
+
+        public void OnSelectDay(DateTime day)
+        {
+            SelectedDate = day;
+        }
     }
 }

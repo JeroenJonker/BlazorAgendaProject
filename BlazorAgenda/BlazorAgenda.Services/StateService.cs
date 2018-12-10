@@ -19,6 +19,7 @@ namespace BlazorAgenda.Services
         public StateService(User user)
         {
             LoginUser = user;
+            ChosenContacts = new List<User>();
         }
     }
 }
