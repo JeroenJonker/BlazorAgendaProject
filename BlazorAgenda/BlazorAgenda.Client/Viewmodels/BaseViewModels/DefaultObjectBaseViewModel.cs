@@ -14,10 +14,17 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
         [Parameter] protected RenderFragment ChildContent { get; set; }
         [Inject] protected ServiceInterface Service { get; set; }
         [Parameter] protected Action BeforeSave { get; set; }
+        [Parameter] protected bool IsVisible { get; set; } = false;
+        [Parameter] protected Action GetClosedValue { get; set; }
 
         public void Close()
         {
+            Console.WriteLine("CLose1");
             //((IDefaultObjectService)Service).CurrentObjectToNull();
+            IsVisible = false;
+            Console.WriteLine("CLose2");
+            GetClosedValue?.Invoke();
+            Console.WriteLine("CLose3");
             ((IDefaultObjectService)Service).NotifyStateChanged();
         }
 

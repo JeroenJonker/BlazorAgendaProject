@@ -2,10 +2,10 @@
 @using BlazorAgenda.Services.Interfaces
 @inherits EventViewmodel
 
-<DefaultObjectBaseView ServiceInterface=IEventService>
+<DefaultObjectBaseView ServiceInterface=IEventService IsVisible=@IsVisible GetClosedValue=@OnClose>
     <div class="row">
         <label class="col">Afspraak omschrijving</label>
-        <input class="col" bind=Service.CurrentEvent.Summary />
+        <input class="col" bind=EventService.CurrentEvent.Summary />
     </div>
     <div class="row">
         <label class="col">Van</label>

@@ -16,14 +16,8 @@
         {
             <button onclick=@AddEvent>Show</button>
             <button onclick=@EditUser>Edit user</button>
-            if (StateService.ObjectFocus == typeof(User))
-            {
-                <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog/>
-            }
-            else if (StateService.ObjectFocus == typeof(Event))
-            {
-                <EventView/>
-            }
+            <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User))/>
+            <EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event))/>
             <ContactsView />
         }
         <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />

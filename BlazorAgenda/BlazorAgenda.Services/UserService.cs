@@ -20,10 +20,10 @@ namespace BlazorAgenda.Services
             CurrentUser = currentUser;
         }
 
-        public async Task<bool> CheckUser(User user)
+        public async Task<User> CheckUser(User user)
         {
             user.Password = ConvertStringToHash(user.Password);
-            return await http.PostJsonAsync<bool>("api/User/IsValidUser", user);
+            return await http.PostJsonAsync<User>("api/User/IsValidUser", user);
         }
 
         public async Task<List<User>> GetContacts()
@@ -46,7 +46,7 @@ namespace BlazorAgenda.Services
 
         public async Task ExecuteAsync()
         {
-            if (await CheckUser(CurrentUser))
+            if (await CheckUser(CurrentUser)!=null)
             {
                 await http.PutJsonAsync("api/User/Edit", CurrentUser);
             }

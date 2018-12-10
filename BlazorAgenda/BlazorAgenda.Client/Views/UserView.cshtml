@@ -1,8 +1,8 @@
-﻿@using BlazorAgenda.Services.Interfaces;
-@using BlazorAgenda.Shared.Models;
-@inject IUserService Service
+﻿@using BlazorAgenda.Services.Interfaces
+@using BlazorAgenda.Client.Viewmodels
+@inherits UserViewModel
 
-<DefaultObjectBaseView ServiceInterface=IUserService BeforeSave=@ConvertPassword>
+<DefaultObjectBaseView ServiceInterface=IUserService BeforeSave=@ConvertPassword IsVisible=@IsVisible GetClosedValue=@OnClose>
     <label>Email</label>
     <input type="text" bind=Service.CurrentUser.Emailadress />
     <label>Firstname</label>
@@ -12,28 +12,3 @@
     <label>Password</label>
     <input type="text" bind=Service.CurrentUser.Password />
 </DefaultObjectBaseView>
-
-@functions {
-    [Parameter] protected Action OnExit { get; set; }
-    [Parameter] protected User SetUser { get; set; }
-    [Parameter] Action OnClose { get; set; }
-
-    protected override void OnInit()
-    {
-        base.OnInit();
-        if (SetUser != null)
-        {
-            Service.CurrentUser = SetUser;
-            Service.CurrentUser.Password = "";
-        }
-        if (OnClose != null)
-        {
-            Service.OnChange += OnClose;
-        }
-    }
-
-    public void ConvertPassword()
-    {
-        Service.CurrentUser.Password = Service.ConvertStringToHash(Service.CurrentUser.Password);
-    }
-}

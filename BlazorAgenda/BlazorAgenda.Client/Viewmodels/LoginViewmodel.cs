@@ -16,9 +16,9 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public async Task LoginAsync()
         {
-            if (await UserService.CheckUser(UserService.CurrentUser))
+            if (await UserService.CheckUser(UserService.CurrentUser) is User checkedUser)
             {
-                OnLogin?.Invoke(UserService.CurrentUser);
+                OnLogin?.Invoke(checkedUser);
             }
         }
     }

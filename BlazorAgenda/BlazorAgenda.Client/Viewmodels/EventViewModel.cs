@@ -6,31 +6,30 @@ using BlazorAgenda.Services;
 using BlazorAgenda.Client.Viewmodels.BaseViewModels;
 using System;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
-    public class EventViewmodel : BlazorComponent
+    public class EventViewmodel : ObjectBase
     {
-        [Inject]
-        protected IEventService Service { get; set; }
-        [Inject]
-        protected IStateService StateService {get;set;}
+        [Inject] protected IEventService EventService { get; set; }
+        [Parameter] protected Event SetEvent { get; set; }
         public DateTime Start
         {
             get
             {
-                return Service.CurrentEvent.Start;
+                return EventService.CurrentEvent.Start;
             }
             set
             {
-                if (Service.CurrentEvent.Start.Date != value.Date)
+                if (EventService.CurrentEvent.Start.Date != value.Date)
                 {
-                    Service.CurrentEvent.Start = new DateTime(value.Year, value.Month, value.Day, 
-                        Service.CurrentEvent.Start.Hour, Service.CurrentEvent.Start.Minute, Service.CurrentEvent.Start.Second);
+                    EventService.CurrentEvent.Start = new DateTime(value.Year, value.Month, value.Day, 
+                        EventService.CurrentEvent.Start.Hour, EventService.CurrentEvent.Start.Minute, EventService.CurrentEvent.Start.Second);
                 }
                 else
                 {
-                    Service.CurrentEvent.Start = value;
+                    EventService.CurrentEvent.Start = value;
                 }
             }
         }
@@ -39,28 +38,35 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             get
             {
-                return Service.CurrentEvent.End;
+                return EventService.CurrentEvent.End;
             }
             set
             {
-                if (Service.CurrentEvent.End.Date != value.Date)
+                if (EventService.CurrentEvent.End.Date != value.Date)
                 {
-                    Service.CurrentEvent.End = new DateTime(value.Year, value.Month, value.Day, 
-                        Service.CurrentEvent.End.Hour, Service.CurrentEvent.End.Minute, Service.CurrentEvent.End.Second);
+                    EventService.CurrentEvent.End = new DateTime(value.Year, value.Month, value.Day, 
+                        EventService.CurrentEvent.End.Hour, EventService.CurrentEvent.End.Minute, EventService.CurrentEvent.End.Second);
                 }
                 else
                 {
-                    Service.CurrentEvent.End = value;
+                    EventService.CurrentEvent.End = value;
                 }
             }
         }
 
         protected override void OnInit()
         {
-            Start = SetDateTime(Service.CurrentEvent.Start);
-            End = SetDateTime(Service.CurrentEvent.End);
-            Service.CurrentEvent.Emailadress = Service.CurrentEvent.Emailadress == default ? StateService.LoginUser.Emailadress : Service.CurrentEvent.Emailadress;
-            Service.OnChange += StateHasChanged;
+            if (SetEvent != null)
+            {
+                EventService.CurrentEvent = SetEvent;
+            }
+            else
+            {
+                Start = SetDateTime(EventService.CurrentEvent.Start);
+                End = SetDateTime(EventService.CurrentEvent.End);
+            }
+
+            //Service.CurrentEvent.Emailadress = Service.CurrentEvent.Emailadress == default ? StateService.LoginUser.Emailadress : Service.CurrentEvent.Emailadress;
         }
 
         protected DateTime SetDateTime(DateTime time)

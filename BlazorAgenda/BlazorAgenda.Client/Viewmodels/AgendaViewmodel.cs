@@ -27,13 +27,16 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnCloseDialog()
         {
+            Console.WriteLine("CLose2.5");
             StateService.ObjectFocus = null;
-            StateHasChanged();
+            //StateHasChanged();
         }
 
         public void OnLoginCompleted(User user)
         {
             StateService.LoginUser = user;
+            StateService.ChosenContacts.Add(StateService.LoginUser);
+            Console.WriteLine(StateService.ChosenContacts[0].Firstname);
             IsLoginCompleted = true;
             StateHasChanged();
         }

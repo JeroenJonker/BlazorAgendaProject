@@ -9,7 +9,7 @@ namespace BlazorAgenda.Services.Interfaces
     public interface IUserService : IDefaultObjectService
     {
         User CurrentUser { get; set; }
-        Task<bool> CheckUser(User user);
+        Task<User> CheckUser(User user);
         Task<List<User>> GetContacts();
         string ConvertStringToHash(string text);
     }

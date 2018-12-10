@@ -21,15 +21,15 @@ namespace BlazorAgenda.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public bool IsValidUser([FromBody] User loginuser)
+        public User IsValidUser([FromBody] User loginuser)
         {
             User dbUser = UserAccess.GetUserByEmail(loginuser.Emailadress);
             if (dbUser != null && dbUser.Password.SequenceEqual(loginuser.Password) &&
                 new MailAddress(loginuser.Emailadress).Address == loginuser.Emailadress)
             {
-                return true;
+                return dbUser;
             }
-            return false;
+            return null;
         }
 
         [HttpPost("[action]")]
