@@ -20,6 +20,8 @@ namespace BlazorAgenda.Client.Viewmodels
         public bool isLoaded = false;
         public RenderFragment LoadComponent { get; set; }
 
+        public PopupView _popup;
+
         public void AddNewEvent()
         {
             LoadComponent = builder =>
@@ -54,6 +56,12 @@ namespace BlazorAgenda.Client.Viewmodels
         public void ChildLoadedEvent(bool _isLoaded)
         {
             isLoaded = _isLoaded;
+            StateHasChanged();
+        }
+
+        public void OpenPopup()
+        {
+            _popup.Open();
             StateHasChanged();
         }
     }
