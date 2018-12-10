@@ -14,7 +14,7 @@ namespace BlazorAgenda.Client.Viewmodels
     public class DragDropViewModel : BlazorComponent
     {
         [Parameter]
-        protected Action OnChange { get; set; }
+        protected Action<Event> MoveEvent { get; set; }
 
         [Parameter]
         protected DateTime Start { get; set; }
@@ -43,7 +43,7 @@ namespace BlazorAgenda.Client.Viewmodels
             TimeSpan duration = item.End - item.Start;
             item.Start = _start;
             item.End = _start.Add(duration);
-            OnChange();
+            MoveEvent?.Invoke(item);
         }
     }
 }

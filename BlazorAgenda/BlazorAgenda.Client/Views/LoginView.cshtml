@@ -6,10 +6,10 @@
     <input type="text" name="email" class="form-control" bind=UserService.CurrentUser.Emailadress /><br />
     <label for="password">Password</label>
     <input type="password" name="password" class="form-control" bind=UserService.CurrentUser.Password /><br />
-    <button onclick=@LoginAsync>Log in</button>
-    <button onclick=@(() => ShowAddUser = true)>Add new user</button>
+    <button class="btn btn-primary" onclick=@LoginAsync>Log in</button>
+    <button class="btn btn-primary" onclick=@(() => ShowAddUser = true)>Add new user</button>
 </div>
-    @if (ShowAddUser)
-    {
+@if (ShowAddUser)
+{
     <UserView />
-    }
+}

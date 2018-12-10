@@ -217,6 +217,7 @@ table {
         text-align: center;
         overflow: hidden;
         word-break: break-word;
+        border-radius: 7.5px;
     }
 
         div.event:hover {

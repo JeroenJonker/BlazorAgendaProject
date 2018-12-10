@@ -12,21 +12,18 @@
     }
     else
     {
-        if (isLoaded)
+        <button onclick=@AddEvent>Show</button>
+        <button onclick=@EditUser>Edit user</button>
+        <button class="btn btn-primary" onclick="@OpenPopup">Open Popup</button>
+        if (StateService.ObjectFocus == typeof(User))
         {
-            <button onclick=@AddEvent>Show</button>
-            <button onclick=@EditUser>Edit user</button>
-            if (StateService.ObjectFocus == typeof(User))
-            {
-                <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog/>
-            }
-            else if (StateService.ObjectFocus == typeof(Event))
-            {
-                <EventView/>
-            }
-            <ContactsView />
-            <PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
+            <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog/>
         }
-        <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
+        else if (StateService.ObjectFocus == typeof(Event))
+        {
+            <EventView/>
+        }
+        <ContactsView />
+        <PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
+        <CalendarView />
     }
-</div>

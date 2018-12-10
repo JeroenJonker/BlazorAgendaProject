@@ -1,67 +1,64 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @inherits CalendarViewModel
 
-@if (Loaded)
-{
-    <div class="row">
-        <span class="col">
-            <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
-            <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
-            <button onclick=@(() => GoToNextWeek())>&gt;</button>
-        </span>
-        <span class="col">
-            <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
-        </span>
-        <span class="col"></span>
-        <span class="col"></span>
-    </div>
-    <h2>@CurrentMonthAndYear</h2>
-    <div id="table-wrapper">
-        <table class="table">
-            <thead>
+<div class="row">
+    <span class="col">
+        <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
+        <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
+        <button onclick=@(() => GoToNextWeek())>&gt;</button>
+    </span>
+    <span class="col">
+        <input type="date" bind="@SelectedDate" format-value="yyyy-MM-dd" />
+    </span>
+    <span class="col"></span>
+    <span class="col"></span>
+</div>
+<h2>@CurrentMonthAndYear</h2>
+<div id="table-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                @{
+                    int startDay = StartOfWeekDate.Day;
+                    for (int col = startDay; col < startDay + 7; col++)
+                    {
+                        DateTime day = StartOfWeekDate.AddDays(col - startDay);
+                        string name = day.ToString("dddd");
+                        <th>
+                            <span class="@(day == SelectedDate ? "day active" : "day")">@day.Day</span>
+                            <span class="long">@name</span>
+                            <span class="short">@name.Substring(0, 3)</span>
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{DateTime time = StartOfWeekDate;}
+            @for (int hour = 0; hour < 24; hour++)
+            {
                 <tr>
-                    <th></th>
-                    @{
-                        int startDay = StartOfWeekDate.Day;
-                        for (int col = startDay; col < startDay + 7; col++)
-                        {
-                            DateTime day = StartOfWeekDate.AddDays(col - startDay);
-                            string name = day.ToString("dddd");
-                            <th>
-                                <span class="@(day == SelectedDate ? "day active" : "day")">@day.Day</span>
-                                <span class="long">@name</span>
-                                <span class="short">@name.Substring(0, 3)</span>
-                            </th>
-                        }
+                    <td class="hour" rowspan="4">
+                        <span>@(hour.ToString() + ":00")</span>
+                    </td>
+                    @for (int col = 0; col < 7; col++)
+                    {
+                        <DragDropView Start="@(time.AddDays(col))" MoveEvent="@OnMoveEvent" />
                     }
                 </tr>
-            </thead>
-            <tbody>
-                @{DateTime time = StartOfWeekDate;}
-                @for (int hour = 0; hour < 24; hour++)
+                @for (int row = 0; row < 3; row++)
                 {
+                    time = time.AddMinutes(15);
                     <tr>
-                        <td class="hour" rowspan="4">
-                            <span>@(hour.ToString() + ":00")</span>
-                        </td>
                         @for (int col = 0; col < 7; col++)
                         {
-                            <DragDropView Start="@(time.AddDays(col))" OnChange="@(() => StateHasChanged())" />
+                            <DragDropView Start="@(time.AddDays(col))" MoveEvent="@OnMoveEvent" />
                         }
                     </tr>
-                    @for (int row = 0; row < 3; row++)
-                    {
-                        time = time.AddMinutes(15);
-                        <tr>
-                            @for (int col = 0; col < 7; col++)
-                            {
-                                <DragDropView Start="@(time.AddDays(col))" OnChange="@(() => StateHasChanged())" />
-                            }
-                        </tr>
-                    }
-                    time = time.AddMinutes(15);
                 }
-            </tbody>
-        </table>
-    </div>
-}
+                time = time.AddMinutes(15);
+            }
+        </tbody>
+    </table>
+</div>
