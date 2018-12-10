@@ -1,25 +1,23 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
+@using BlazorAgenda.Client.Views;
 @using BlazorAgenda.Shared.Models
-@page "/agenda"
+@page "/"
 @inherits AgendaViewmodel
 
-<div class=@(IsFocus ? null : "greyout" )>
-    <h1>Blazor agenda</h1>
+<h1>Blazor agenda</h1>
 
     @if (!IsLoginCompleted)
     {
-        <LoginView OnLogin=OnLoginCompleted/>
+<LoginView OnLogin=OnLoginCompleted />
     }
     else
     {
-        if (isLoaded)
-        {
-            <button onclick=@AddEvent>Show</button>
-            <button onclick=@EditUser>Edit user</button>
-            <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User))/>
-            <EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event))/>
-            <ContactsView />
-        }
-        <CalendarView Loaded="@isLoaded" LoadedChanged="@ChildLoadedEvent" />
+<button onclick=@AddEvent>Show</button>
+<button onclick=@EditUser>Edit user</button>
+<UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus = =typeof(User)) />
+<EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus = =typeof(Event)) />
+<ContactsView />
+<button class="btn btn-primary" onclick="@OpenPopup">Open Popup</button>
+<PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
+<CalendarView />
     }
-</div>

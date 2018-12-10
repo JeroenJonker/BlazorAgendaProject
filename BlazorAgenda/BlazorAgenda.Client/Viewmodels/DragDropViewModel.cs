@@ -14,10 +14,16 @@ namespace BlazorAgenda.Client.Viewmodels
     public class DragDropViewModel : BlazorComponent
     {
         [Parameter]
-        protected Action OnChange { get; set; }
+        protected DateTime Start { get; set; }
 
         [Parameter]
-        protected DateTime Start { get; set; }
+        protected bool Active { get; set; }
+
+        [Parameter]
+        protected Action<Event> MoveEvent { get; set; }
+
+        [Parameter]
+        protected Action<DateTime> SelectDay { get; set; }
 
         public string HighlightDropTargetStyle { get; set; }
 
@@ -28,7 +34,8 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnContainerDragEnter(UIDragEventArgs e)
         {
-            HighlightDropTargetStyle = "background-color: salmon !important";
+            string color = DragDropHelper.Item.Color ?? "#039be5";
+            HighlightDropTargetStyle = "background-color: " + color + " !important;";
         }
 
         public void OnContainerDragLeave(UIDragEventArgs e)
@@ -43,7 +50,7 @@ namespace BlazorAgenda.Client.Viewmodels
             TimeSpan duration = item.End - item.Start;
             item.Start = _start;
             item.End = _start.Add(duration);
-            OnChange();
+            MoveEvent?.Invoke(item);
         }
     }
 }

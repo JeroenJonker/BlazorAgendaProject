@@ -19,10 +19,6 @@ namespace BlazorAgenda.Client.Viewmodels
         protected IEventService EventService { get; set; }
         [Inject]
         protected IStateService StateService { get; set; }
-        [Parameter]
-        protected bool Loaded { get; set; }
-        [Parameter]
-        protected Action<bool> LoadedChanged { get; set; }
         
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -49,7 +45,7 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             StartOfWeekDate = StartOfWeekDate.AddDays(-7);
             CurrentMonthAndYear = GetCurrentMonthAndYear();
-            NotifyLoaded();
+            StateHasChanged();
         }
 
         public void GoToCurrentWeek()
@@ -61,7 +57,7 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             StartOfWeekDate = StartOfWeekDate.AddDays(7);
             CurrentMonthAndYear = GetCurrentMonthAndYear();
-            NotifyLoaded();
+            StateHasChanged();
         }
 
         public void GoToSelectedDate()
@@ -71,7 +67,7 @@ namespace BlazorAgenda.Client.Viewmodels
                 delta -= 7;
             StartOfWeekDate = SelectedDate.AddDays(delta);
             CurrentMonthAndYear = GetCurrentMonthAndYear();
-            NotifyLoaded();
+            StateHasChanged();
         }
 
         public string GetCurrentMonthAndYear()
@@ -94,10 +90,16 @@ namespace BlazorAgenda.Client.Viewmodels
             return monthAndYear;
         }
 
-        public void NotifyLoaded()
+        public void OnMoveEvent(Event ev)
         {
-            Loaded = true;
-            LoadedChanged?.Invoke(Loaded);
+            EventService.CurrentEvent = ev;
+            EventService.ExecuteAsync();
+            StateHasChanged();
+        }
+
+        public void OnSelectDay(DateTime day)
+        {
+            SelectedDate = day;
         }
     }
 }

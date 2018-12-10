@@ -24,8 +24,9 @@ namespace BlazorAgenda.Client.Viewmodels
             Contacts = await UserService.GetContacts();
         }
 
-        public void ClickContact(User user)
+        public void SelectContact(UIChangeEventArgs e)
         {
+            User user = Contacts.Find(x => x.Emailadress == e.Value.ToString());
             if (StateService.ChosenContacts.Contains(user))
             {
                 StateService.ChosenContacts.Remove(user);

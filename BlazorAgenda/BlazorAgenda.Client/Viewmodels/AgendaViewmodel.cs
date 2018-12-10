@@ -11,9 +11,9 @@ namespace BlazorAgenda.Client.Viewmodels
     {
         [Inject]
         protected IStateService StateService { get; set; }
-        public bool IsFocus = true;
         public bool IsLoginCompleted = false;
-        public bool isLoaded = false;
+
+        public PopupView _popup;
 
         public void AddEvent()
         {
@@ -35,15 +35,14 @@ namespace BlazorAgenda.Client.Viewmodels
         public void OnLoginCompleted(User user)
         {
             StateService.LoginUser = user;
-            StateService.ChosenContacts.Add(StateService.LoginUser);
-            Console.WriteLine(StateService.ChosenContacts[0].Firstname);
+            StateService.ChosenContacts.Add(user);
             IsLoginCompleted = true;
             StateHasChanged();
         }
 
-        public void ChildLoadedEvent(bool _isLoaded)
+        public void OpenPopup()
         {
-            isLoaded = _isLoaded;
+            _popup.Open();
             StateHasChanged();
         }
     }

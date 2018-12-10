@@ -4,14 +4,22 @@
 
 @if (Contacts != null)
 {
-    <div>
-        <select>
-            @foreach (User user in Contacts)
+<div>
+    <select onchange="@SelectContact">
+        @foreach (User user in Contacts)
+        {
+            <option value="@user.Emailadress">@user.Firstname @user.Lastname</option>
+        }
+    </select>
+    <br />
+    @if (StateService.ChosenContacts.Count > 0)
+    {
+        <ul>
+            @foreach (User contact in StateService.ChosenContacts)
             {
-                <option onclick=@(() => ClickContact(user))>@user.Firstname</option>
+                <li>@contact.Firstname @contact.Lastname</li>
             }
-        </select>
-        @*<input type="checkbox" placeholder="..."/>
-        <content>@contact.Firstname</content>*@
-    </div>
+        </ul>
+    }
+</div>
 }
