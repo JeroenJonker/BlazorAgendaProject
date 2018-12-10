@@ -22,18 +22,13 @@ namespace BlazorAgenda.Services
 
         public async Task<bool> CheckUser(User user)
         {
+            user.Password = ConvertStringToHash(user.Password);
             return await http.PostJsonAsync<bool>("api/User/IsValidUser", user);
         }
 
         public async Task<List<User>> GetContacts()
         {
             return await http.GetJsonAsync<List<User>>("api/User/GetAllUsers");
-        }
-
-        public async Task<List<Event>> GetEvents(User user)
-        {
-            CurrentUser.Event = await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Emailadress);
-            return CurrentUser.Event.ToList();
         }
 
         public string ConvertStringToHash(string text)

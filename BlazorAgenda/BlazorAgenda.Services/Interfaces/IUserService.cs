@@ -11,7 +11,6 @@ namespace BlazorAgenda.Services.Interfaces
         User CurrentUser { get; set; }
         Task<bool> CheckUser(User user);
         Task<List<User>> GetContacts();
-        Task<List<Event>> GetEvents(User user);
         string ConvertStringToHash(string text);
     }
 }

@@ -6,24 +6,23 @@
 <div class=@(IsFocus ? null : "greyout" )>
     <h1>Blazor agenda</h1>
 
-    <p>This component demonstrates fetching data from the server.</p>
-    @if (!isButtonClicked)
+    @if (!IsLoginCompleted)
     {
-        <LoginView OnLogin="@ClickButton" />
+        <LoginView OnLogin=OnLoginCompleted/>
     }
     else
     {
-        @foreach (Event e in StateService.LoginUser.Event)
-        {
-            <p>@e.Summary</p>
-        }
         if (isLoaded)
         {
-            <button onclick="@AddNewEvent">Show</button>
-            <button onclick="@EditUser">Edit user</button>
-            if (LoadComponent != default(RenderFragment))
+            <button onclick=@AddEvent>Show</button>
+            <button onclick=@EditUser>Edit user</button>
+            if (StateService.ObjectFocus == typeof(User))
             {
-                @LoadComponent
+                <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog/>
+            }
+            else if (StateService.ObjectFocus == typeof(Event))
+            {
+                <EventView/>
             }
             <ContactsView />
         }

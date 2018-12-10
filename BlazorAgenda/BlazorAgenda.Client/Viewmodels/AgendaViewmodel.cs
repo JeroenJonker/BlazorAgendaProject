@@ -10,44 +10,31 @@ namespace BlazorAgenda.Client.Viewmodels
     public class AgendaViewmodel : BlazorComponent
     {
         [Inject]
-        protected IEventService Service {get;set;}
-        [Inject]
-        protected IUserService UserService { get; set; }
-        [Inject]
         protected IStateService StateService { get; set; }
         public bool IsFocus = true;
-        public bool isButtonClicked = false;
+        public bool IsLoginCompleted = false;
         public bool isLoaded = false;
-        public RenderFragment LoadComponent { get; set; }
 
-        public void AddNewEvent()
+        public void AddEvent()
         {
-            LoadComponent = builder =>
-            {
-                builder.OpenComponent(0, typeof(EventView));
-                builder.CloseComponent();
-            };
-            Service.CurrentEvent.Emailadress = StateService.LoginUser.Emailadress;
+            StateService.ObjectFocus = typeof(Event);
         }
 
         public void EditUser()
         {
-            LoadComponent = builder =>
-            {
-                builder.OpenComponent(0, typeof(UserView));
-                builder.AddAttribute(1, "SetUser", StateService.LoginUser);
-                builder.CloseComponent();
-            };
+            StateService.ObjectFocus = typeof(User);
         }
 
-        protected override void OnInit()
+        public void OnCloseDialog()
         {
-            Service.OnChange += StateHasChanged;
+            StateService.ObjectFocus = null;
+            StateHasChanged();
         }
 
-        public void ClickButton()
+        public void OnLoginCompleted(User user)
         {
-            isButtonClicked = true;
+            StateService.LoginUser = user;
+            IsLoginCompleted = true;
             StateHasChanged();
         }
 

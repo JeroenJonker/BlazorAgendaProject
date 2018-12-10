@@ -3,6 +3,7 @@ using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +16,6 @@ namespace BlazorAgenda.Services
         public EventService(HttpClient client, Event currentEvent) : base(client)
         {
             CurrentEvent = currentEvent;
-            //CurrentEvent = new Event
-            //{
-            //    Start = DateTime.Now,
-            //    Emailadress = state.CurrentUser.Emailadress,
-            //    //EmailadressNavigation = UserService.CurrentUser,
-            //    End = DateTime.Now
-            //};
         }
 
         public async Task ExecuteAsync()
@@ -39,6 +33,11 @@ namespace BlazorAgenda.Services
         public void CurrentObjectToNull()
         {
             CurrentEvent = null;
+        }
+
+        public async Task<List<Event>> GetEvents(User user)
+        {
+            return await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Emailadress);
         }
     }
 }

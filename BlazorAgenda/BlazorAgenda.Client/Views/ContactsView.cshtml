@@ -4,12 +4,14 @@
 
 @if (Contacts != null)
 {
-    @foreach (User contact in Contacts)
-    {
-        <div>
-            <input type="checkbox" />
-             @*bind=*@ 
-            <content>@contact.Firstname</content>
-        </div>
-    }
+    <div>
+        <select>
+            @foreach (User user in Contacts)
+            {
+                <option onclick=@(() => ClickContact(user))>@user.Firstname</option>
+            }
+        </select>
+        @*<input type="checkbox" placeholder="..."/>
+        <content>@contact.Firstname</content>*@
+    </div>
 }
