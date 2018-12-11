@@ -1,4 +1,5 @@
 ﻿using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,8 @@ namespace BlazorAgenda.Services
         event Action OnChange;
         void NotifyStateChanged();
         void CurrentObjectToNull();
+        ObjectState GetObjectState();
+        string GetObjectName();
         //T CurrentObject { get; set; }
     }
 }

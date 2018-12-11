@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Services;
 using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
@@ -16,15 +17,17 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
         [Parameter] protected Action BeforeSave { get; set; }
         [Parameter] protected bool IsVisible { get; set; } = false;
         [Parameter] protected Action GetClosedValue { get; set; }
+        
+        public string GetTitle()
+        {
+            return ((IDefaultObjectService)Service).GetObjectState().ToString() + " " + ((IDefaultObjectService)Service).GetObjectName();
+        }
 
         public void Close()
         {
-            Console.WriteLine("CLose1");
             //((IDefaultObjectService)Service).CurrentObjectToNull();
             IsVisible = false;
-            Console.WriteLine("CLose2");
             GetClosedValue?.Invoke();
-            Console.WriteLine("CLose3");
             ((IDefaultObjectService)Service).NotifyStateChanged();
         }
 

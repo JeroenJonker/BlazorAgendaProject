@@ -21,5 +21,17 @@ namespace BlazorAgenda.Client.Viewmodels
                 OnLogin?.Invoke(checkedUser);
             }
         }
+
+        public void AddUser()
+        {
+            UserService.CurrentUser = new User();
+            ShowAddUser = true;
+        }
+
+        public void OnCloseDialog()
+        {
+            UserService.CurrentUser = new User();
+            ShowAddUser = false;
+        }
     }
 }

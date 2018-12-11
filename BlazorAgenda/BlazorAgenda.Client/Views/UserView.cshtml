@@ -3,12 +3,20 @@
 @inherits UserViewModel
 
 <DefaultObjectBaseView ServiceInterface=IUserService BeforeSave=@ConvertPassword IsVisible=@IsVisible GetClosedValue=@OnClose>
-    <label>Email</label>
-    <input type="text" bind=Service.CurrentUser.Emailadress />
-    <label>Firstname</label>
-    <input type="text" bind=Service.CurrentUser.Firstname />
-    <label>Lastname</label>
-    <input type="text" bind=Service.CurrentUser.Lastname />
-    <label>Password</label>
-    <input type="text" bind=Service.CurrentUser.Password />
+    <div class="form-row">
+        <label class="col-sm-6 col-form-label">Email</label>
+        <input class="col-sm-6 form-control" type="text" bind=Service.CurrentUser.Emailadress />
+    </div>
+    <div class="form-row">
+        <label class="col-sm-6 col-form-label">Firstname</label>
+        <input class="col-sm-6 form-control" type="text" bind=Service.CurrentUser.Firstname />
+    </div>
+    <div class="form-row">   
+        <label class="col-sm-6 col-form-label">Lastname</label>
+        <input class="col-sm-6 form-control" type="text" bind=Service.CurrentUser.Lastname />
+    </div>
+    <div class="form-row">
+        <label class="col-sm-6 col-form-label">Password</label>
+        <input class="col-sm-6 form-control" type="text" bind=Service.CurrentUser.Password />
+    </div>
 </DefaultObjectBaseView>

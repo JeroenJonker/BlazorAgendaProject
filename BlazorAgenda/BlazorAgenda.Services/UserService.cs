@@ -26,6 +26,11 @@ namespace BlazorAgenda.Services
             return await http.PostJsonAsync<User>("api/User/IsValidUser", user);
         }
 
+        public async Task<bool> IsUserInUse(User user)
+        {
+            return await http.PostJsonAsync<bool>("api/User/IsUserInUse", user);
+        }
+
         public async Task<List<User>> GetContacts()
         {
             return await http.GetJsonAsync<List<User>>("api/User/GetAllUsers");
@@ -46,7 +51,7 @@ namespace BlazorAgenda.Services
 
         public async Task ExecuteAsync()
         {
-            if (await CheckUser(CurrentUser)!=null)
+            if (GetObjectState() == ObjectState.Edit)
             {
                 await http.PutJsonAsync("api/User/Edit", CurrentUser);
             }
@@ -59,6 +64,17 @@ namespace BlazorAgenda.Services
         public void CurrentObjectToNull()
         {
             CurrentUser = null;
+        }
+
+        public override ObjectState GetObjectState()
+        {
+            return ObjectState.Edit;
+            //return await IsUserInUse(CurrentUser) ? ObjectState.Edit : ObjectState.Add;
+        }
+
+        public string GetObjectName()
+        {
+            return nameof(User);
         }
     }
 }
