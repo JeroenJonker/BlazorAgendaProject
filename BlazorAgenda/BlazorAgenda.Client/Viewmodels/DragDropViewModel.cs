@@ -19,6 +19,9 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected Action<Event> MoveEvent { get; set; }
 
+        [Parameter]
+        protected Action<DateTime> NewEvent { get; set; }
+
         public string HighlightDropTargetStyle { get; set; }
 
         public void OnItemDragStart(UIDragEventArgs e, Event calendarEvent)

@@ -116,5 +116,18 @@ namespace BlazorAgenda.Client.Viewmodels
             EventService.ExecuteAsync();
             StateHasChanged();
         }
+
+        public void OnNewEvent(DateTime start)
+        {
+            EventService.CurrentEvent = new Event { Start = start, End = start.AddHours(1), Userid = StateService.LoginUser.Id };
+            StateService.ObjectFocus = typeof(Event);
+            StateHasChanged();
+        }
+
+        public void CloseEventView()
+        {
+            StateService.ObjectFocus = null;
+            StateHasChanged();
+        }
     }
 }
