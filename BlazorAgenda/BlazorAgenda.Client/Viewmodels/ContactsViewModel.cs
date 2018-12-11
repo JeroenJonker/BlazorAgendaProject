@@ -17,6 +17,10 @@ namespace BlazorAgenda.Client.Viewmodels
         public IUserService UserService { get; set; }
         [Inject]
         public IStateService StateService { get; set; }
+
+        [Parameter]
+        protected Action OnUpdate { get; set; }
+
         public List<User> Contacts { get; set; }
 
         protected override async Task OnInitAsync()
@@ -26,14 +30,22 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void SelectContact(UIChangeEventArgs e)
         {
-            User user = Contacts.Find(x => x.Emailadress == e.Value.ToString());
-            if (StateService.ChosenContacts.Contains(user))
+            User user = StateService.ChosenContacts.Find(x => x.Emailadress == e.Value.ToString());
+            if (user == null)
+            {
+                user = Contacts.Find(x => x.Emailadress == e.Value.ToString());
+                StateService.ChosenContacts.Add(user);
+                OnUpdate?.Invoke();
+            }
+        }
+
+        public void DeselectContact(string email)
+        {
+            User user = StateService.ChosenContacts.Find(x => x.Emailadress == email);
+            if (user != null)
             {
                 StateService.ChosenContacts.Remove(user);
-            }
-            else
-            {
-                StateService.ChosenContacts.Add(user);
+                OnUpdate?.Invoke();
             }
         }
     }

@@ -8,7 +8,7 @@
     <select onchange="@SelectContact">
         @foreach (User user in Contacts)
         {
-            <option value="@user.Emailadress">@user.Firstname @user.Lastname</option>
+            <option value="@user.Emailadress" selected=@(user.Emailadress == StateService.LoginUser.Emailadress)>@user.Firstname @user.Lastname</option>
         }
     </select>
     <br />
@@ -17,7 +17,7 @@
         <ul>
             @foreach (User contact in StateService.ChosenContacts)
             {
-                <li>@contact.Firstname @contact.Lastname</li>
+                <li>@contact.Firstname @contact.Lastname <button onclick="@(() => DeselectContact(contact.Emailadress))">✗</button></li>
             }
         </ul>
     }

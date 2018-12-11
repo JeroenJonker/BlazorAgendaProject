@@ -33,12 +33,32 @@ namespace BlazorAgenda.Client.Viewmodels
         public DateTime StartOfWeekDate { get; set; }
         
         public string CurrentMonthAndYear { get; set; }
+
+        private static readonly string[] colors = new string[]
+        {
+            "#a4bdfc", "#7ae7bf", "#dbadff", "#ff887c", "#fbd75b", "#ffb878", "#46d6db", "#e1e1e1", "#5484ed", "#51b749", "#dc2127"
+        };
         
         protected override async Task OnInitAsync()
         {
-            List<Event> events = await EventService.GetEvents(StateService.LoginUser);
-            DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
+            await GetEvents();
             GoToCurrentWeek();
+        }
+
+        public async Task GetEvents()
+        {
+            List<Event> events = new List<Event>();
+            for (int i = 0; i < StateService.ChosenContacts.Count; i++)
+            {
+                List<Event> userEvents = await EventService.GetEvents(StateService.ChosenContacts[i]);
+                foreach (Event ev in userEvents)
+                {
+                    ev.Color = colors[i % colors.Length];
+                    events.Add(ev);
+                }
+            }
+            DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
+            StateHasChanged();
         }
 
         public void GoToPreviousWeek()
@@ -95,11 +115,6 @@ namespace BlazorAgenda.Client.Viewmodels
             EventService.CurrentEvent = ev;
             EventService.ExecuteAsync();
             StateHasChanged();
-        }
-
-        public void OnSelectDay(DateTime day)
-        {
-            SelectedDate = day;
         }
     }
 }

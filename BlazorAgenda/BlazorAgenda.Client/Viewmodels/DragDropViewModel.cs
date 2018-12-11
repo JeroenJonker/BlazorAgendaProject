@@ -17,13 +17,7 @@ namespace BlazorAgenda.Client.Viewmodels
         protected DateTime Start { get; set; }
 
         [Parameter]
-        protected bool Active { get; set; }
-
-        [Parameter]
         protected Action<Event> MoveEvent { get; set; }
-
-        [Parameter]
-        protected Action<DateTime> SelectDay { get; set; }
 
         public string HighlightDropTargetStyle { get; set; }
 
@@ -34,8 +28,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnContainerDragEnter(UIDragEventArgs e)
         {
-            string color = DragDropHelper.Item.Color ?? "#039be5";
-            HighlightDropTargetStyle = "background-color: " + color + " !important;";
+            HighlightDropTargetStyle = "border-color: black; background-color: " + DragDropHelper.Item.Color + " !important;";
         }
 
         public void OnContainerDragLeave(UIDragEventArgs e)
