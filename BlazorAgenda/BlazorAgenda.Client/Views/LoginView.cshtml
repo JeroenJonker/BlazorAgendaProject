@@ -2,11 +2,12 @@
 @inherits LoginViewmodel
 
 <div class="contentBox">
-    <label for="email">Email</label>
+    <h1>Login</h1>
+    <label for="email" class="col-form-label">Email</label>
     <input type="text" name="email" class="form-control" bind=User.Emailadress /><br />
-    <label for="password">Password</label>
+    <label for="password" class="col-form-label">Password</label>
     <input type="password" name="password" class="form-control" bind=User.Password /><br />
     <button class="btn btn-primary" onclick=@LoginAsync>Log in</button>
-    <button class="btn btn-primary" onclick=@AddUser>Add new user</button>
+    <button class="btn btn-default" onclick=@AddUser>Add new user</button>
 </div>
 <UserView OnClose=OnCloseDialog IsVisible=ShowAddUser/>

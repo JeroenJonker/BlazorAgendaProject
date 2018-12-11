@@ -28,7 +28,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnContainerDragEnter(UIDragEventArgs e)
         {
-            HighlightDropTargetStyle = "border-color: black; background-color: " + DragDropHelper.Item.Color + " !important;";
+            HighlightDropTargetStyle = "background-color: #0069d9 !important;";
         }
 
         public void OnContainerDragLeave(UIDragEventArgs e)

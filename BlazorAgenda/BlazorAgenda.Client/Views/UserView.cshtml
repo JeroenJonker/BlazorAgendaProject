@@ -4,19 +4,35 @@
 
 <DefaultObjectBaseView ServiceInterface=IUserService BeforeSave=@ConvertPassword IsVisible=@IsVisible GetClosedValue=@OnClose>
     <div class="form-row">
-        <label class="col-sm-5 col-form-label">Email</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Emailadress />
+        <span class="col-sm-5">
+            <label class="col-form-label">Email</label>
+        </span>
+        <span class="col-sm-7">
+            <input class="form-control" type="text" bind=Service.CurrentUser.Emailadress />
+        </span>
     </div>
     <div class="form-row">
-        <label class="col-sm-5 col-form-label">Firstname</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Firstname />
+        <span class="col-sm-5">
+            <label class="col-form-label">Firstname</label>
+        </span>
+        <span class="col-sm-7">
+            <input class="form-control" type="text" bind=Service.CurrentUser.Firstname />
+        </span>
     </div>
     <div class="form-row">   
-        <label class="col-sm-5 col-form-label">Lastname</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Lastname />
+        <span class="col-sm-5">
+            <label class="col-form-label">Lastname</label>
+        </span>
+        <span class="col-sm-7">
+            <input class="form-control" type="text" bind=Service.CurrentUser.Lastname />
+        </span>
     </div>
     <div class="form-row">
-        <label class="col-sm-5 col-form-label">Password</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Password />
+        <span class="col-sm-5">
+            <label class="col-form-label">Password</label>
+        </span>
+        <span class="col-sm-7">
+            <input class="form-control" type="password" bind=Service.CurrentUser.Password />
+        </span>
     </div>
 </DefaultObjectBaseView>
