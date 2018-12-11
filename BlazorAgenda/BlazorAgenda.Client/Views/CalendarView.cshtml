@@ -1,6 +1,7 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @inherits CalendarViewModel
 
+<ContactsView OnUpdate=@(async () => await GetEvents()) />
 <div class="row">
     <span class="col">
         <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
@@ -26,7 +27,7 @@
                         DateTime day = StartOfWeekDate.AddDays(col - startDay);
                         string name = day.ToString("dddd");
                         <th>
-                            <span class="@(day == SelectedDate ? "day active" : "day")" onclick="@(() => OnSelectDay(day))">@day.Day</span>
+                            <span class="@(day.Date == DateTime.Now.Date ? "day active" : "day")">@day.Day</span>
                             <span class="long">@name</span>
                             <span class="short">@name.Substring(0, 3)</span>
                         </th>
@@ -45,7 +46,7 @@
                     @for (int col = 0; col < 7; col++)
                     {
                         DateTime start = time.AddDays(col);
-                        <DragDropView Start="@start" Active="@(start.Date == SelectedDate.Date)" MoveEvent="@OnMoveEvent" SelectDay="@OnSelectDay" />
+                        <DragDropView Start="@start" MoveEvent="@OnMoveEvent" />
                     }
                 </tr>
                 @for (int row = 0; row < 3; row++)
@@ -55,7 +56,7 @@
                         @for (int col = 0; col < 7; col++)
                         {
                             DateTime start = time.AddDays(col);
-                            <DragDropView Start="@start" Active="@(start.Date == SelectedDate.Date)" MoveEvent="@OnMoveEvent" SelectDay="@OnSelectDay" />
+                            <DragDropView Start="@start" MoveEvent="@OnMoveEvent" />
                         }
                     </tr>
                 }

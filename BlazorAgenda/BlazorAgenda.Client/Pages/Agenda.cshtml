@@ -6,18 +6,15 @@
 
 <h1>Blazor agenda</h1>
 
-@if (!IsLoginCompleted)
-{
-    <LoginView OnLogin=OnLoginCompleted />
-}
-else
-{
-    <button onclick=@AddEvent>Show</button>
-    <button onclick=@EditUser>Edit user</button>
-    <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
-    <EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
-    <ContactsView />
-    <button class="btn btn-primary" onclick="@OpenPopup">Open Popup</button>
-    <PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
-    <CalendarView />
-}
+    @if (!IsLoginCompleted)
+    {
+        <LoginView OnLogin=OnLoginCompleted />
+    }
+    else
+    {
+        <button onclick=@AddEvent>Show</button>
+        <button onclick=@EditUser>Edit user</button>
+        <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
+        <EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
+        <CalendarView />
+    }
