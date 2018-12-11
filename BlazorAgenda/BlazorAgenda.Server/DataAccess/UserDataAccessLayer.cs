@@ -24,7 +24,17 @@ namespace BlazorAgenda.Server.DataAccess
 
         public User GetUserByEmail(string email)
         {
-            return db.User.Find(email);
+            try
+            {
+                List<User> users = new List<User>();
+                users = db.User.Where(g => g.Emailadress == email).ToList();
+                return users.Count > 0 ? users[0] : null;
+            }
+            catch
+            {
+                throw;
+            }
+            //return db.User.Find(email);
         }
 
         public void AddUser(User user)

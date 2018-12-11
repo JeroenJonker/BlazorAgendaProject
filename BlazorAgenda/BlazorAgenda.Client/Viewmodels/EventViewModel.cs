@@ -13,6 +13,7 @@ namespace BlazorAgenda.Client.Viewmodels
     public class EventViewmodel : ObjectBase
     {
         [Inject] protected IEventService EventService { get; set; }
+        [Inject] protected IStateService StateService { get; set; }
         [Parameter] protected Event SetEvent { get; set; }
         public DateTime Start
         {
@@ -64,8 +65,8 @@ namespace BlazorAgenda.Client.Viewmodels
             {
                 Start = SetDateTime(EventService.CurrentEvent.Start);
                 End = SetDateTime(EventService.CurrentEvent.End);
+                EventService.CurrentEvent.Userid = StateService.LoginUser.Id;
             }
-
             //Service.CurrentEvent.Emailadress = Service.CurrentEvent.Emailadress == default ? StateService.LoginUser.Emailadress : Service.CurrentEvent.Emailadress;
         }
 

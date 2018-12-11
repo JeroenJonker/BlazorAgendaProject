@@ -42,7 +42,7 @@ namespace BlazorAgenda.Services
 
         public async Task<List<Event>> GetEvents(User user)
         {
-            return await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Emailadress);
+            return await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Id);
         }
 
         public string GetObjectName()

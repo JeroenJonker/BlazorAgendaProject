@@ -11,8 +11,8 @@ namespace BlazorAgenda.Shared.Models
         public DateTime End { get; set; }
         public string Location { get; set; }
         public string Color { get; set; }
-        public string Emailadress { get; set; }
+        public int Userid { get; set; }
 
-        public User EmailadressNavigation { get; set; }
+        public User User { get; set; }
     }
 }

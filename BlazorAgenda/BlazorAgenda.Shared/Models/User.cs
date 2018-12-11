@@ -10,6 +10,7 @@ namespace BlazorAgenda.Shared.Models
             Event = new HashSet<Event>();
         }
 
+        public int Id { get; set; }
         public string Emailadress { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }

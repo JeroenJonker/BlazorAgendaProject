@@ -24,10 +24,10 @@ namespace BlazorAgenda.Server.Controllers
             EventAccess.AddEvent(newEvent);
         }
 
-        [HttpGet("[action]/{email}")]
-        public List<Event> GetUserEvents(string email)
+        [HttpGet("[action]/{userid}")]
+        public List<Event> GetUserEvents(int userid)
         {
-            return EventAccess.GetUserEvents(email);
+            return EventAccess.GetUserEvents(userid);
         }
 
         [HttpPut("[action]")]

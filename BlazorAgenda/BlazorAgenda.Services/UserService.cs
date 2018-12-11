@@ -68,8 +68,7 @@ namespace BlazorAgenda.Services
 
         public override ObjectState GetObjectState()
         {
-            return ObjectState.Edit;
-            //return await IsUserInUse(CurrentUser) ? ObjectState.Edit : ObjectState.Add;
+            return CurrentUser.Id != default(int) ? ObjectState.Edit : ObjectState.Add;
         }
 
         public string GetObjectName()

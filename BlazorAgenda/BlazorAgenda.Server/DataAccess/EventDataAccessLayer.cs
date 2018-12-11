@@ -10,11 +10,11 @@ namespace BlazorAgenda.Server.DataAccess
     {
         AgendaDBContext db = new AgendaDBContext();
 
-        public List<Event> GetUserEvents(string email)
+        public List<Event> GetUserEvents(int Userid)
         {
             try
             {
-                return db.Event.Where(g => g.Emailadress == email).ToList();
+                return db.Event.Where(g => g.Userid == Userid).ToList();
             }
             catch
             {

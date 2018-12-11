@@ -36,11 +36,6 @@ namespace BlazorAgenda.Shared.Models
                     .HasColumnName("COLOR")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.Emailadress)
-                    .IsRequired()
-                    .HasColumnName("EMAILADRESS")
-                    .HasMaxLength(40);
-
                 entity.Property(e => e.End)
                     .HasColumnName("END")
                     .HasColumnType("datetime");
@@ -57,20 +52,25 @@ namespace BlazorAgenda.Shared.Models
                     .HasColumnName("SUMMARY")
                     .HasMaxLength(30);
 
-                entity.HasOne(d => d.EmailadressNavigation)
+                entity.Property(e => e.Userid).HasColumnName("USERID");
+
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.Event)
-                    .HasForeignKey(d => d.Emailadress)
-                    .HasConstraintName("FK_Event_User_USERID");
+                    .HasForeignKey(d => d.Userid);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasKey(e => e.Emailadress);
+                entity.HasIndex(e => e.Emailadress)
+                    .HasName("UQ__User__3A372016376838CC")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Emailadress)
+                    .IsRequired()
                     .HasColumnName("EMAILADRESS")
-                    .HasMaxLength(40)
-                    .ValueGeneratedNever();
+                    .HasMaxLength(40);
 
                 entity.Property(e => e.Firstname)
                     .HasColumnName("FIRSTNAME")
@@ -81,6 +81,7 @@ namespace BlazorAgenda.Shared.Models
                     .HasMaxLength(40);
 
                 entity.Property(e => e.Password)
+                    .IsRequired()
                     .HasColumnName("PASSWORD")
                     .HasMaxLength(65);
             });

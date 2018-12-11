@@ -12,11 +12,12 @@ namespace BlazorAgenda.Client.Viewmodels
     {
         public bool ShowAddUser { get; set; } = false;
         [Parameter] Action<User> OnLogin { get; set; }
+        [Inject] protected User User { get; set; } 
         [Inject] protected IUserService UserService { get; set; }
 
         public async Task LoginAsync()
         {
-            if (await UserService.CheckUser(UserService.CurrentUser) is User checkedUser)
+            if (await UserService.CheckUser(User) is User checkedUser)
             {
                 OnLogin?.Invoke(checkedUser);
             }
@@ -24,13 +25,11 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void AddUser()
         {
-            UserService.CurrentUser = new User();
             ShowAddUser = true;
         }
 
         public void OnCloseDialog()
         {
-            UserService.CurrentUser = new User();
             ShowAddUser = false;
         }
     }
