@@ -27,7 +27,6 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnCloseDialog()
         {
-            Console.WriteLine("CLose2.5");
             StateService.ObjectFocus = null;
             //StateHasChanged();
         }

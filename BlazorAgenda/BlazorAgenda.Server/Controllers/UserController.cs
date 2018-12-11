@@ -24,12 +24,19 @@ namespace BlazorAgenda.Server.Controllers
         public User IsValidUser([FromBody] User loginuser)
         {
             User dbUser = UserAccess.GetUserByEmail(loginuser.Emailadress);
-            if (dbUser != null && dbUser.Password.SequenceEqual(loginuser.Password) &&
+            if (dbUser != null && loginuser.Emailadress!= null && dbUser.Password.SequenceEqual(loginuser.Password) &&
                 new MailAddress(loginuser.Emailadress).Address == loginuser.Emailadress)
             {
                 return dbUser;
             }
             return null;
+        }
+
+        [HttpPost("[action]")]
+        public bool IsUserInUse([FromBody] User user)
+        {
+            User dbUser = UserAccess.GetUserByEmail(user.Emailadress);
+            return dbUser != null ? true : false;
         }
 
         [HttpPost("[action]")]

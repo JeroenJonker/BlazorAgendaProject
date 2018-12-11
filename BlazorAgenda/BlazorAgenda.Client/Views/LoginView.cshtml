@@ -7,9 +7,6 @@
     <label for="password">Password</label>
     <input type="password" name="password" class="form-control" bind=UserService.CurrentUser.Password /><br />
     <button class="btn btn-primary" onclick=@LoginAsync>Log in</button>
-    <button class="btn btn-primary" onclick=@(() => ShowAddUser = true)>Add new user</button>
+    <button class="btn btn-primary" onclick=@AddUser>Add new user</button>
 </div>
-@if (ShowAddUser)
-{
-    <UserView />
-}
+<UserView OnClose=OnCloseDialog IsVisible=ShowAddUser/>

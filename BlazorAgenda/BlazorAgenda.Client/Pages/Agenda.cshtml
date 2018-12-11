@@ -16,7 +16,5 @@
         <button onclick=@EditUser>Edit user</button>
         <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
         <EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
-        <button class="btn btn-primary" onclick="@OpenPopup">Open Popup</button>
-        <PopupView ref="_popup" Animation="PopupView.AnimationType.FadeIn" Title="A Popup Demo Title" />
         <CalendarView />
     }

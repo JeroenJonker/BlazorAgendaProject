@@ -3,18 +3,18 @@
 @inherits EventViewmodel
 
 <DefaultObjectBaseView ServiceInterface=IEventService IsVisible=@IsVisible GetClosedValue=@OnClose>
-    <div class="row">
-        <label class="col">Afspraak omschrijving</label>
-        <input class="col" bind=EventService.CurrentEvent.Summary />
+    <div class="form-row">
+        <label class="col-sm-6 col-form-label">Afspraak omschrijving</label>
+        <input class="col-sm-6 form-control" bind=EventService.CurrentEvent.Summary />
     </div>
-    <div class="row">
-        <label class="col">Van</label>
-        <input class="col" type="date" bind=Start format-value="yyyy-MM-dd" />
-        <input class="col" type="time" bind=Start format-value="HH:mm" />
+    <div class="form-row">
+        <label class="col-sm-6 col-form-label">Van</label>
+        <input class="col-sm-3 form-control" type="date" bind=Start format-value="yyyy-MM-dd" />
+        <input class="col-sm-3 form-control" type="time" bind=Start format-value="HH:mm" />
     </div>
-    <div class="row">
-        <label class="col">Tot</label>
-        <input class="col" type="date" bind=End format-value="yyyy-MM-dd" />
-        <input class="col" type="time" bind=End format-value="HH:mm" />
+    <div class="form-row">
+        <label class="col-sm-6 col-form-label">Tot</label>
+        <input class="col-sm-3 form-control" type="date" bind=End format-value="yyyy-MM-dd" />
+        <input class="col-sm-3 form-control" type="time" bind=End format-value="HH:mm" />
     </div>
 </DefaultObjectBaseView>

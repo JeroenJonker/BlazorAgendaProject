@@ -20,7 +20,7 @@ namespace BlazorAgenda.Services
 
         public async Task ExecuteAsync()
         {
-            if (CurrentEvent.Id != default(int))
+            if (GetObjectState() == ObjectState.Edit)
             {
                 await http.PutJsonAsync("api/Event/Edit", CurrentEvent);
             }
@@ -28,6 +28,11 @@ namespace BlazorAgenda.Services
             {
                 await http.PostJsonAsync("api/Event/Add", CurrentEvent);
             }
+        }
+
+        public override ObjectState GetObjectState()
+        {
+            return CurrentEvent.Id != default(int) ? ObjectState.Edit : ObjectState.Add;
         }
 
         public void CurrentObjectToNull()
@@ -38,6 +43,11 @@ namespace BlazorAgenda.Services
         public async Task<List<Event>> GetEvents(User user)
         {
             return await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Emailadress);
+        }
+
+        public string GetObjectName()
+        {
+            return nameof(Event);
         }
     }
 }
