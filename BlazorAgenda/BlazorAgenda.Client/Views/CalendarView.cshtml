@@ -66,5 +66,5 @@
         </tbody>
     </table>
 </div>
-<EventView OnClose=CloseEventView IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
+<EventView CurrentObject=@CurrentObject OnClose=CloseEventView IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
 

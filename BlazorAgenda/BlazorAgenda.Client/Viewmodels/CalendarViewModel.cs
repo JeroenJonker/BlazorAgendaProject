@@ -19,6 +19,8 @@ namespace BlazorAgenda.Client.Viewmodels
         protected IEventService EventService { get; set; }
         [Inject]
         protected IStateService StateService { get; set; }
+        [Inject] 
+        protected Event CurrentObject { get; set; }
         
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -118,7 +120,9 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnNewEvent(DateTime start)
         {
-            EventService.CurrentEvent = new Event { Start = start, End = start.AddHours(1), Userid = StateService.LoginUser.Id };
+            CurrentObject.Start = start;
+            CurrentObject.End = start.AddHours(1);
+            CurrentObject.Userid = StateService.LoginUser.Id;
             StateService.ObjectFocus = typeof(Event);
             StateHasChanged();
         }
