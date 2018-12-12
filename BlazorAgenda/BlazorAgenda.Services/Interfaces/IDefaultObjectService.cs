@@ -12,9 +12,7 @@ namespace BlazorAgenda.Services
         Task ExecuteAsync(T CurrentObject);
         event Action OnChange;
         void NotifyStateChanged();
-        void CurrentObjectToNull(T CurrentObject);
         ObjectState GetObjectState(T CurrentObject);
-        string GetObjectName();
-        //T CurrentObject { get; set; }
+        string GetObjectName(T CurrentObject);
     }
 }

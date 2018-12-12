@@ -22,10 +22,5 @@ namespace BlazorAgenda.Client.Viewmodels
                 CurrentObject.Password = "";
             }
         }
-
-        public void ConvertPassword()
-        {
-            CurrentObject.Password = CurrentService.ConvertStringToHash(CurrentObject.Password);
-        }
     }
 }

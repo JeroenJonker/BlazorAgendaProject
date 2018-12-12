@@ -21,7 +21,7 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 
         public virtual string GetTitle()
         {
-            return CurrentService.GetObjectState(CurrentObject).ToString() + " " + CurrentService.GetObjectName();
+            return CurrentService.GetObjectState(CurrentObject).ToString() + " " + CurrentService.GetObjectName(CurrentObject);
         }
 
         public void Close()
