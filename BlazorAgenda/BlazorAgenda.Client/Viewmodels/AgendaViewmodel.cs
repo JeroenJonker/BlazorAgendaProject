@@ -12,6 +12,12 @@ namespace BlazorAgenda.Client.Viewmodels
         [Inject]
         protected IStateService StateService { get; set; }
 
+        protected override void OnInit()
+        {
+            base.OnInit();
+            StateService.OnChange += StateHasChanged;
+        }
+
         public void AddEvent()
         {
             StateService.ObjectFocus = typeof(Event);

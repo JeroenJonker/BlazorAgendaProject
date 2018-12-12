@@ -11,5 +11,8 @@ namespace BlazorAgenda.Services.Interfaces
         User LoginUser { get; set; }
         List<User> ChosenContacts { get; set; }
         Type ObjectFocus { get; set; }
+        void ResetState();
+        event Action OnChange;
+        void NotifyStateChanged();
     }
 }

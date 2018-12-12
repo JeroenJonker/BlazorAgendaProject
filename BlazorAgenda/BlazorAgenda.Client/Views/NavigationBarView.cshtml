@@ -36,6 +36,7 @@
 
     public void Logout()
     {
-        Service.LoginUser = default(User);
+        Service.ResetState();
+        Service.NotifyStateChanged();
     }
 }
