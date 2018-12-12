@@ -4,16 +4,14 @@
 
 <ContactsView OnUpdate=@(async () => await GetEvents()) />
 <div class="row">
-    <span class="col">
-        <button onclick=@(() => GoToPreviousWeek())>&lt;</button>
-        <button onclick=@(() => GoToCurrentWeek())>Vandaag</button>
-        <button onclick=@(() => GoToNextWeek())>&gt;</button>
+    <span class="col-sm-3">
+        <button class="btn btn-default" onclick=@(() => GoToPreviousWeek())>&lt;</button>
+        <button class="btn btn-default" onclick=@(() => GoToCurrentWeek())>Vandaag</button>
+        <button class="btn btn-default" onclick=@(() => GoToNextWeek())>&gt;</button>
     </span>
-    <span class="col">
-        <input type="date" bind=SelectedDate format-value="yyyy-MM-dd" />
+    <span class="col-sm-3">
+        <input type="date"class="form-control" bind=SelectedDate format-value="yyyy-MM-dd" required="required" />
     </span>
-    <span class="col"></span>
-    <span class="col"></span>
 </div>
 <h2>@CurrentMonthAndYear</h2>
 <div id="table-wrapper">

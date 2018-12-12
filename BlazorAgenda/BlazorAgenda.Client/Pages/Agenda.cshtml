@@ -11,8 +11,8 @@
 else
 {
     <h1>Blazor agenda</h1>
-    <button onclick=@AddEvent>Show</button>
-    <button onclick=@EditUser>Edit user</button>
+    <button class="btn btn-primary" onclick=@AddEvent><span class="oi oi-plus"></span> Add event</button>
+    <button class="btn btn-primary" onclick=@EditUser><span class="oi oi-person"></span> Edit user</button>
     <UserView CurrentObject=@StateService.LoginUser OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
     <EventView OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
     <CalendarView />

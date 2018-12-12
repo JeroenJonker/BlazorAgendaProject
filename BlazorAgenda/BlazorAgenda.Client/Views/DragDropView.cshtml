@@ -7,7 +7,7 @@
 <td class="@(Start.Date == DateTime.Now.Date ? "active" : null)">
     <div class="eventContainer" ondragenter="@(e => OnContainerDragEnter(e))" ondragover="event.preventDefault();"
         ondragleave="@(e => OnContainerDragLeave(e))" ondrop="@(e => OnContainerDrop(e, Start))"
-        onclick="@(() => NewEvent?.Invoke(Start))" style="@HighlightDropTargetStyle">
+        onclick="@OnContainerClick" style="@HighlightDropTargetStyle">
         @foreach (Event item in DragDropHelper.Items)
         {
             if (item.Start == Start)
