@@ -13,8 +13,6 @@ namespace BlazorAgenda.Client.Viewmodels
         protected IStateService StateService { get; set; }
         public bool IsLoginCompleted = false;
 
-        public PopupView _popup;
-
         public void AddEvent()
         {
             StateService.ObjectFocus = typeof(Event);
@@ -36,12 +34,6 @@ namespace BlazorAgenda.Client.Viewmodels
             StateService.LoginUser = user;
             StateService.ChosenContacts.Add(user);
             IsLoginCompleted = true;
-            StateHasChanged();
-        }
-
-        public void OpenPopup()
-        {
-            _popup.Open();
             StateHasChanged();
         }
     }

@@ -19,6 +19,9 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected Action<Event> MoveEvent { get; set; }
 
+        [Parameter]
+        protected Action<DateTime> NewEvent { get; set; }
+
         public string HighlightDropTargetStyle { get; set; }
 
         public void OnItemDragStart(UIDragEventArgs e, Event calendarEvent)
@@ -28,7 +31,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnContainerDragEnter(UIDragEventArgs e)
         {
-            HighlightDropTargetStyle = "border-color: black; background-color: " + DragDropHelper.Item.Color + " !important;";
+            HighlightDropTargetStyle = "background-color: #0069d9 !important;";
         }
 
         public void OnContainerDragLeave(UIDragEventArgs e)

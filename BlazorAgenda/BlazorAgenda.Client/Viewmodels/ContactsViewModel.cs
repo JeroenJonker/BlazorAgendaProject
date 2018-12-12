@@ -30,18 +30,18 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void SelectContact(UIChangeEventArgs e)
         {
-            User user = StateService.ChosenContacts.Find(x => x.Emailadress == e.Value.ToString());
+            User user = StateService.ChosenContacts.Find(x => x.Id == Convert.ToInt32(e.Value));
             if (user == null)
             {
-                user = Contacts.Find(x => x.Emailadress == e.Value.ToString());
+                user = Contacts.Find(x => x.Id == Convert.ToInt32(e.Value));
                 StateService.ChosenContacts.Add(user);
                 OnUpdate?.Invoke();
             }
         }
 
-        public void DeselectContact(string email)
+        public void DeselectContact(int id)
         {
-            User user = StateService.ChosenContacts.Find(x => x.Emailadress == email);
+            User user = StateService.ChosenContacts.Find(x => x.Id == id);
             if (user != null)
             {
                 StateService.ChosenContacts.Remove(user);

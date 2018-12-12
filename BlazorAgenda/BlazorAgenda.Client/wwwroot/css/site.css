@@ -88,6 +88,9 @@ app {
     .main .top-row {
         display: none;
     }
+    .contentBox {
+        width: 80%;
+    }
 }
 
 @media (min-width: 768px) {
@@ -126,7 +129,9 @@ app {
     border: 1px solid silver;
     border-radius: 5px;
     padding: 25px;
-    width: 80%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table {
@@ -261,4 +266,8 @@ div.overlay {
     top: 0;
     left: 0;
     position: fixed;
+}
+
+.form-row {
+    padding: 5px;
 }
