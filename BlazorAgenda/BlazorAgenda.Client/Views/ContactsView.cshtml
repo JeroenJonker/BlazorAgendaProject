@@ -4,22 +4,23 @@
 
 @if (Contacts != null)
 {
-<div>
-    <select onchange="@SelectContact">
-        @foreach (User user in Contacts)
-        {
-            <option value="@user.Id" selected=@(user.Id == StateService.LoginUser.Id)>@user.Firstname @user.Lastname</option>
-        }
-    </select>
-    <br />
+    <div class="form-row">
+        <select class="col-sm-3 form-control" onchange="@SelectContact">
+            @foreach (User user in Contacts)
+            {
+                <option value="@user.Id" selected=@(user.Id == StateService.LoginUser.Id)>@user.Firstname @user.Lastname</option>
+            }
+        </select>
+    </div>
     @if (StateService.ChosenContacts.Count > 0)
     {
-        <ul>
-            @foreach (User contact in StateService.ChosenContacts)
-            {
-                <li>@contact.Firstname @contact.Lastname <button onclick="@(() => DeselectContact(contact.Id))">✗</button></li>
-            }
-        </ul>
+        <div class="form-row">
+            <ul>
+                @foreach (User contact in StateService.ChosenContacts)
+                {
+                    <li>@contact.Firstname @contact.Lastname <button class="btn btn-danger btn-sm" onclick="@(() => DeselectContact(contact.Id))">✗</button></li>
+                }
+            </ul>
+        </div>
     }
-</div>
 }

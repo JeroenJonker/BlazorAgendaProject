@@ -48,5 +48,13 @@ namespace BlazorAgenda.Client.Viewmodels
             item.End = _start.Add(duration);
             MoveEvent?.Invoke(item);
         }
+
+        public void OnContainerClick()
+        {
+            if(DragDropHelper.Items.FindAll(x => x.Start == Start).Count == 0)
+            {
+                NewEvent?.Invoke(Start);
+            }
+        }
     }
 }
