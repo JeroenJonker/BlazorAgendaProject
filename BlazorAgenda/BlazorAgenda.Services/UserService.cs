@@ -45,32 +45,5 @@ namespace BlazorAgenda.Services
                 return BitConverter.ToString(hash).Replace("-", string.Empty);
             }
         }
-
-        public async Task ExecuteAsync(User CurrentUser)
-        {
-            if (GetObjectState(CurrentUser) == ObjectState.Edit)
-            {
-                await http.PutJsonAsync("api/User/Edit", CurrentUser);
-            }
-            else
-            {
-                await http.PostJsonAsync("api/User/Add", CurrentUser);
-            }
-        }
-
-        public void CurrentObjectToNull(User CurrentUser)
-        {
-            CurrentUser = null;
-        }
-
-        public override ObjectState GetObjectState(User CurrentUser)
-        {
-            return CurrentUser.Id != default(int) ? ObjectState.Edit : ObjectState.Add;
-        }
-
-        public string GetObjectName()
-        {
-            return nameof(User);
-        }
     }
 }
