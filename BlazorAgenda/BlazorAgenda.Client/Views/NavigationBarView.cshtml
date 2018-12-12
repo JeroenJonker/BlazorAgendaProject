@@ -1,9 +1,9 @@
-﻿@using BlazorAgenda.Services.Interfaces
-@using BlazorAgenda.Shared.Models
-@inject IStateService Service
+﻿@using BlazorAgenda.Client.Viewmodels;
+@using BlazorAgenda.Shared.Models;
+@inherits NavigationBarViewModel
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand">Hello @Service.LoginUser.Firstname</a>
+    <a class="navbar-brand">Hello @StateService.LoginUser.Firstname</a>
     <span class="navbar-text mr-auto">
         Blazor agenda
     </span>
@@ -19,24 +19,4 @@
     </ul>
 </nav>
 
-<UserView CurrentObject=@Service.LoginUser OnClose=@OnCloseDialog IsVisible=@(Service.ObjectFocus == typeof(User)) />
-
-@functions
-{
-    public void EditUser()
-    {
-        Service.ObjectFocus = typeof(User);
-    }
-
-    public void OnCloseDialog()
-    {
-        Service.ObjectFocus = null;
-        //StateHasChanged();
-    }
-
-    public void Logout()
-    {
-        Service.ResetState();
-        Service.NotifyStateChanged();
-    }
-}
+<UserView CurrentObject=@StateService.LoginUser OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
