@@ -1,4 +1,5 @@
-﻿using BlazorAgenda.Shared.Models;
+﻿using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace BlazorAgenda.Services.Interfaces
 {
-    public abstract class DefaultObjectService
+    public abstract class DefaultObjectService<T> where T : IBaseObject
     {
         protected readonly HttpClient http;
 
@@ -22,6 +23,6 @@ namespace BlazorAgenda.Services.Interfaces
             OnChange?.Invoke();
         }
 
-        public abstract ObjectState GetObjectState();
+        public abstract ObjectState GetObjectState(T CurrentObject);
     }
 }

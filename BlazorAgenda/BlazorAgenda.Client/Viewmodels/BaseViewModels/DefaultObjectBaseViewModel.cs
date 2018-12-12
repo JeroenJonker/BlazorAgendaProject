@@ -10,31 +10,23 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
-    public class DefaultObjectBaseViewModel<ServiceInterface> : BlazorComponent
+    public class DefaultObjectBaseViewModel : BlazorComponent
     {
         [Parameter] protected RenderFragment ChildContent { get; set; }
-        [Inject] protected ServiceInterface Service { get; set; }
-        [Parameter] protected Action BeforeSave { get; set; }
+        [Parameter] Action OnSave { get; set; }
+        [Parameter] Action OnClose { get; set; }
         [Parameter] protected bool IsVisible { get; set; } = false;
-        [Parameter] protected Action GetClosedValue { get; set; }
-        
-        public string GetTitle()
-        {
-            return ((IDefaultObjectService)Service).GetObjectState().ToString() + " " + ((IDefaultObjectService)Service).GetObjectName();
-        }
+        [Parameter] protected string Title { get; set; }
 
         public void Close()
         {
-            //((IDefaultObjectService)Service).CurrentObjectToNull();
+            OnClose?.Invoke();
             IsVisible = false;
-            GetClosedValue?.Invoke();
-            ((IDefaultObjectService)Service).NotifyStateChanged();
         }
 
-        public virtual async Task Save()
+        public void Save()
         {
-            BeforeSave?.Invoke();
-            await ((IDefaultObjectService)Service).ExecuteAsync();
+            OnSave?.Invoke();
             Close();
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorAgenda.Shared.Models
 {
-    public partial class User
+    public partial class User : IBaseObject
     {
         public User()
         {

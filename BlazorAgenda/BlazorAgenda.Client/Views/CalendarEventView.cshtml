@@ -2,7 +2,7 @@
 @inherits CalendarEventViewModel
 
 <div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, Event))" ondragenter="$(this).css('z-index', 'unset');"
-     ondragleave="$(this).css('z-index', 'auto');" ondragend="$('.event').css('z-index', '');" onclick="@(() => PrintSummary())"
+     ondragleave="$(this).css('z-index', 'auto');" ondragend="$('.event').css('z-index', '');" onclick=@ChangeShowModalEvent
      style="background-color:@(Event.Color); height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%">
     @Event.Summary
     <br />
@@ -10,3 +10,4 @@
     <br />
     @*@Event.Emailadress*@
 </div>
+<EventView CurrentObject=@Event IsVisible=@ShowModalEvent OnClose=@ChangeShowModalEvent/>

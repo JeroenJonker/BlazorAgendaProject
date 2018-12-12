@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services.Interfaces
 {
-    public interface IUserService : IDefaultObjectService
+    public interface IUserService : IDefaultObjectService<User>
     {
-        User CurrentUser { get; set; }
         Task<User> CheckUser(User user);
         Task<List<User>> GetContacts();
         string ConvertStringToHash(string text);

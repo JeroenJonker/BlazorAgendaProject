@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public interface IDefaultObjectService
+    public interface IDefaultObjectService<T> where T : IBaseObject
     {
-        Task ExecuteAsync();
+        Task ExecuteAsync(T CurrentObject);
         event Action OnChange;
         void NotifyStateChanged();
-        void CurrentObjectToNull();
-        ObjectState GetObjectState();
+        void CurrentObjectToNull(T CurrentObject);
+        ObjectState GetObjectState(T CurrentObject);
         string GetObjectName();
         //T CurrentObject { get; set; }
     }

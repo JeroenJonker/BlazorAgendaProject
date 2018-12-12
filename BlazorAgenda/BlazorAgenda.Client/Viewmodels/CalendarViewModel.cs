@@ -112,8 +112,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnMoveEvent(Event ev)
         {
-            EventService.CurrentEvent = ev;
-            EventService.ExecuteAsync();
+            EventService.ExecuteAsync(ev);
             StateHasChanged();
         }
     }

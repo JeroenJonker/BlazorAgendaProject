@@ -1,5 +1,4 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
-@using BlazorAgenda.Client.Views;
 @using BlazorAgenda.Shared.Models
 @page "/"
 @inherits AgendaViewmodel
@@ -14,7 +13,7 @@
     {
         <button onclick=@AddEvent>Show</button>
         <button onclick=@EditUser>Edit user</button>
-        <UserView SetUser=StateService.LoginUser OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
-        <EventView OnClose=OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
+        <UserView CurrentObject=@StateService.LoginUser OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
+        <EventView OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
         <CalendarView />
     }

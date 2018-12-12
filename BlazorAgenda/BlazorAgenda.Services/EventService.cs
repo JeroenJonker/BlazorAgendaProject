@@ -10,17 +10,16 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public class EventService : DefaultObjectService, IEventService
+    public class EventService : DefaultObjectService<Event>, IEventService
     {
-        public Event CurrentEvent { get; set; }
-        public EventService(HttpClient client, Event currentEvent) : base(client)
+        public EventService(HttpClient client) : base(client)
         {
-            CurrentEvent = currentEvent;
+
         }
 
-        public async Task ExecuteAsync()
+        public async Task ExecuteAsync(Event CurrentEvent)
         {
-            if (GetObjectState() == ObjectState.Edit)
+            if (GetObjectState(CurrentEvent) == ObjectState.Edit)
             {
                 await http.PutJsonAsync("api/Event/Edit", CurrentEvent);
             }
@@ -30,12 +29,12 @@ namespace BlazorAgenda.Services
             }
         }
 
-        public override ObjectState GetObjectState()
+        public override ObjectState GetObjectState(Event CurrentEvent)
         {
             return CurrentEvent.Id != default(int) ? ObjectState.Edit : ObjectState.Add;
         }
 
-        public void CurrentObjectToNull()
+        public void CurrentObjectToNull(Event CurrentEvent)
         {
             CurrentEvent = null;
         }

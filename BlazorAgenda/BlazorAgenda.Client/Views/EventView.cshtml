@@ -1,20 +1,19 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
-@using BlazorAgenda.Services.Interfaces
 @inherits EventViewmodel
 
-<DefaultObjectBaseView ServiceInterface=IEventService IsVisible=@IsVisible GetClosedValue=@OnClose>
+<DefaultObjectBaseView Title=@Title OnClose=@Close OnSave=@(async () => await Save()) IsVisible=@IsVisible>
     <div class="form-row">
-        <label class="col-sm-6 col-form-label">Afspraak omschrijving</label>
-        <input class="col-sm-6 form-control" bind=EventService.CurrentEvent.Summary />
+        <label class="col-sm-6 col-form-label">Description</label>
+        <input class="col-sm-6 form-control" bind=CurrentObject.Summary />
     </div>
     <div class="form-row">
-        <label class="col-sm-6 col-form-label">Van</label>
-        <input class="col-sm-3 form-control" type="date" bind=Start format-value="yyyy-MM-dd" />
-        <input class="col-sm-3 form-control" type="time" bind=Start format-value="HH:mm" />
+        <label class="col-sm-4 col-form-label">Begin</label>
+        <input class="col-sm-4 form-control" type="date" bind=Start format-value="yyyy-MM-dd" />
+        <input class="col-sm-4 form-control" type="time" bind=Start format-value="HH:mm" />
     </div>
     <div class="form-row">
-        <label class="col-sm-6 col-form-label">Tot</label>
-        <input class="col-sm-3 form-control" type="date" bind=End format-value="yyyy-MM-dd" />
-        <input class="col-sm-3 form-control" type="time" bind=End format-value="HH:mm" />
+        <label class="col-sm-4 col-form-label">End</label>
+        <input class="col-sm-4 form-control" type="date" bind=End format-value="yyyy-MM-dd" />
+        <input class="col-sm-4 form-control" type="time" bind=End format-value="HH:mm" />
     </div>
 </DefaultObjectBaseView>

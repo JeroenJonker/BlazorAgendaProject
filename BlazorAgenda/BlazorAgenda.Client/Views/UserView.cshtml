@@ -1,22 +1,21 @@
-﻿@using BlazorAgenda.Services.Interfaces
-@using BlazorAgenda.Client.Viewmodels
+﻿@using BlazorAgenda.Client.Viewmodels
 @inherits UserViewModel
 
-<DefaultObjectBaseView ServiceInterface=IUserService BeforeSave=@ConvertPassword IsVisible=@IsVisible GetClosedValue=@OnClose>
+<DefaultObjectBaseView Title=@Title OnClose=@Close OnSave=@(async () => await Save()) IsVisible=@IsVisible>
     <div class="form-row">
         <label class="col-sm-5 col-form-label">Email</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Emailadress />
+        <input class="col-sm-7 form-control" type="text" bind=CurrentObject.Emailadress />
     </div>
     <div class="form-row">
         <label class="col-sm-5 col-form-label">Firstname</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Firstname />
+        <input class="col-sm-7 form-control" type="text" bind=CurrentObject.Firstname />
     </div>
     <div class="form-row">   
         <label class="col-sm-5 col-form-label">Lastname</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Lastname />
+        <input class="col-sm-7 form-control" type="text" bind=CurrentObject.Lastname />
     </div>
     <div class="form-row">
         <label class="col-sm-5 col-form-label">Password</label>
-        <input class="col-sm-7 form-control" type="text" bind=Service.CurrentUser.Password />
+        <input class="col-sm-7 form-control" type="text" bind=CurrentObject.Password />
     </div>
 </DefaultObjectBaseView>

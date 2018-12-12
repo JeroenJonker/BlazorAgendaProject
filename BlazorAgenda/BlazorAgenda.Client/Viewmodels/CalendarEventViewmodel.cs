@@ -9,6 +9,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorAgenda.Shared.Models;
+using BlazorAgenda.Services.Interfaces;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -26,9 +27,11 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected Action<UIDragEventArgs, Event> DragStart { get; set; }
 
-        public void PrintSummary()
+        public bool ShowModalEvent { get; set; } = false;
+
+        public void ChangeShowModalEvent()
         {
-            Console.WriteLine(Event.Summary);
+            ShowModalEvent = !ShowModalEvent;
         }
     }
 }

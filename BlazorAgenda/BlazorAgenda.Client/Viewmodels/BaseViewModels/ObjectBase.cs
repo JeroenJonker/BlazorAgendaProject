@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
+﻿using BlazorAgenda.Services;
+using BlazorAgenda.Shared;
+using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +8,33 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
-    public class ObjectBase : BlazorComponent
+    public abstract class ObjectBase<BaseObject, BaseService> : BlazorComponent where BaseObject : IBaseObject where BaseService : IDefaultObjectService<BaseObject>
     {
         [Parameter] protected Action OnClose { get; set; }
         [Parameter] protected bool IsVisible { get; set; }
+        protected abstract BaseObject CurrentObject { get; set; }
+        public abstract BaseService CurrentService { get; set; }
+        protected string Title
+        {
+            get { return GetTitle(); }
+        }
+
+        public virtual string GetTitle()
+        {
+            return CurrentService.GetObjectState(CurrentObject).ToString() + " " + CurrentService.GetObjectName();
+        }
+
+        public void Close()
+        {
+            OnClose?.Invoke();
+            IsVisible = false;
+            CurrentService.NotifyStateChanged();
+        }
+
+        public virtual async Task Save()
+        {
+            await CurrentService.ExecuteAsync(CurrentObject);
+            Close();
+        }
     }
 }

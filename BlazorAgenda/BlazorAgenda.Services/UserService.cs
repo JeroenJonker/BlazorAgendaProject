@@ -11,13 +11,10 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services
 {
-    public class UserService : DefaultObjectService, IUserService
+    public class UserService : DefaultObjectService<User>, IUserService
     {
-        public User CurrentUser { get; set; }
-
-        public UserService(HttpClient client, User currentUser) : base(client)
+        public UserService(HttpClient client) : base(client)
         {
-            CurrentUser = currentUser;
         }
 
         public async Task<User> CheckUser(User user)
@@ -49,9 +46,9 @@ namespace BlazorAgenda.Services
             }
         }
 
-        public async Task ExecuteAsync()
+        public async Task ExecuteAsync(User CurrentUser)
         {
-            if (GetObjectState() == ObjectState.Edit)
+            if (GetObjectState(CurrentUser) == ObjectState.Edit)
             {
                 await http.PutJsonAsync("api/User/Edit", CurrentUser);
             }
@@ -61,12 +58,12 @@ namespace BlazorAgenda.Services
             }
         }
 
-        public void CurrentObjectToNull()
+        public void CurrentObjectToNull(User CurrentUser)
         {
             CurrentUser = null;
         }
 
-        public override ObjectState GetObjectState()
+        public override ObjectState GetObjectState(User CurrentUser)
         {
             return CurrentUser.Id != default(int) ? ObjectState.Edit : ObjectState.Add;
         }

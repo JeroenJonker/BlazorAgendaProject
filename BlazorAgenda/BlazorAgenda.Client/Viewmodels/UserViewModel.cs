@@ -9,24 +9,23 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
-    public class UserViewModel : ObjectBase
+    public class UserViewModel : ObjectBase<User,IUserService>
     {
-        [Inject] protected IUserService Service { get; set; }
-        [Parameter] protected User SetUser { get; set; }
+        [Inject] [Parameter] protected override User CurrentObject { get; set; }
+        [Inject] public override IUserService CurrentService { get; set; }
 
         protected override void OnInit()
         {
             base.OnInit();
-            if (SetUser != null)
+            if (CurrentObject != default(User))
             {
-                Service.CurrentUser = SetUser;
-                Service.CurrentUser.Password = "";
+                CurrentObject.Password = "";
             }
         }
 
         public void ConvertPassword()
         {
-            Service.CurrentUser.Password = Service.ConvertStringToHash(Service.CurrentUser.Password);
+            CurrentObject.Password = CurrentService.ConvertStringToHash(CurrentObject.Password);
         }
     }
 }

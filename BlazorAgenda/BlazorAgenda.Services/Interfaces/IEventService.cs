@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services.Interfaces
 {
-    public interface IEventService : IDefaultObjectService
+    public interface IEventService : IDefaultObjectService<Event>
     {
-        Event CurrentEvent { get; set; }
         Task<List<Event>> GetEvents(User user);
     }
 }
