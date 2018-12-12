@@ -1,6 +1,7 @@
 ﻿using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared;
 using BlazorAgenda.Shared.Models;
+using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,15 +11,14 @@ namespace BlazorAgenda.Services
 {
     public class StateService : IStateService
     {
-        public User LoginUser { get; set; }
+        [Inject] public User LoginUser { get; set; }
 
         public List<User> ChosenContacts { get; set; }
 
         public Type ObjectFocus { get; set; }
 
-        public StateService(User user)
+        public StateService()
         {
-            LoginUser = user;
             ChosenContacts = new List<User>();
         }
     }

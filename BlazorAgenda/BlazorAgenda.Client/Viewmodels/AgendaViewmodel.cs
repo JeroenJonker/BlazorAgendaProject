@@ -11,7 +11,6 @@ namespace BlazorAgenda.Client.Viewmodels
     {
         [Inject]
         protected IStateService StateService { get; set; }
-        public bool IsLoginCompleted = false;
 
         public void AddEvent()
         {
@@ -33,7 +32,6 @@ namespace BlazorAgenda.Client.Viewmodels
         {
             StateService.LoginUser = user;
             StateService.ChosenContacts.Add(user);
-            IsLoginCompleted = true;
             StateHasChanged();
         }
     }

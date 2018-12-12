@@ -4,16 +4,16 @@
 @inherits AgendaViewmodel
 
 
-@if (!IsLoginCompleted)
+@if (StateService.LoginUser == default(User) || StateService.LoginUser == null)
 {
     <LoginView OnLogin=OnLoginCompleted />
 }
 else
 {
-    <h1>Blazor agenda</h1>
+    <NavigationBarView/>
     <button onclick=@AddEvent>Show</button>
-    <button onclick=@EditUser>Edit user</button>
-    <UserView CurrentObject=@StateService.LoginUser OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />
+    @*<button onclick=@EditUser>Edit user</button>*@
+    @*<UserView CurrentObject=@StateService.LoginUser OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />*@
     <EventView OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
     <CalendarView />
 }
