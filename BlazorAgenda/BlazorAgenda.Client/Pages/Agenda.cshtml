@@ -12,8 +12,6 @@ else
 {
     <NavigationBarView/>
     <button onclick=@AddEvent>Show</button>
-    @*<button onclick=@EditUser>Edit user</button>*@
-    @*<UserView CurrentObject=@StateService.LoginUser OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(User)) />*@
     <EventView OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
     <CalendarView />
 }
