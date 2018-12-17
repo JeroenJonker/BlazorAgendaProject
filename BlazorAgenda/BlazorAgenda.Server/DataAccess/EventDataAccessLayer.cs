@@ -59,5 +59,18 @@ namespace BlazorAgenda.Server.DataAccess
                 throw;
             }
         }
+
+        public void DeleteEvent(Event deletedEvent)
+        {
+            try
+            {
+                db.Event.Remove(deletedEvent);
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

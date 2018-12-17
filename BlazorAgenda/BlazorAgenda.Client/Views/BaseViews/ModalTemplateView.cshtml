@@ -1,5 +1,5 @@
 ﻿@using BlazorAgenda.Client.Viewmodels.BaseViewModels
-@inherits DefaultObjectBaseViewModel
+@inherits ModalTemplateViewModel
 
 @if (IsVisible)
 {
@@ -15,13 +15,11 @@
                 </div>
                 <div class="model-body">
                     <div class="container-fluid">
-                        @ChildContent
+                        @ModalContent
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" onclick=@Save>
-                        <span>&#10003</span>
-                    </button>
+                    @FooterContent
                 </div>
             </div>
         </div>

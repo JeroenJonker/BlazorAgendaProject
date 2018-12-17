@@ -28,12 +28,19 @@ namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
         {
             OnClose?.Invoke();
             IsVisible = false;
+            StateHasChanged();
             CurrentService.NotifyStateChanged();
         }
 
-        public virtual async Task Save()
+        public virtual async void Save()
         {
             await CurrentService.ExecuteAsync(CurrentObject);
+            Close();
+        }
+
+        public virtual async void Delete()
+        {
+            await CurrentService.Delete(CurrentObject);
             Close();
         }
     }

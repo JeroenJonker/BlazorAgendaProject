@@ -46,5 +46,10 @@ namespace BlazorAgenda.Services.Interfaces
         {
             return typeof(T).Name.ToString();
         }
+
+        public async Task Delete(T CurrentObject)
+        {
+            await http.SendJsonAsync(HttpMethod.Delete, "api/" + GetObjectName(CurrentObject) + "/Delete", CurrentObject);
+        }
     }
 }

@@ -13,11 +13,6 @@ namespace BlazorAgenda.Server.Controllers
     {
         EventDataAccessLayer EventAccess = new EventDataAccessLayer();
 
-        //[HttpGet("[action]")]
-        //public List<Event> GetUsers()
-        //{
-        //    return UserAccess.GetAllUsers();
-        //}
         [HttpPost("[action]")]
         public void Add([FromBody] Event newEvent)
         {
@@ -36,5 +31,10 @@ namespace BlazorAgenda.Server.Controllers
             EventAccess.UpdateEvent(newEvent);
         }
 
+        [HttpDelete("[action]")]
+        public void Delete([FromBody] Event deleteEvent)
+        {
+            EventAccess.DeleteEvent(deleteEvent);
+        }
     }
 }

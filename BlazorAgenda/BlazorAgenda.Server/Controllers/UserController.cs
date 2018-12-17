@@ -59,5 +59,11 @@ namespace BlazorAgenda.Server.Controllers
                 UserAccess.UpdateUser(user);
             }
         }
+
+        [HttpDelete("[action]")]
+        public void Delete([FromBody] User user)
+        {
+            UserAccess.DeleteUser(user);
+        }
     }
 }

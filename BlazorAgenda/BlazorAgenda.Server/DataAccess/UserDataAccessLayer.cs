@@ -62,5 +62,18 @@ namespace BlazorAgenda.Server.DataAccess
                 throw;
             }
         }
+
+        public void DeleteUser(User user)
+        {
+            try
+            {
+                db.User.Remove(user);
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

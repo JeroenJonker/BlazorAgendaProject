@@ -1,0 +1,16 @@
+﻿@using BlazorAgenda.Client.Viewmodels.BaseViewModels
+@using BlazorAgenda.Shared.Models
+@inherits ObjectBaseFooterViewModel
+
+@if (OnDelete != null && ObjectState != ObjectState.Add)
+{
+    <button class="btn btn-primary" onclick=@OnDelete>
+        <span class="oi oi-trash"></span>
+    </button>
+}
+@if (OnSave != null)
+{
+    <button class="btn btn-primary" onclick=@OnSave>
+        <span>&#10003</span>
+    </button>
+}

@@ -10,24 +10,18 @@ using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {
-    public class DefaultObjectBaseViewModel : BlazorComponent
+    public class ModalTemplateViewModel : BlazorComponent
     {
-        [Parameter] protected RenderFragment ChildContent { get; set; }
-        [Parameter] Action OnSave { get; set; }
+        [Parameter] protected RenderFragment ModalContent { get; set; }
         [Parameter] Action OnClose { get; set; }
-        [Parameter] protected bool IsVisible { get; set; } = false;
+        [Parameter] protected bool IsVisible { get; set; }
         [Parameter] protected string Title { get; set; }
+        [Parameter] protected RenderFragment FooterContent { get; set; }
 
         public void Close()
         {
             OnClose?.Invoke();
             IsVisible = false;
-        }
-
-        public void Save()
-        {
-            OnSave?.Invoke();
-            Close();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace BlazorAgenda.Services
     public interface IDefaultObjectService<T> where T : IBaseObject
     {
         Task ExecuteAsync(T CurrentObject);
+        Task Delete(T CurrentObject);
         event Action OnChange;
         void NotifyStateChanged();
         ObjectState GetObjectState(T CurrentObject);
