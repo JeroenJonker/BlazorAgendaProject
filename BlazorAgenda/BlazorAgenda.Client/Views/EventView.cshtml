@@ -1,7 +1,7 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @inherits EventViewmodel
 
-<DefaultObjectBaseView Title=@Title OnClose=@Close OnSave=@(async () => await Save()) IsVisible=@IsVisible>
+<DefaultObjectBaseView Title=@Title OnClose=@Close OnSave=@SaveEvent IsVisible=@IsVisible>
     <div class="form-row">
         <span class="col-sm-4">
             <label class="col-form-label">Description</label>
@@ -15,10 +15,10 @@
             <label class="col-form-label">Begin</label>
         </span>
         <span class="col-sm-4">
-            <input class="form-control" type="date" bind=Start format-value="yyyy-MM-dd" required="required" />
+            <input class="form-control" type="date" bind=StartDate format-value="yyyy-MM-dd" required="required" />
         </span>
         <span class="col-sm-4">
-            <input class="form-control" type="time" bind=Start format-value="HH:mm" required="required" />
+            <input class="form-control" type="time" bind=StartTime format-value="HH:mm" required="required" />
         </span>
     </div>
     <div class="form-row">
@@ -26,10 +26,10 @@
             <label class="col-form-label">End</label>
         </span>
         <span class="col-sm-4">
-            <input class="form-control" type="date" bind=End format-value="yyyy-MM-dd" required="required" />
+            <input class="form-control" type="date" bind=EndDate format-value="yyyy-MM-dd" required="required" />
         </span>
         <span class="col-sm-4">
-            <input class="form-control" type="time" bind=End format-value="HH:mm" required="required" />
+            <input class="form-control" type="time" bind=EndTime format-value="HH:mm" required="required" />
         </span>
     </div>
 </DefaultObjectBaseView>

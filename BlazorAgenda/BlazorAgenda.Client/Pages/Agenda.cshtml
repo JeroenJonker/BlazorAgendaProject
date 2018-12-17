@@ -11,7 +11,5 @@
 else
 {
     <NavigationBarView/>
-    <button class="btn btn-primary" onclick=@AddEvent><span class="oi oi-plus"></span> Add event</button>
-    <EventView OnClose=@OnCloseDialog IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
     <CalendarView />
 }

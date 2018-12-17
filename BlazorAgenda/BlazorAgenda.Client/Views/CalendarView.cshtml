@@ -1,8 +1,8 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @using BlazorAgenda.Shared.Models
 @inherits CalendarViewModel
-
-<ContactsView OnUpdate=@(async () => await GetEvents()) />
+<button class="btn btn-primary" onclick=@AddEvent><span class="oi oi-plus"></span> Add event</button>
+<ContactsView OnUpdate=@GetEvents />
 <div class="row">
     <span class="col-sm-3">
         <button class="btn btn-default" onclick=@(() => GoToPreviousWeek())>&lt;</button>
@@ -10,7 +10,7 @@
         <button class="btn btn-default" onclick=@(() => GoToNextWeek())>&gt;</button>
     </span>
     <span class="col-sm-3">
-        <input type="date"class="form-control" bind=SelectedDate format-value="yyyy-MM-dd" required="required" />
+        <input type="date" class="form-control" bind=SelectedDate format-value="yyyy-MM-dd" required="required" />
     </span>
 </div>
 <h2>@CurrentMonthAndYear</h2>
@@ -64,5 +64,4 @@
         </tbody>
     </table>
 </div>
-<EventView CurrentObject=@CurrentObject OnClose=CloseEventView IsVisible=@(StateService.ObjectFocus == typeof(Event)) />
-
+<EventView CurrentObject=CurrentObject OnClose=CloseEventView IsVisible=@(StateService.ObjectFocus == typeof(Event)) />

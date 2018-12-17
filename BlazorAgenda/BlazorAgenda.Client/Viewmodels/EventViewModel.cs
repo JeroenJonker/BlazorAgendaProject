@@ -15,27 +15,36 @@ namespace BlazorAgenda.Client.Viewmodels
         [Inject] [Parameter] protected override Event CurrentObject { get; set; }
         [Inject] public override IEventService CurrentService { get; set; }
         [Inject] protected IStateService StateService { get; set; }
-        public DateTime Start
+
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+
+        public DateTime StartDate
         {
             get
             {
-                return CurrentObject.Start;
+                return Start;
             }
             set
             {
-                if (CurrentObject.Start.Date != value.Date)
-                {
-                    CurrentObject.Start = new DateTime(value.Year, value.Month, value.Day,
-                        CurrentObject.Start.Hour, CurrentObject.Start.Minute, CurrentObject.Start.Second);
-                }
-                else
-                {
-                    CurrentObject.Start = value;
-                }
+                Start = new DateTime(value.Year, value.Month, value.Day, Start.Hour,
+                    Start.Minute, Start.Second);
             }
         }
 
-        public DateTime End
+        public DateTime StartTime
+        {
+            get
+            {
+                return Start;
+            }
+            set
+            {
+                Start = new DateTime(Start.Year, Start.Month, Start.Day,
+                        value.Hour, value.Minute, value.Second);
+            }
+        }
+        public DateTime EndDate
         {
             get
             {
@@ -43,28 +52,40 @@ namespace BlazorAgenda.Client.Viewmodels
             }
             set
             {
-                if (CurrentObject.End.Date != value.Date)
-                {
-                    CurrentObject.End = new DateTime(value.Year, value.Month, value.Day,
-                        CurrentObject.End.Hour, CurrentObject.End.Minute, CurrentObject.End.Second);
-                }
-                else
-                {
-                    CurrentObject.End = value;
-                }
+                End = new DateTime(value.Year, value.Month, value.Day, End.Hour,
+                    End.Minute, End.Second);
+            }
+        }
+        public DateTime EndTime
+        {
+            get
+            {
+                return End;
+            }
+            set
+            {
+                End = new DateTime(End.Year, End.Month, End.Day,
+                        value.Hour, value.Minute, value.Second);
             }
         }
 
         protected override void OnInit()
         {
-            Start = Start == default ?  SetDateTime(CurrentObject.Start) : Start;
-            End = End == default ? SetDateTime(CurrentObject.End) : End;
+            Start = (Start == default) ? SetDateTime(CurrentObject.Start) : Start;
+            End = (End == default) ? SetDateTime(CurrentObject.End) : End;
             CurrentObject.Userid = CurrentObject.Userid == default ? StateService.LoginUser.Id : CurrentObject.Userid;
         }
 
         protected DateTime SetDateTime(DateTime time)
         {
             return time == default ? DateTime.Now : time;
+        }
+
+        public async void SaveEvent()
+        {
+            CurrentObject.Start = Start;
+            CurrentObject.End = End;
+            await Save();
         }
     }
 }

@@ -18,20 +18,9 @@ namespace BlazorAgenda.Client.Viewmodels
             StateService.OnChange += StateHasChanged;
         }
 
-        public void AddEvent()
-        {
-            StateService.ObjectFocus = typeof(Event);
-        }
-
         public void EditUser()
         {
             StateService.ObjectFocus = typeof(User);
-        }
-
-        public void OnCloseDialog()
-        {
-            StateService.ObjectFocus = null;
-            //StateHasChanged();
         }
 
         public void OnLoginCompleted(User user)
