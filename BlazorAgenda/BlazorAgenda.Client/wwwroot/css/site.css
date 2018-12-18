@@ -280,3 +280,41 @@ input[type=checkbox] {
     height: 16px;
     margin: 5px;
 }
+
+#main {
+    width: 100%;
+}
+
+#sidebar-left {
+    float: left;
+    width: 20%;
+}
+
+#calendar {
+    display: inline-block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+#sidebar-left, #calendar {
+    padding: 1rem;
+}
+
+.row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#add-event-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 3rem;
+    z-index: 9999;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+    .nav-link:hover {
+        color: #ffffff;
+    }
