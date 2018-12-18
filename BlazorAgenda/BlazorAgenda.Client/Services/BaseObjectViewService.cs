@@ -9,11 +9,18 @@ namespace BlazorAgenda.Client.Services
 {
     public abstract class BaseObjectViewService<BaseObject, BaseService> where BaseObject : IBaseObject where BaseService : IDefaultObjectService<BaseObject>
     {
-        public Action OnClose { get; set; }
-        public bool IsVisible { get; set; }
         public abstract BaseObject CurrentObject { get; set; }
         public abstract BaseService CurrentService { get; set; }
+        public abstract BaseObject DefaultBaseObject { get; set; }
+        public Action OnClose { get; set; }
+        public bool IsVisible { get; set; }
+
         public event Action OnChange;
+
+        public void SetCurrentObjectToDefault()
+        {
+            CurrentObject = DefaultBaseObject;
+        }
 
         public string Title
         {
@@ -28,6 +35,7 @@ namespace BlazorAgenda.Client.Services
         public void Close()
         {
             OnClose?.Invoke();
+            SetCurrentObjectToDefault();
             ChangeVisibility();
         }
 

@@ -11,11 +11,12 @@ namespace BlazorAgenda.Client.Services
     public class UserViewService : BaseObjectViewService<User, IUserService>
     {
         public override User CurrentObject { get; set; }
+        public override User DefaultBaseObject { get; set; }
         public override IUserService CurrentService { get; set; }
 
         public UserViewService(User user, IUserService userService)
         {
-            CurrentObject = user;
+            DefaultBaseObject = CurrentObject = user;
             CurrentService = userService;
         }
     }

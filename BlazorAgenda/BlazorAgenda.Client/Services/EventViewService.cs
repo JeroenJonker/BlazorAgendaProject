@@ -53,9 +53,11 @@ namespace BlazorAgenda.Client.Services
             }
         }
 
+        public override Event DefaultBaseObject { get; set; }
+
         public EventViewService(Event currentEvent, IEventService eventService, IStateService stateService)
         {
-            CurrentObject = currentEvent;
+            DefaultBaseObject = CurrentObject = currentEvent;
             CurrentService = eventService;
             StateService = StateService;
             Start = Start == default ? SetDateTime(CurrentObject.Start) : Start;
