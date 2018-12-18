@@ -1,26 +1,19 @@
-﻿@using BlazorAgenda.Client.Viewmodels
+﻿@using BlazorAgenda.Client.Services;
+@using BlazorAgenda.Client.Viewmodels
 @using BlazorAgenda.Shared.Models
 @inherits ContactsViewModel
-
-@if (Contacts != null)
-{
-    <div class="form-row">
-        <select class="col-sm-3 form-control" onchange="@SelectContact">
-            @foreach (User user in Contacts)
-            {
-                <option value="@user.Id" selected=@(user.Id == StateService.LoginUser.Id)>@user.Firstname @user.Lastname</option>
-            }
-        </select>
-    </div>
-    @if (StateService.ChosenContacts.Count > 0)
+<div id="sidebar-left">
+    <h3>Select user(s)</h3>
+    @if (Contacts != null)
     {
-        <div class="form-row">
-            <ul>
-                @foreach (User contact in StateService.ChosenContacts)
-                {
-                    <li>@contact.Firstname @contact.Lastname <button class="btn btn-danger btn-sm" onclick="@(() => DeselectContact(contact.Id))">✗</button></li>
-                }
-            </ul>
-        </div>
+        @foreach (User user in Contacts)
+        {
+            int index = StateService.ChosenContacts.FindIndex(x => x.Id == user.Id);
+            string color = index > -1 ? Colors.Items[index % 11] : "#000";
+            <div class="form-row">
+                <input type="checkbox" onchange=@(e => SelectContact(user.Id, (bool)e.Value)) checked=@(index > -1) />
+                <span style="color:@color;">@user.Firstname @user.Lastname</span>
+            </div>
+        }
     }
-}
+</div>

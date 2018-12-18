@@ -1,13 +1,9 @@
-﻿using BlazorAgenda.Shared;
-using BlazorAgenda.Services;
-using Microsoft.AspNetCore.Blazor;
+﻿using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using BlazorAgenda.Services.Interfaces;
-using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -28,25 +24,19 @@ namespace BlazorAgenda.Client.Viewmodels
             Contacts = await UserService.GetContacts();
         }
 
-        public void SelectContact(UIChangeEventArgs e)
+        public void SelectContact(int userId, bool selected)
         {
-            User user = StateService.ChosenContacts.Find(x => x.Id == Convert.ToInt32(e.Value));
-            if (user == null)
+            User user = StateService.ChosenContacts.Find(x => x.Id == userId);
+            if (selected && user == null)
             {
-                user = Contacts.Find(x => x.Id == Convert.ToInt32(e.Value));
+                user = Contacts.Find(x => x.Id == userId);
                 StateService.ChosenContacts.Add(user);
-                OnUpdate?.Invoke();
             }
-        }
-
-        public void DeselectContact(int id)
-        {
-            User user = StateService.ChosenContacts.Find(x => x.Id == id);
-            if (user != null)
+            else if (!selected && user != null)
             {
                 StateService.ChosenContacts.Remove(user);
-                OnUpdate?.Invoke();
             }
+            OnUpdate?.Invoke();
         }
     }
 }

@@ -3,65 +3,67 @@
 @inherits CalendarViewModel
 
 <ContactsView OnUpdate=@(async () => await GetEvents()) />
-<div class="row">
-    <span class="col-sm-3">
-        <button class="btn btn-default" onclick=@(() => GoToPreviousWeek())>&lt;</button>
-        <button class="btn btn-default" onclick=@(() => GoToCurrentWeek())>Vandaag</button>
-        <button class="btn btn-default" onclick=@(() => GoToNextWeek())>&gt;</button>
-    </span>
-    <span class="col-sm-3">
-        <input type="date"class="form-control" bind=SelectedDate format-value="yyyy-MM-dd" required="required" />
-    </span>
-</div>
-<h2>@CurrentMonthAndYear</h2>
-<div id="table-wrapper">
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                @{
-                    int startDay = StartOfWeekDate.Day;
-                    for (int col = startDay; col < startDay + 7; col++)
-                    {
-                        DateTime day = StartOfWeekDate.AddDays(col - startDay);
-                        string name = day.ToString("dddd");
-                        <th>
-                            <span class="@(day.Date == DateTime.Now.Date ? "day active" : "day")">@day.Day</span>
-                            <span class="long">@name</span>
-                            <span class="short">@name.Substring(0, 3)</span>
-                        </th>
-                    }
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @{DateTime time = StartOfWeekDate;}
-            @for (int hour = 0; hour < 24; hour++)
-            {
+<div id="calendar">
+    <h2>@CurrentMonthAndYear</h2>
+    <div class="row">
+        <span class="col-sm-4 col-xs-6">
+            <button class="btn btn-default" onclick=@(() => GoToPreviousWeek())>&lt;</button>
+            <button class="btn btn-default" onclick=@(() => GoToCurrentWeek())>Today</button>
+            <button class="btn btn-default" onclick=@(() => GoToNextWeek())>&gt;</button>
+        </span>
+        <span class="col-md-3 col-sm-4 col-xs-6">
+            <input type="date" class="form-control" bind=SelectedDate format-value="yyyy-MM-dd" required="required" />
+        </span>
+    </div>
+    <div id="table-wrapper">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td class="hour" rowspan="4">
-                        <span>@(hour.ToString() + ":00")</span>
-                    </td>
-                    @for (int col = 0; col < 7; col++)
-                    {
-                        DateTime start = time.AddDays(col);
-                        <DragDropView Start=start MoveEvent=OnMoveEvent NewEvent=OnNewEvent />
+                    <th></th>
+                    @{
+                        int startDay = StartOfWeekDate.Day;
+                        for (int col = startDay; col < startDay + 7; col++)
+                        {
+                            DateTime day = StartOfWeekDate.AddDays(col - startDay);
+                            string name = day.ToString("dddd");
+                            <th>
+                                <span class="@(day.Date == DateTime.Now.Date ? "day active" : "day")">@day.Day</span>
+                                <span class="long">@name</span>
+                                <span class="short">@name.Substring(0, 3)</span>
+                            </th>
+                        }
                     }
                 </tr>
-                @for (int row = 0; row < 3; row++)
+            </thead>
+            <tbody>
+                @{DateTime time = StartOfWeekDate;}
+                @for (int hour = 0; hour < 24; hour++)
                 {
-                    time = time.AddMinutes(15);
                     <tr>
+                        <td class="hour" rowspan="4">
+                            <span>@(hour.ToString() + ":00")</span>
+                        </td>
                         @for (int col = 0; col < 7; col++)
                         {
                             DateTime start = time.AddDays(col);
                             <DragDropView Start=start MoveEvent=OnMoveEvent NewEvent=OnNewEvent />
                         }
                     </tr>
+                    @for (int row = 0; row < 3; row++)
+                    {
+                        time = time.AddMinutes(15);
+                        <tr>
+                            @for (int col = 0; col < 7; col++)
+                            {
+                                DateTime start = time.AddDays(col);
+                                <DragDropView Start=start MoveEvent=OnMoveEvent NewEvent=OnNewEvent />
+                            }
+                        </tr>
+                    }
+                    time = time.AddMinutes(15);
                 }
-                time = time.AddMinutes(15);
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <EventView/>
