@@ -15,8 +15,6 @@ namespace BlazorAgenda.Services
 
         public List<User> ChosenContacts { get; set; }
 
-        public Type ObjectFocus { get; set; }
-
         public event Action OnChange;
 
         public StateService()
@@ -28,7 +26,6 @@ namespace BlazorAgenda.Services
         {
             LoginUser = default(User);
             ChosenContacts.Clear();
-            ObjectFocus = null;
         }
 
         public void NotifyStateChanged() => OnChange?.Invoke();

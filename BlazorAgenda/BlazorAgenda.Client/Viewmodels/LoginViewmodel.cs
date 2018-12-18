@@ -1,4 +1,5 @@
-﻿using BlazorAgenda.Services.Interfaces;
+﻿using BlazorAgenda.Client.Services;
+using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
@@ -12,8 +13,9 @@ namespace BlazorAgenda.Client.Viewmodels
     {
         public bool ShowAddUser { get; set; } = false;
         [Parameter] Action<User> OnLogin { get; set; }
-        [Inject] protected User User { get; set; } 
+        [Inject] protected User User { get; set; }
         [Inject] protected IUserService UserService { get; set; }
+        [Inject] protected UserViewService UserView {get;set;}
 
         public async Task LoginAsync()
         {
@@ -25,7 +27,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void AddUser()
         {
-            ShowAddUser = true;
+            UserView.ChangeVisibility();
         }
 
         public void OnCloseDialog()

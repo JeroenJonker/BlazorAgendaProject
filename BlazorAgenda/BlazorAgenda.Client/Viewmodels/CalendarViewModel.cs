@@ -16,6 +16,8 @@ namespace BlazorAgenda.Client.Viewmodels
     public class CalendarViewModel : BlazorComponent
     {
         [Inject]
+        protected EventViewService EventViewService { get; set; }
+        [Inject]
         protected IEventService EventService { get; set; }
         [Inject]
         protected IStateService StateService { get; set; }
@@ -43,6 +45,7 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
+            EventViewService.OnClose = CloseEventView;
             await GetEvents();
             GoToCurrentWeek();
         }
@@ -123,13 +126,12 @@ namespace BlazorAgenda.Client.Viewmodels
             CurrentObject.Start = start;
             CurrentObject.End = start.AddHours(1);
             CurrentObject.Userid = StateService.LoginUser.Id;
-            StateService.ObjectFocus = typeof(Event);
-            StateHasChanged();
+            EventViewService.CurrentObject = CurrentObject;
+            EventViewService.ChangeVisibility();
         }
 
         public void CloseEventView()
         {
-            StateService.ObjectFocus = null;
             StateHasChanged();
         }
     }

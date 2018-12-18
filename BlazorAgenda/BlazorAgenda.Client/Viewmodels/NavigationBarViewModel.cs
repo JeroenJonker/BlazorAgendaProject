@@ -1,4 +1,5 @@
-﻿using BlazorAgenda.Services.Interfaces;
+﻿using BlazorAgenda.Client.Services;
+using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
@@ -11,15 +12,12 @@ namespace BlazorAgenda.Client.Viewmodels
     public class NavigationBarViewModel : BlazorComponent
     {
         [Inject] protected IStateService StateService { get; set; }
+        [Inject] protected UserViewService UserView { get; set; }
 
         public void EditUser()
         {
-            StateService.ObjectFocus = typeof(User);
-        }
-
-        public void OnCloseDialog()
-        {
-            StateService.ObjectFocus = null;
+            UserView.CurrentObject = StateService.LoginUser;
+            UserView.ChangeVisibility();
         }
 
         public void Logout()

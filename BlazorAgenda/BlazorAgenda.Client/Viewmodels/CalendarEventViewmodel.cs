@@ -10,11 +10,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorAgenda.Shared.Models;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Client.Services;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
     public class CalendarEventViewModel : BlazorComponent
     {
+        [Inject]
+        protected EventViewService UserView { get; set; }
+
         [Parameter]
         protected Event Event { get; set; }
 
@@ -31,7 +35,8 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void ChangeShowModalEvent()
         {
-            ShowModalEvent = !ShowModalEvent;
+            UserView.CurrentObject = Event;
+            UserView.ChangeVisibility();
         }
     }
 }

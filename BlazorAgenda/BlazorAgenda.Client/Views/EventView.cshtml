@@ -1,14 +1,14 @@
-﻿@using BlazorAgenda.Client.Viewmodels
-@inherits EventViewmodel
+﻿@using BlazorAgenda.Client.Services
+@inject EventViewService service
 
-<ModalTemplateView Title=@Title OnClose=@Close IsVisible=@IsVisible>
+<ModalTemplateView Title=@service.Title OnClose=@service.Close IsVisible=@service.IsVisible>
     <ModalContent>
         <div class="form-row">
             <span class="col-sm-4">
                 <label class="col-form-label">Description</label>
             </span>
             <span class="col-sm-8">
-                <input class="form-control" type="text" bind=CurrentObject.Summary />
+                <input class="form-control" type="text" bind=service.CurrentObject.Summary />
             </span>
         </div>
         <div class="form-row">
@@ -16,10 +16,10 @@
                 <label class="col-form-label">Begin</label>
             </span>
             <span class="col-sm-4">
-                <input class="form-control" type="date" bind=Start format-value="yyyy-MM-dd" required="required" />
+                <input class="form-control" type="date" bind=service.Start format-value="yyyy-MM-dd" required="required" />
             </span>
             <span class="col-sm-4">
-                <input class="form-control" type="time" bind=Start format-value="HH:mm" required="required" />
+                <input class="form-control" type="time" bind=service.Start format-value="HH:mm" required="required" />
             </span>
         </div>
         <div class="form-row">
@@ -27,14 +27,22 @@
                 <label class="col-form-label">End</label>
             </span>
             <span class="col-sm-4">
-                <input class="form-control" type="date" bind=End format-value="yyyy-MM-dd" required="required" />
+                <input class="form-control" type="date" bind=service.End format-value="yyyy-MM-dd" required="required" />
             </span>
             <span class="col-sm-4">
-                <input class="form-control" type="time" bind=End format-value="HH:mm" required="required" />
+                <input class="form-control" type="time" bind=service.End format-value="HH:mm" required="required" />
             </span>
         </div>
     </ModalContent>
     <FooterContent>
-        <ObjectBaseFooterView ObjectState=CurrentService.GetObjectState(CurrentObject) OnSave=@Save OnDelete=@Delete/>
+        <ObjectBaseFooterView ObjectState=service.CurrentService.GetObjectState(service.CurrentObject) OnSave=@service.Save OnDelete=@service.Delete />
     </FooterContent>
 </ModalTemplateView>
+
+@functions
+{
+    protected override void OnInit()
+    {
+        service.OnChange += StateHasChanged;
+    }
+}
