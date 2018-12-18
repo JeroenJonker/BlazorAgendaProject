@@ -13,28 +13,51 @@ namespace BlazorAgenda.Server.Controllers
     {
         EventDataAccessLayer EventAccess = new EventDataAccessLayer();
 
-        [HttpPost("[action]")]
-        public void Add([FromBody] Event newEvent)
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetById(int id)
         {
-            EventAccess.AddEvent(newEvent);
+            Event theEvent = EventAccess.GetEvent(id);
+            if (theEvent != null)
+            {
+                return Ok(theEvent);
+            }
+            return NotFound();
+        }
+
+        [HttpPost("[action]")]
+        public IActionResult Add([FromBody] Event newEvent)
+        {
+            if (EventAccess.TryAddEvent(newEvent))
+            {
+                return CreatedAtAction(nameof(GetById), new { id = newEvent.Id }, newEvent);
+            }
+            return BadRequest();
         }
 
         [HttpGet("[action]/{userid}")]
-        public List<Event> GetUserEvents(int userid)
+        public IActionResult GetUserEvents(int userid)
         {
-            return EventAccess.GetUserEvents(userid);
+            return Ok(EventAccess.GetUserEvents(userid));
         }
 
         [HttpPut("[action]")]
-        public void Edit([FromBody] Event newEvent)
+        public IActionResult Edit([FromBody] Event updateEvent)
         {
-            EventAccess.UpdateEvent(newEvent);
+            if (EventAccess.TryUpdateEvent(updateEvent))
+            {
+                return Ok(updateEvent);
+            }
+            return BadRequest();
         }
 
         [HttpDelete("[action]")]
-        public void Delete([FromBody] Event deleteEvent)
+        public IActionResult Delete([FromBody] Event deleteEvent)
         {
-            EventAccess.DeleteEvent(deleteEvent);
+            if (EventAccess.TryDeleteEvent(deleteEvent))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

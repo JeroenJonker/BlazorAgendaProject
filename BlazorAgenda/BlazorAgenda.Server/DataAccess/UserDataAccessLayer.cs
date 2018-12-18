@@ -9,70 +9,63 @@ namespace BlazorAgenda.Server.DataAccess
     public class UserDataAccessLayer
     {
         AgendaDBContext db = new AgendaDBContext();
-   
+
+        public User GetUser(int id)
+        {
+            List<User> users = db.User.Where(g => g.Id == id).ToList();
+            return users.Count > 0 ? users[0] : null;
+        }
+
         public List<User> GetAllUsers()
         {
-            try
-            {
-                return db.User.ToList();
-            }
-            catch
-            {
-                throw;
-            }
+            return db.User.ToList();
         }
 
         public User GetUserByEmail(string email)
         {
-            try
-            {
-                List<User> users = new List<User>();
-                users = db.User.Where(g => g.Emailadress == email).ToList();
-                return users.Count > 0 ? users[0] : null;
-            }
-            catch
-            {
-                throw;
-            }
-            //return db.User.Find(email);
+            List<User> users = db.User.Where(g => g.Emailadress == email).ToList();
+            return users.Count > 0 ? users[0] : null;
         }
 
-        public void AddUser(User user)
+        public bool TryAddUser(User user)
         {
             try
             {
                 db.User.Add(user);
                 db.SaveChanges();
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
 
-        public void UpdateUser(User user)
+        public bool TryUpdateUser(User user)
         {
             try
             {
                 db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 db.SaveChanges();
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
 
-        public void DeleteUser(User user)
+        public bool TryDeleteUser(User user)
         {
             try
             {
                 db.User.Remove(user);
                 db.SaveChanges();
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
     }

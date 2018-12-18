@@ -14,10 +14,21 @@ namespace BlazorAgenda.Server.Controllers
     {
         UserDataAccessLayer UserAccess = new UserDataAccessLayer();
 
-        [HttpGet("[action]")]
-        public List<User> GetAllUsers()
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetById(int id)
         {
-            return UserAccess.GetAllUsers();
+            User user = UserAccess.GetUser(id);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult GetAllUsers()
+        {
+            return Ok(UserAccess.GetAllUsers());
         }
 
         [HttpPost("[action]")]
@@ -39,34 +50,43 @@ namespace BlazorAgenda.Server.Controllers
         public IActionResult IsUserInUse([FromBody] User user)
         {
             User dbUser = UserAccess.GetUserByEmail(user.Emailadress);
-            return (dbUser != null) ? Ok(true) as IActionResult : NotFound();
+            if(dbUser != null)
+            {
+                return Ok(true);
+            }
+            return BadRequest();
         }
 
         [HttpPost("[action]")]
-        public bool Add([FromBody]User newuser)
+        public IActionResult Add([FromBody]User newuser)
         {
             if (UserAccess.GetUserByEmail(newuser.Emailadress) == null &&
-                new MailAddress(newuser.Emailadress).Address == newuser.Emailadress)
+                new MailAddress(newuser.Emailadress).Address == newuser.Emailadress &&
+                UserAccess.TryAddUser(newuser))
             {
-                UserAccess.AddUser(newuser);
-                return true;
+                return CreatedAtAction(nameof(GetById), new { id = newuser.Id }, newuser);
             }
-            return false;
+            return BadRequest();
         }
 
         [HttpPut("[action]")]
-        public void Edit([FromBody]User user)
+        public IActionResult Edit([FromBody]User updateUser)
         {
-            if (new MailAddress(user.Emailadress).Address == user.Emailadress)
+            if (UserAccess.TryUpdateUser(updateUser))
             {
-                UserAccess.UpdateUser(user);
+                return Ok(updateUser);
             }
+            return BadRequest();
         }
 
         [HttpDelete("[action]")]
-        public void Delete([FromBody] User user)
+        public IActionResult Delete([FromBody] User deleteUser)
         {
-            UserAccess.DeleteUser(user);
+            if (UserAccess.TryDeleteUser(deleteUser))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }
