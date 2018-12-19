@@ -121,7 +121,7 @@
     <value>api/</value>
   </data>
   <data name="EventApi_GetUserEvents" xml:space="preserve">
-    <value>api/Event/GetUserEvents</value>
+    <value>api/Event/GetUserEvents/</value>
   </data>
   <data name="ObjectApi_Add" xml:space="preserve">
     <value>/Add</value>

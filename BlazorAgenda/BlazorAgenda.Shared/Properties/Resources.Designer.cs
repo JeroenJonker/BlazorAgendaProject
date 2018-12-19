@@ -70,7 +70,7 @@ namespace BlazorAgenda.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api/Event/GetUserEvents.
+        ///   Looks up a localized string similar to api/Event/GetUserEvents/.
         /// </summary>
         public static string EventApi_GetUserEvents {
             get {
