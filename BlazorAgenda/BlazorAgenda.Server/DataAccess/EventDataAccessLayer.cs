@@ -10,66 +10,56 @@ namespace BlazorAgenda.Server.DataAccess
     {
         AgendaDBContext db = new AgendaDBContext();
 
-        public List<Event> GetUserEvents(int Userid)
+        public Event GetEvent(int id)
         {
-            try
-            {
-                return db.Event.Where(g => g.Userid == Userid).ToList();
-            }
-            catch
-            {
-                throw;
-            }
+            List<Event> events = db.Event.Where(g => g.Id == id).ToList();
+            return events.Count > 0 ? events[0] : null;
         }
 
-        public IEnumerable<Event> GetAllEvents()
+        public List<Event> GetUserEvents(int userid)
         {
-            try
-            {
-                return db.Event.ToList();
-            }
-            catch
-            {
-                throw;
-            }
+            return db.Event.Where(g => g.Userid == userid).ToList();
         }
  
-        public void AddEvent(Event newevent)
+        public bool TryAddEvent(Event newevent)
         {
             try
             {
                 db.Event.Add(newevent);
                 db.SaveChanges();
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
     
-        public void UpdateEvent(Event updatedEvent)
+        public bool TryUpdateEvent(Event updatedEvent)
         {
             try
             {
                 db.Entry(updatedEvent).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 db.SaveChanges();
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
 
-        public void DeleteEvent(Event deletedEvent)
+        public bool TryDeleteEvent(Event deletedEvent)
         {
             try
             {
                 db.Event.Remove(deletedEvent);
                 db.SaveChanges();
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
     }
