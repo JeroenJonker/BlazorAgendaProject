@@ -131,8 +131,9 @@ namespace BlazorAgenda.Client.Viewmodels
             EventViewService.ChangeVisibility();
         }
 
-        public void CloseEventView()
+        public async Task CloseEventView()
         {
+            await GetEvents();
             StateHasChanged();
         }
     }
