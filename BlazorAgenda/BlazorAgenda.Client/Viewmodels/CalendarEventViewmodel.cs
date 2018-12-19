@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using BlazorAgenda.Shared.Models;
 using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Client.Services;
+using BlazorAgenda.Shared.Interfaces;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -20,7 +21,7 @@ namespace BlazorAgenda.Client.Viewmodels
         protected EventViewService UserView { get; set; }
 
         [Parameter]
-        protected Event Event { get; set; }
+        protected IEvent Event { get; set; }
 
         [Parameter]
         protected int Rowspan { get; set; }
@@ -35,7 +36,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void ChangeShowModalEvent()
         {
-            UserView.CurrentObject = Event;
+            UserView.CurrentObject = Event as Event;
             UserView.ChangeVisibility();
         }
     }

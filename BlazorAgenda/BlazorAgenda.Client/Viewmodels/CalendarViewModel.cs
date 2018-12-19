@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared.Models;
+using BlazorAgenda.Shared.Interfaces;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
@@ -22,7 +23,7 @@ namespace BlazorAgenda.Client.Viewmodels
         [Inject]
         protected IStateService StateService { get; set; }
         [Inject] 
-        protected Event CurrentObject { get; set; }
+        protected IEvent CurrentObject { get; set; }
         
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -126,7 +127,7 @@ namespace BlazorAgenda.Client.Viewmodels
             CurrentObject.Start = start;
             CurrentObject.End = start.AddHours(1);
             CurrentObject.Userid = StateService.LoginUser.Id;
-            EventViewService.CurrentObject = CurrentObject;
+            EventViewService.CurrentObject = CurrentObject as Event;
             EventViewService.ChangeVisibility();
         }
 

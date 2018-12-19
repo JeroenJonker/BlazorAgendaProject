@@ -1,7 +1,8 @@
+@using BlazorAgenda.Shared.Models
 @using BlazorAgenda.Client.Viewmodels
 @inherits CalendarEventViewModel
 
-<div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, Event))" ondragenter="$(this).css('z-index', 'unset');"
+<div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, Event as Event))" ondragenter="$(this).css('z-index', 'unset');"
      ondragleave="$(this).css('z-index', 'auto');" ondragend="$('.event').css('z-index', '');" onclick=@ChangeShowModalEvent
      style="background-color:@(Event.Color); height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%">
     @Event.Summary

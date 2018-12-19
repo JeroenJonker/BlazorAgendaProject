@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BlazorAgenda.Shared.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace BlazorAgenda.Shared.Models
 {
-    public partial class Event : IBaseObject
+    public partial class Event : IEvent
     {
         public int Id { get; set; }
         public string Summary { get; set; }

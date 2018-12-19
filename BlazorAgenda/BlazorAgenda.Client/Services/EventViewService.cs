@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Services;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Interfaces;
 using BlazorAgenda.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -55,9 +56,9 @@ namespace BlazorAgenda.Client.Services
 
         public override Event DefaultBaseObject { get; set; }
 
-        public EventViewService(Event currentEvent, IEventService eventService, IStateService stateService)
+        public EventViewService(IEvent currentEvent, IEventService eventService, IStateService stateService)
         {
-            DefaultBaseObject = CurrentObject = currentEvent;
+            DefaultBaseObject = CurrentObject = currentEvent as Event;
             CurrentService = eventService;
             StateService = StateService;
             Start = Start == default ? SetDateTime(CurrentObject.Start) : Start;
