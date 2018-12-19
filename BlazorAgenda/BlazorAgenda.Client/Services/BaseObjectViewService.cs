@@ -32,9 +32,8 @@ namespace BlazorAgenda.Client.Services
             return CurrentService.GetObjectState(CurrentObject).ToString() + " " + CurrentService.GetObjectName(CurrentObject);
         }
 
-        public async void Close()
+        public void Close()
         {
-            await OnClose?.Invoke();
             SetCurrentObjectToDefault();
             ChangeVisibility();
         }
@@ -42,12 +41,14 @@ namespace BlazorAgenda.Client.Services
         public virtual async void Save()
         {
             await CurrentService.ExecuteAsync(CurrentObject);
+            await OnClose?.Invoke();
             Close();
         }
 
         public virtual async void Delete()
         {
             await CurrentService.Delete(CurrentObject);
+            await OnClose?.Invoke();
             Close();
         }
 
