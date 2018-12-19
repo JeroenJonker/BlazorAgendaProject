@@ -38,11 +38,6 @@ namespace BlazorAgenda.Client.Viewmodels
         public DateTime StartOfWeekDate { get; set; }
         
         public string CurrentMonthAndYear { get; set; }
-
-        private static readonly string[] colors = new string[]
-        {
-            "#a4bdfc", "#7ae7bf", "#dbadff", "#ff887c", "#fbd75b", "#ffb878", "#46d6db", "#e1e1e1", "#5484ed", "#51b749", "#dc2127"
-        };
         
         protected override async Task OnInitAsync()
         {
@@ -59,7 +54,7 @@ namespace BlazorAgenda.Client.Viewmodels
                 List<Event> userEvents = await EventService.GetEvents(StateService.ChosenContacts[i]);
                 foreach (Event ev in userEvents)
                 {
-                    ev.Color = colors[i % colors.Length];
+                    ev.Color = Colors.Items[i % 11];
                     events.Add(ev);
                 }
             }

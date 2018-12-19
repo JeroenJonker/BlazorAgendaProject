@@ -4,9 +4,9 @@
 <div class="contentBox">
     <h1>Login</h1>
     <label for="email" class="col-form-label">Email</label>
-    <input type="text" name="email" class="form-control" bind=User.Emailadress /><br />
+    <input type="text" name="email" class="form-control" bind=User.Emailadress style="@Style" /><br />
     <label for="password" class="col-form-label">Password</label>
-    <input type="password" name="password" class="form-control" bind=User.Password /><br />
+    <input type="password" name="password" class="form-control" bind=User.Password style="@Style" /><br />
     <button class="btn btn-primary" onclick=@LoginAsync>Log in</button>
     <button class="btn btn-default" onclick=@AddUser>Add new user</button>
 </div>
