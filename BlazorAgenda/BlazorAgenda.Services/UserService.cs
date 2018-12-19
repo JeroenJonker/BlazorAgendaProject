@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared.Models;
+using BlazorAgenda.Shared.Properties;
 using Microsoft.AspNetCore.Blazor;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,17 @@ namespace BlazorAgenda.Services
         public async Task<User> CheckUser(User user)
         {
             user.Password = ConvertStringToHash(user.Password);
-            return await http.PostJsonAsync<User>("api/User/IsValidUser", user);
+            return await http.PostJsonAsync<User>(Resources.UserApi_IsValidUser, user);
         }
 
         public async Task<bool> IsUserInUse(User user)
         {
-            return await http.PostJsonAsync<bool>("api/User/IsUserInUse", user);
+            return await http.PostJsonAsync<bool>(Resources.UserApi_IsUserInUse, user);
         }
 
         public async Task<List<User>> GetContacts()
         {
-            return await http.GetJsonAsync<List<User>>("api/User/GetAllUsers");
+            return await http.GetJsonAsync<List<User>>(Resources.UserApi_GetAllUsers);
         }
 
         public string ConvertStringToHash(string text)

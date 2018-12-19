@@ -36,7 +36,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnContainerDragLeave(UIDragEventArgs e)
         {
-            HighlightDropTargetStyle = "";
+            HighlightDropTargetStyle = string.Empty;
         }
 
         public void OnContainerDrop(UIDragEventArgs e, DateTime _start)

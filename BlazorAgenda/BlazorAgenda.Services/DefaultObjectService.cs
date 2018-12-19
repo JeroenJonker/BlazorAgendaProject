@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Shared;
 using BlazorAgenda.Shared.Models;
+using BlazorAgenda.Shared.Properties;
 using Microsoft.AspNetCore.Blazor;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,11 @@ namespace BlazorAgenda.Services.Interfaces
         {
             if (GetObjectState(CurrentObject) == ObjectState.Edit)
             {
-                await http.PutJsonAsync("api/" + GetObjectName(CurrentObject) + "/Edit", CurrentObject);
+                await http.PutJsonAsync(Resources.ControllerApi + GetObjectName(CurrentObject) + Resources.ObjectApi_Edit, CurrentObject);
             }
             else
             {
-                await http.PostJsonAsync("api/"+ GetObjectName(CurrentObject) + "/Add", CurrentObject);
+                await http.PostJsonAsync(Resources.ControllerApi + GetObjectName(CurrentObject) + Resources.ObjectApi_Add, CurrentObject);
             }
         }
 
@@ -49,7 +50,7 @@ namespace BlazorAgenda.Services.Interfaces
 
         public async Task Delete(T CurrentObject)
         {
-            await http.SendJsonAsync(HttpMethod.Delete, "api/" + GetObjectName(CurrentObject) + "/Delete", CurrentObject);
+            await http.SendJsonAsync(HttpMethod.Delete, Resources.ControllerApi + GetObjectName(CurrentObject) + Resources.ObjectApi_Delete, CurrentObject);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace BlazorAgenda.Client.Viewmodels
             base.OnInit();
             if (CurrentObject != default(User))
             {
-                CurrentObject.Password = "";
+                CurrentObject.Password = string.Empty;
             }
         }
     }
