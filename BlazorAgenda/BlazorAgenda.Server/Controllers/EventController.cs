@@ -9,35 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlazorAgenda.Server.Controllers
 {
     [Route("api/[controller]")]
-    public class EventController : Controller
+    public class EventController : Controller, IObjectController<Event>
     {
         EventDataAccessLayer EventAccess = new EventDataAccessLayer();
-
-        [HttpGet("[action]/{id}")]
-        public IActionResult GetById(int id)
-        {
-            Event theEvent = EventAccess.GetEvent(id);
-            if (theEvent != null)
-            {
-                return Ok(theEvent);
-            }
-            return NotFound();
-        }
 
         [HttpPost("[action]")]
         public IActionResult Add([FromBody] Event newEvent)
         {
             if (EventAccess.TryAddEvent(newEvent))
             {
-                return CreatedAtAction(nameof(GetById), new { id = newEvent.Id }, newEvent);
+                return CreatedAtAction(nameof(GetObjectById), new { id = newEvent.Id }, newEvent);
             }
             return BadRequest();
-        }
-
-        [HttpGet("[action]/{userid}")]
-        public IActionResult GetUserEvents(int userid)
-        {
-            return Ok(EventAccess.GetUserEvents(userid));
         }
 
         [HttpPut("[action]")]
@@ -58,6 +41,21 @@ namespace BlazorAgenda.Server.Controllers
                 return Ok();
             }
             return BadRequest();
+        }
+
+        private IActionResult GetObjectById(int id)
+        {
+            if (EventAccess.GetEvent(id) is Event idEvent)
+            {
+                return Ok(idEvent);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("[action]/{userid}")]
+        public IActionResult GetUserEvents(int userid)
+        {
+            return Ok(EventAccess.GetUserEvents(userid));
         }
     }
 }
