@@ -12,11 +12,9 @@ namespace BlazorAgenda.Client.Viewmodels
 {
     public class LoginViewmodel : BlazorComponent
     {
-        public bool ShowAddUser { get; set; } = false;
         [Parameter] Action<User> OnLogin { get; set; }
         [Inject] protected IUser User { get; set; }
         [Inject] protected IUserService UserService { get; set; }
-        [Inject] protected UserViewService UserView {get;set;}
 
         public string Style { get; set; }
 
@@ -41,16 +39,6 @@ namespace BlazorAgenda.Client.Viewmodels
             {
                 Style = "border-color: red;";
             } 
-        }
-
-        public void AddUser()
-        {
-            UserView.ChangeVisibility();
-        }
-
-        public void OnCloseDialog()
-        {
-            ShowAddUser = false;
         }
     }
 }

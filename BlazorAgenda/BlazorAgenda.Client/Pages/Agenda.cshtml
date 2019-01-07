@@ -12,7 +12,14 @@ else
 {
     <NavigationBarView />
     <div id="main">
-        <CalendarView />
+        @if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Agenda)
+        {
+            <CalendarView />
+        }
+        else if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Users)
+        {
+            <UsersView/>
+        }
     </div>
 }
 <UserView/>

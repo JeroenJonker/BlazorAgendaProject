@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorAgenda.Shared
+namespace BlazorAgenda.Services
 {
-    public interface BaseObject
-    {
-    }
+    public enum Pages { Agenda, Users }
 }

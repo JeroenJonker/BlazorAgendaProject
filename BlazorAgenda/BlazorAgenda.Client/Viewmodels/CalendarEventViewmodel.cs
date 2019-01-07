@@ -20,6 +20,9 @@ namespace BlazorAgenda.Client.Viewmodels
         [Inject]
         protected EventViewService UserView { get; set; }
 
+        [Inject]
+        protected IStateService StateService { get; set; }
+
         [Parameter]
         protected IEvent Event { get; set; }
 
@@ -36,8 +39,11 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void ChangeShowModalEvent()
         {
-            UserView.CurrentObject = Event as Event;
-            UserView.ChangeVisibility();
+            if (Event.Userid == StateService.LoginUser.Id)
+            {
+                UserView.CurrentObject = Event as Event;
+                UserView.ChangeVisibility();
+            }
         }
     }
 }

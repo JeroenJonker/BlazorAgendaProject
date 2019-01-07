@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared.Models;
+using BlazorAgenda.Shared.Properties;
 using Microsoft.AspNetCore.Blazor;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace BlazorAgenda.Services
 
         public async Task<List<Event>> GetEvents(User user)
         {
-            return await http.GetJsonAsync<List<Event>>("api/Event/GetUserEvents/" + user.Id);
+            return await http.GetJsonAsync<List<Event>>(Resources.EventApi_GetUserEvents + user.Id);
         }
     }
 }

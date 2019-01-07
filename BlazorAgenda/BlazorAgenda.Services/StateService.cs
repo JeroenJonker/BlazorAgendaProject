@@ -14,17 +14,21 @@ namespace BlazorAgenda.Services
         [Inject] public User LoginUser { get; set; }
 
         public List<User> ChosenContacts { get; set; }
+        
+        public Pages CurrentPage { get; set; }
 
         public event Action OnChange;
 
         public StateService()
         {
+            CurrentPage = Pages.Agenda;
             ChosenContacts = new List<User>();
         }
 
         public void ResetState()
         {
             LoginUser = default(User);
+            CurrentPage = default(Pages);
             ChosenContacts.Clear();
         }
 

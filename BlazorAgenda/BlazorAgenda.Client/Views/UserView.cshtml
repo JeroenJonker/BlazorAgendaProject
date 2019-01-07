@@ -1,5 +1,7 @@
 ﻿@using BlazorAgenda.Client.Services
+@using BlazorAgenda.Services.Interfaces
 @inject UserViewService service
+@inject IStateService StateService
 
 <ModalTemplateView Title=@service.Title OnClose=@service.Close IsVisible=@service.IsVisible>
     <ModalContent>
@@ -37,14 +39,21 @@
         </div>
     </ModalContent>
     <FooterContent>
-        <ObjectBaseFooterView ObjectState=service.CurrentService.GetObjectState(service.CurrentObject) OnSave=@service.Save />
+        @if (StateService.LoginUser.Id != service.CurrentObject.Id)
+        {
+            <ObjectBaseFooterView ObjectState=service.CurrentService.GetObjectState(service.CurrentObject) OnSave=@service.Save OnDelete=@service.Delete/>
+        }
+        else
+        {
+            <ObjectBaseFooterView ObjectState=service.CurrentService.GetObjectState(service.CurrentObject) OnSave=@service.Save />
+        }
     </FooterContent>
 </ModalTemplateView>
 
 @functions
 {
-    protected override void OnInit()
-    {
-        service.OnChange += StateHasChanged;
-    }
+protected override void OnInit()
+{
+    service.OnChange += StateHasChanged;
+}
 }

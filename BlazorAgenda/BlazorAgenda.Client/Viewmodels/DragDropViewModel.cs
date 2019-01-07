@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Client.Services;
 using BlazorAgenda.Client.Views;
+using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor;
@@ -22,26 +23,41 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected Action<DateTime> NewEvent { get; set; }
 
+        [Inject]
+        protected IStateService StateService { get; set; }
+
         public string HighlightDropTargetStyle { get; set; }
 
         public void OnItemDragStart(UIDragEventArgs e, Event calendarEvent)
         {
-            DragDropHelper.Item = calendarEvent;
+            if (calendarEvent.Userid == StateService.LoginUser.Id)
+            {
+                DragDropHelper.Item = calendarEvent;
+            }
         }
 
         public void OnContainerDragEnter(UIDragEventArgs e)
         {
-            HighlightDropTargetStyle = "background-color: #0069d9 !important;";
+            if (DragDropHelper.Item != null)
+            {
+                HighlightDropTargetStyle = "background-color: #0069d9 !important;";
+            }
         }
 
         public void OnContainerDragLeave(UIDragEventArgs e)
         {
-            HighlightDropTargetStyle = "";
+            HighlightDropTargetStyle = string.Empty;
         }
 
         public void OnContainerDrop(UIDragEventArgs e, DateTime _start)
         {
             HighlightDropTargetStyle = "";
+            UpdateEvent(_start);
+            DragDropHelper.Item = null;
+        }
+
+        private void UpdateEvent(DateTime _start)
+        {
             Event item = DragDropHelper.Item;
             TimeSpan duration = item.End - item.Start;
             item.Start = _start;

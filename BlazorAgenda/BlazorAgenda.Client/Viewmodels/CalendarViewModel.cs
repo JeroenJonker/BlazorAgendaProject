@@ -57,7 +57,7 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
-            EventViewService.OnClose = CloseEventView;
+            EventViewService.OnSavedChange = CloseEventView;
             await GetEvents();
             GoToToday();
         }
@@ -70,7 +70,7 @@ namespace BlazorAgenda.Client.Viewmodels
                 List<Event> userEvents = await EventService.GetEvents(StateService.ChosenContacts[i]);
                 foreach (Event ev in userEvents)
                 {
-                    ev.Color = Colors.Items[i % 11];
+                    ev.Color = Colors.Items[i % Colors.Items.Length];
                     events.Add(ev);
                 }
             }

@@ -12,7 +12,7 @@ namespace BlazorAgenda.Client.Services
         public abstract BaseObject CurrentObject { get; set; }
         public abstract BaseService CurrentService { get; set; }
         public abstract BaseObject DefaultBaseObject { get; set; }
-        public Func<Task> OnClose { get; set; }
+        public Func<Task> OnSavedChange { get; set; }
         public bool IsVisible { get; set; }
 
         public event Action OnChange;
@@ -32,9 +32,8 @@ namespace BlazorAgenda.Client.Services
             return CurrentService.GetObjectState(CurrentObject).ToString() + " " + CurrentService.GetObjectName(CurrentObject);
         }
 
-        public async void Close()
+        public void Close()
         {
-            await OnClose?.Invoke();
             SetCurrentObjectToDefault();
             ChangeVisibility();
         }
@@ -42,12 +41,14 @@ namespace BlazorAgenda.Client.Services
         public virtual async void Save()
         {
             await CurrentService.ExecuteAsync(CurrentObject);
+            await OnSavedChange?.Invoke();
             Close();
         }
 
         public virtual async void Delete()
         {
             await CurrentService.Delete(CurrentObject);
+            await OnSavedChange?.Invoke();
             Close();
         }
 

@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "Microsoft.AspNetCore.Blazor/0.6.0": {
+      "Microsoft.AspNetCore.Blazor/0.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.JSInterop": "0.6.0"
+          "Microsoft.JSInterop": "0.7.0"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.dll": {}
@@ -14,7 +14,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.dll": {}
         }
       },
-      "Microsoft.JSInterop/0.6.0": {
+      "Microsoft.JSInterop/0.7.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.JSInterop.dll": {}
@@ -60,27 +60,27 @@
     }
   },
   "libraries": {
-    "Microsoft.AspNetCore.Blazor/0.6.0": {
-      "sha512": "5fbtgq8125r25asDlgHk7LTroYPSGWRf7IhLyyf1vHGqo/LxLLsFdkAqaYpdM4+a/dC50esN2FxDFAqoOINyJQ==",
+    "Microsoft.AspNetCore.Blazor/0.7.0": {
+      "sha512": "8TT1EZP73UvyTWV3BtDZjPH+w223Ln8N6mG9p6s1f23Ftuk5zWoTHDklAzzH1Jfymd8f5SRu2g4jVMTgrtBAtg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.blazor/0.6.0",
+      "path": "microsoft.aspnetcore.blazor/0.7.0",
       "files": [
         ".signature.p7s",
         "THIRD-PARTY-NOTICES.txt",
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Blazor.xml",
-        "microsoft.aspnetcore.blazor.0.6.0.nupkg.sha512",
+        "microsoft.aspnetcore.blazor.0.7.0.nupkg.sha512",
         "microsoft.aspnetcore.blazor.nuspec"
       ]
     },
-    "Microsoft.JSInterop/0.6.0": {
-      "sha512": "H0FtGqfWWKcbHGofquZAJZgZw/YQ9zF475O2EAWWCI5OD6ALhSUS53TFwUD3DgueLOOgG0vm2axr6HHRhDwsVQ==",
+    "Microsoft.JSInterop/0.7.0": {
+      "sha512": "epldqT0eNfh0FieYfAd78kd1n11YsTdhOGEooMD0sC35MHin6wLMUYlPjAPM/irSKrVvo6E1wQsh/0kgQSVH3A==",
       "type": "package",
-      "path": "microsoft.jsinterop/0.6.0",
+      "path": "microsoft.jsinterop/0.7.0",
       "files": [
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.JSInterop.dll",
-        "microsoft.jsinterop.0.6.0.nupkg.sha512",
+        "microsoft.jsinterop.0.7.0.nupkg.sha512",
         "microsoft.jsinterop.nuspec"
       ]
     },
@@ -233,7 +233,7 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "BlazorAgenda.Shared >= 1.0.0",
-      "Microsoft.AspNetCore.Blazor >= 0.6.0",
+      "Microsoft.AspNetCore.Blazor >= 0.7.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -284,7 +284,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Blazor": {
             "target": "Package",
-            "version": "[0.6.0, )"
+            "version": "[0.7.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",

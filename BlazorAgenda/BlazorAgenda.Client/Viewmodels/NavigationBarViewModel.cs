@@ -25,5 +25,17 @@ namespace BlazorAgenda.Client.Viewmodels
             StateService.ResetState();
             StateService.NotifyStateChanged();
         }
+
+        public void ViewUsers()
+        {
+            StateService.CurrentPage = BlazorAgenda.Services.Pages.Users;
+            StateService.NotifyStateChanged();
+        }
+
+        public void ViewAgenda()
+        {
+            StateService.CurrentPage = BlazorAgenda.Services.Pages.Agenda;
+            StateService.NotifyStateChanged();
+        }
     }
 }

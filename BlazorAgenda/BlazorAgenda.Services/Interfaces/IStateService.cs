@@ -12,6 +12,7 @@ namespace BlazorAgenda.Services.Interfaces
         List<User> ChosenContacts { get; set; }
         void ResetState();
         event Action OnChange;
+        Pages CurrentPage { get; set; }
         void NotifyStateChanged();
     }
 }
