@@ -41,7 +41,7 @@ namespace BlazorAgenda.Client.Viewmodels
         
         protected override async Task OnInitAsync()
         {
-            EventViewService.OnClose = CloseEventView;
+            EventViewService.OnSavedChange = CloseEventView;
             await GetEvents();
             GoToCurrentWeek();
         }

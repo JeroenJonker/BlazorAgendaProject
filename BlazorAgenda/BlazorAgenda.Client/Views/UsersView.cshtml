@@ -1,0 +1,24 @@
+﻿@using BlazorAgenda.Client.Viewmodels;
+@using BlazorAgenda.Shared.Models;
+@inherits UsersViewModel
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (User user in Users)
+        {
+            <tr onclick=@(() => EditUser(user))>
+                <td>@user.Firstname</td>
+                <td>@user.Lastname</td>
+                <td>@user.Emailadress</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" id="add-event-btn" onclick=@AddUser><span class="oi oi-plus"></span> Add user</button>

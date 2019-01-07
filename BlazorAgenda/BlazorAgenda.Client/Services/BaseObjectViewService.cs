@@ -12,7 +12,7 @@ namespace BlazorAgenda.Client.Services
         public abstract BaseObject CurrentObject { get; set; }
         public abstract BaseService CurrentService { get; set; }
         public abstract BaseObject DefaultBaseObject { get; set; }
-        public Func<Task> OnClose { get; set; }
+        public Func<Task> OnSavedChange { get; set; }
         public bool IsVisible { get; set; }
 
         public event Action OnChange;
@@ -41,14 +41,14 @@ namespace BlazorAgenda.Client.Services
         public virtual async void Save()
         {
             await CurrentService.ExecuteAsync(CurrentObject);
-            await OnClose?.Invoke();
+            await OnSavedChange?.Invoke();
             Close();
         }
 
         public virtual async void Delete()
         {
             await CurrentService.Delete(CurrentObject);
-            await OnClose?.Invoke();
+            await OnSavedChange?.Invoke();
             Close();
         }
 
