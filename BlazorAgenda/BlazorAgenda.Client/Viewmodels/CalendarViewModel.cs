@@ -24,6 +24,9 @@ namespace BlazorAgenda.Client.Viewmodels
         protected IStateService StateService { get; set; }
         [Inject] 
         protected IEvent CurrentObject { get; set; }
+        [Inject]
+        public IUserService UserService { get; set; }
+        public List<User> Contacts { get; set; }
         
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -58,11 +61,19 @@ namespace BlazorAgenda.Client.Viewmodels
         protected override async Task OnInitAsync()
         {
             EventViewService.OnSavedChange = CloseEventView;
-            await GetEvents();
+            await UpdateEvents();
+            Contacts = await UserService.GetContacts();
             GoToToday();
         }
 
-        public async Task GetEvents()
+        public async Task UpdateEvents()
+        {
+            List<Event> events = await GetCalendarEvents();
+            DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
+            StateHasChanged();
+        }
+
+        public async Task<List<Event>> GetCalendarEvents()
         {
             List<Event> events = new List<Event>();
             for (int i = 0; i < StateService.ChosenContacts.Count; i++)
@@ -70,12 +81,11 @@ namespace BlazorAgenda.Client.Viewmodels
                 List<Event> userEvents = await EventService.GetEvents(StateService.ChosenContacts[i]);
                 foreach (Event ev in userEvents)
                 {
-                    ev.Color = Colors.Items[i % Colors.Items.Length];
+                    //ev.Color = Colors.Items[i % Colors.Items.Length];
                     events.Add(ev);
                 }
             }
-            DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
-            StateHasChanged();
+            return events;
         }
 
         public void GoToPrevious()
@@ -150,8 +160,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public async Task CloseEventView()
         {
-            await GetEvents();
-            StateHasChanged();
+            await UpdateEvents();
         }
     }
 }

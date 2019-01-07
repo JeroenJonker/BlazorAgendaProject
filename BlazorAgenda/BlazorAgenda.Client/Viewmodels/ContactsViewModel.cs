@@ -17,11 +17,13 @@ namespace BlazorAgenda.Client.Viewmodels
         [Parameter]
         protected Action OnUpdate { get; set; }
 
-        public List<User> Contacts { get; set; }
+        [Parameter]
+        protected List<User> Contacts { get; set; }
 
-        protected override async Task OnInitAsync()
+        protected override void OnInit()
         {
-            Contacts = await UserService.GetContacts();
+            Contacts = new List<User>();
+            base.OnInit();
         }
 
         public void SelectContact(int userId, bool selected)
