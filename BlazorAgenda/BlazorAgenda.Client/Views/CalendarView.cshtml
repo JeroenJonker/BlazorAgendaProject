@@ -7,12 +7,19 @@
     <h2>@CurrentMonthAndYear</h2>
     <div class="row">
         <span class="col-sm-4 col-xs-6">
-            <button class="btn btn-default" onclick=@(() => GoToPreviousWeek())>&lt;</button>
-            <button class="btn btn-default" onclick=@(() => GoToCurrentWeek())>Today</button>
-            <button class="btn btn-default" onclick=@(() => GoToNextWeek())>&gt;</button>
+            <button class="btn btn-default" onclick=@(() => GoToPrevious())>&lt;</button>
+            <button class="btn btn-default" onclick=@(() => GoToToday())>Today</button>
+            <button class="btn btn-default" onclick=@(() => GoToNext())>&gt;</button>
         </span>
         <span class="col-md-3 col-sm-4 col-xs-6">
             <input type="date" class="form-control" bind=SelectedDate format-value="yyyy-MM-dd" required="required" />
+        </span>
+        <span class="col-md-3 col-sm-4 col-xs-6">
+            <select class="form-control" bind="@ViewType">
+                <option value="@ViewTypes.Day" selected="@(ViewType == ViewTypes.Day)">Day</option>
+                <option value="@ViewTypes.Week" selected="@(ViewType == ViewTypes.Week)">Week</option>
+                <option value="@ViewTypes.WorkWeek" selected="@(ViewType == ViewTypes.WorkWeek)">Work week</option>
+            </select>
         </span>
     </div>
     <div id="table-wrapper">
@@ -21,10 +28,11 @@
                 <tr>
                     <th></th>
                     @{
-                        int startDay = StartOfWeekDate.Day;
-                        for (int col = startDay; col < startDay + 7; col++)
+                        DateTime startDate = (ViewType == ViewTypes.Day) ? SelectedDate : StartOfWeekDate;
+                        int startDay = startDate.Day;
+                        for (int col = startDay; col < startDay + (int)ViewType; col++)
                         {
-                            DateTime day = StartOfWeekDate.AddDays(col - startDay);
+                            DateTime day = startDate.AddDays(col - startDay);
                             string name = day.ToString("dddd");
                             <th>
                                 <span class="@(day.Date == DateTime.Now.Date ? "day active" : "day")">@day.Day</span>
@@ -36,14 +44,14 @@
                 </tr>
             </thead>
             <tbody>
-                @{DateTime time = StartOfWeekDate;}
+                @{DateTime time = (ViewType == ViewTypes.Day) ? SelectedDate : StartOfWeekDate;}
                 @for (int hour = 0; hour < 24; hour++)
                 {
                     <tr>
                         <td class="hour" rowspan="4">
                             <span>@(hour.ToString() + ":00")</span>
                         </td>
-                        @for (int col = 0; col < 7; col++)
+                        @for (int col = 0; col < (int)ViewType; col++)
                         {
                             DateTime start = time.AddDays(col);
                             <DragDropView Start=start MoveEvent=OnMoveEvent NewEvent=OnNewEvent />
@@ -53,7 +61,7 @@
                     {
                         time = time.AddMinutes(15);
                         <tr>
-                            @for (int col = 0; col < 7; col++)
+                            @for (int col = 0; col < (int)ViewType; col++)
                             {
                                 DateTime start = time.AddDays(col);
                                 <DragDropView Start=start MoveEvent=OnMoveEvent NewEvent=OnNewEvent />

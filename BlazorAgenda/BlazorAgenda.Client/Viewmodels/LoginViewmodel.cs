@@ -27,14 +27,18 @@ namespace BlazorAgenda.Client.Viewmodels
                 {
                     Style = "";
                     OnLogin?.Invoke(checkedUser);
-                    return;
                 }
                 else
                 {
                     User.Password = null;
+                    Style = "border-color: red;";
+                    StateHasChanged();
                 }
             }
-            Style = "border-color: red;";
+            else
+            {
+                Style = "border-color: red;";
+            } 
         }
     }
 }
