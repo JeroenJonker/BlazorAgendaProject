@@ -1,0 +1,23 @@
+USE [AgendaDB]
+GO
+
+CREATE TABLE [User] (
+    [ID] int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    [EMAILADRESS] nvarchar(40) NOT NULL UNIQUE,
+    [FIRSTNAME] nvarchar(40),
+	[LASTNAME] nvarchar(40),
+	[PASSWORD] nvarchar(65) NOT NULL,
+        [ISADMNIN] BIT NOT NULL DEFAULT 0
+);
+GO
+
+CREATE TABLE [Event](
+	[ID] int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	[SUMMARY] nvarchar(30),
+	[START] datetime NOT NULL,
+	[END] datetime NOT NULL,
+	[LOCATION] nvarchar(30),
+	[USERID] int NOT NULL,
+	CONSTRAINT [FK_Event_User_USERID] FOREIGN KEY ([USERID]) REFERENCES [User] ([ID]) ON DELETE CASCADE
+);
+GO

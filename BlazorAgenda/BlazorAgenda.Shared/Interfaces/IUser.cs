@@ -11,6 +11,7 @@ namespace BlazorAgenda.Shared.Interfaces
         string Firstname { get; set; }
         string Lastname { get; set; }
         string Password { get; set; }
+        bool Isadmin { get; set; }
 
         ICollection<Event> Event { get; set; }
     }
