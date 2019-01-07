@@ -204,6 +204,9 @@ table {
     table tbody tr td:not(.hour) {
         cursor: pointer;
     }
+        table tbody tr td:not(.hour):hover {
+            background-color: rgba(0,0,0,.075);
+        }
 
     .eventContainer {
         position: absolute;
