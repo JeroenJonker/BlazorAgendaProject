@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Client.Services;
 using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared.Interfaces;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
@@ -13,7 +14,7 @@ namespace BlazorAgenda.Client.Viewmodels
     {
         public bool ShowAddUser { get; set; } = false;
         [Parameter] Action<User> OnLogin { get; set; }
-        [Inject] protected User User { get; set; }
+        [Inject] protected IUser User { get; set; }
         [Inject] protected IUserService UserService { get; set; }
         [Inject] protected UserViewService UserView {get;set;}
 
@@ -24,18 +25,22 @@ namespace BlazorAgenda.Client.Viewmodels
             Regex r = new Regex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
             if (User.Emailadress != null && User.Password != null && r.IsMatch(User.Emailadress))
             {
-                if (await UserService.CheckUser(User) is User checkedUser)
+                if (await UserService.CheckUser(User as User) is User checkedUser)
                 {
                     Style = "";
                     OnLogin?.Invoke(checkedUser);
-                    return;
                 }
                 else
                 {
                     User.Password = null;
+                    Style = "border-color: red;";
+                    StateHasChanged();
                 }
             }
-            Style = "border-color: red;";
+            else
+            {
+                Style = "border-color: red;";
+            } 
         }
 
         public void AddUser()

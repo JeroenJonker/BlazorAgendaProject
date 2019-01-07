@@ -38,12 +38,28 @@ namespace BlazorAgenda.Client.Viewmodels
         public DateTime StartOfWeekDate { get; set; }
         
         public string CurrentMonthAndYear { get; set; }
+
+        public enum ViewTypes
+        {
+            Day = 1, Week = 7, WorkWeek = 5
+        };
+
+        private ViewTypes viewType = ViewTypes.Week;
+        public ViewTypes ViewType
+        {
+            get { return viewType; }
+            set
+            {
+                viewType = value;
+                GoToSelectedDate();
+            }
+        }
         
         protected override async Task OnInitAsync()
         {
             EventViewService.OnClose = CloseEventView;
             await GetEvents();
-            GoToCurrentWeek();
+            GoToToday();
         }
 
         public async Task GetEvents()
@@ -62,23 +78,25 @@ namespace BlazorAgenda.Client.Viewmodels
             StateHasChanged();
         }
 
-        public void GoToPreviousWeek()
+        public void GoToPrevious()
         {
-            StartOfWeekDate = StartOfWeekDate.AddDays(-7);
-            CurrentMonthAndYear = GetCurrentMonthAndYear();
-            StateHasChanged();
+            if (ViewType == ViewTypes.Day)
+                SelectedDate = SelectedDate.AddDays(-1);
+            else
+                SelectedDate = SelectedDate.AddDays(-7);
         }
 
-        public void GoToCurrentWeek()
+        public void GoToToday()
         {
             SelectedDate = DateTime.Today;
         }
 
-        public void GoToNextWeek()
+        public void GoToNext()
         {
-            StartOfWeekDate = StartOfWeekDate.AddDays(7);
-            CurrentMonthAndYear = GetCurrentMonthAndYear();
-            StateHasChanged();
+            if (ViewType == ViewTypes.Day)
+                SelectedDate = SelectedDate.AddDays(1);
+            else
+                SelectedDate = SelectedDate.AddDays(7);
         }
 
         public void GoToSelectedDate()
@@ -93,6 +111,10 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public string GetCurrentMonthAndYear()
         {
+            if(ViewType == ViewTypes.Day)
+            {
+                return SelectedDate.ToString("dd MMMM yyyy");
+            }
             string startMonth = StartOfWeekDate.ToString("MMMM");
             string startYear = StartOfWeekDate.ToString("yyyy");
             DateTime endOfWeekDate = StartOfWeekDate.AddDays(6);
