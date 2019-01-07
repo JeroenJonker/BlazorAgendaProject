@@ -28,9 +28,9 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public string HighlightDropTargetStyle { get; set; }
 
-        public void OnItemDragStart(UIDragEventArgs e, Event calendarEvent)
+        public void OnItemDragStart(UIDragEventArgs e, CalendarEvent calendarEvent)
         {
-            if (calendarEvent.Userid == StateService.LoginUser.Id)
+            if (calendarEvent.Event.Userid == StateService.LoginUser.Id)
             {
                 DragDropHelper.Item = calendarEvent;
             }
@@ -58,7 +58,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         private void UpdateEvent(DateTime _start)
         {
-            Event item = DragDropHelper.Item;
+            Event item = DragDropHelper.Item.Event;
             TimeSpan duration = item.End - item.Start;
             item.Start = _start;
             item.End = _start.Add(duration);
@@ -67,7 +67,7 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void OnContainerClick()
         {
-            if(DragDropHelper.Items.FindAll(x => x.Start == Start).Count == 0)
+            if(DragDropHelper.Items.FindAll(x => x.Event.Start == Start).Count == 0)
             {
                 NewEvent?.Invoke(Start);
             }

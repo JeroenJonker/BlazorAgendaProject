@@ -5,7 +5,7 @@ namespace BlazorAgenda.Client.Services
 {
     public static class DragDropHelper
     {
-        public static List<Event> Items { get; set; } = new List<Event>();
-        public static Event Item { get; set; }
+        public static List<CalendarEvent> Items { get; set; } = new List<CalendarEvent>();
+        public static CalendarEvent Item { get; set; }
     }
 }

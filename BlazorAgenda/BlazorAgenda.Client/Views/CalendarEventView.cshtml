@@ -2,12 +2,15 @@
 @using BlazorAgenda.Client.Viewmodels
 @inherits CalendarEventViewModel
 
-<div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, Event as Event))" ondragenter="$(this).css('z-index', 'unset');"
+<div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, CalendarEvent as CalendarEvent))" ondragenter="$(this).css('z-index', 'unset');"
      ondragleave="$(this).css('z-index', 'auto');" ondragend="$('.event').css('z-index', '');" onclick=@ChangeShowModalEvent
-     style="height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%">
-    @Event.Summary
+     style="background-color:@(CalendarEvent.Color); height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%">
+    @CalendarEvent.Event.Summary
     <br />
-    @Event.Start.ToString("HH:mm") - @Event.End.ToString("HH:mm")
-    <br />
-    @*@Event.Emailadress*@
+    <span class="oi oi-clock"></span> @CalendarEvent.Event.Start.ToString("HH:mm") - @CalendarEvent.Event.End.ToString("HH:mm")
+    @if(CalendarEvent.Event.Location != null)
+    {
+        <br />
+        @CalendarEvent.Event.Location
+    }
 </div>

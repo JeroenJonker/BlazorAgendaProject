@@ -75,14 +75,14 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public async Task<List<Event>> GetCalendarEvents()
         {
-            List<Event> events = new List<Event>();
+            List<CalendarEvent> events = new List<CalendarEvent>();
             for (int i = 0; i < StateService.ChosenContacts.Count; i++)
             {
                 List<Event> userEvents = await EventService.GetEvents(StateService.ChosenContacts[i]);
                 foreach (Event ev in userEvents)
                 {
-                    //ev.Color = Colors.Items[i % Colors.Items.Length];
-                    events.Add(ev);
+                    string color = Colors.Items[i % Colors.Items.Length];
+                    events.Add(new CalendarEvent { Event = ev, Color = color });
                 }
             }
             return events;

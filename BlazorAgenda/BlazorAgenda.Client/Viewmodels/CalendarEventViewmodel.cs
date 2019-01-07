@@ -24,7 +24,7 @@ namespace BlazorAgenda.Client.Viewmodels
         protected IStateService StateService { get; set; }
 
         [Parameter]
-        protected IEvent Event { get; set; }
+        protected ICalendarEvent CalendarEvent { get; set; }
 
         [Parameter]
         protected int Rowspan { get; set; }
@@ -33,15 +33,15 @@ namespace BlazorAgenda.Client.Viewmodels
         protected int NumEvents { get; set; }
 
         [Parameter]
-        protected Action<UIDragEventArgs, Event> DragStart { get; set; }
+        protected Action<UIDragEventArgs, CalendarEvent> DragStart { get; set; }
 
         public bool ShowModalEvent { get; set; } = false;
 
         public void ChangeShowModalEvent()
         {
-            if (Event.Userid == StateService.LoginUser.Id)
+            if (CalendarEvent.Event.Userid == StateService.LoginUser.Id)
             {
-                UserView.CurrentObject = Event as Event;
+                UserView.CurrentObject = CalendarEvent.Event as Event;
                 UserView.ChangeVisibility();
             }
         }

@@ -8,13 +8,14 @@
     <div class="eventContainer" ondragenter="@(e => OnContainerDragEnter(e))" ondragover="event.preventDefault();"
         ondragleave="@(e => OnContainerDragLeave(e))" ondrop="@(e => OnContainerDrop(e, Start))"
         onclick="@OnContainerClick" style="@HighlightDropTargetStyle">
-        @foreach (Event item in DragDropHelper.Items)
+        @foreach (CalendarEvent calendarEvent in DragDropHelper.Items)
         {
+            Event item = calendarEvent.Event;
             if (item.Start == Start)
             {
                 int rowspan = (int)((item.End - item.Start).TotalHours * 4);
-                int numEvents = DragDropHelper.Items.FindAll(x => x.Start == item.Start).Count;
-                <CalendarEventView Event="@item" Rowspan="@rowspan" NumEvents="@numEvents" DragStart="@OnItemDragStart" />
+                int numEvents = DragDropHelper.Items.FindAll(x => x.Event.Start == item.Start).Count;
+                <CalendarEventView CalendarEvent="@calendarEvent" Rowspan="@rowspan" NumEvents="@numEvents" DragStart="@OnItemDragStart" />
             }
         }
     </div>
