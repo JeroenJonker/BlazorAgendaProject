@@ -11,7 +11,6 @@ namespace BlazorAgenda.Shared.Interfaces
         DateTime Start { get; set; }
         DateTime End { get; set; }
         string Location { get; set; }
-        string Color { get; set; }
         int Userid { get; set; }
 
         User User { get; set; }

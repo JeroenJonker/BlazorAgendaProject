@@ -10,19 +10,22 @@
         <li class="nav-item" onclick=@EditUser>
             <a class="nav-link"><span class="oi oi-pencil"></span> Edit profile </a>
         </li>
-        @if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Agenda)
+        @if (StateService.LoginUser.Isadmin)
         {
-            <li class="nav-item" onclick=@ViewUsers>
-                <a class="nav-link"><span class="oi oi-person"></span> View users </a>
-            </li>
-        }
-        else if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Users)
-        {
-            <li class="nav-item" onclick=@ViewAgenda>
-                <a class="nav-link">
-                    <span class="oi oi-calendar"></span> View agenda
-                </a>
-            </li>
+            if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Agenda)
+            {
+                <li class="nav-item" onclick=@ViewUsers>
+                    <a class="nav-link"><span class="oi oi-person"></span> View users </a>
+                </li>
+            }
+            else if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Users)
+            {
+                <li class="nav-item" onclick=@ViewAgenda>
+                    <a class="nav-link">
+                        <span class="oi oi-calendar"></span> View agenda
+                    </a>
+                </li>
+            }
         }
         <li class="nav-item" onclick=@Logout>
             <a class="nav-link">
