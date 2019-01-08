@@ -2,7 +2,7 @@
 @using BlazorAgenda.Shared.Models
 @inherits CalendarViewModel
 
-<ContactsView OnUpdate=@(async () => await GetEvents()) />
+<ContactsView OnUpdate=@(async () => await UpdateEvents()) Contacts=@Contacts/>
 <div id="calendar">
     <h2>@CurrentMonthAndYear</h2>
     <div class="row">

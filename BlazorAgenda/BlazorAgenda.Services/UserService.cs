@@ -21,7 +21,14 @@ namespace BlazorAgenda.Services
         public async Task<User> CheckUser(User user)
         {
             user.Password = ConvertStringToHash(user.Password);
-            return await http.PostJsonAsync<User>(Resources.UserApi_IsValidUser, user);
+            try
+            {
+                return await http.PostJsonAsync<User>(Resources.UserApi_IsValidUser, user);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> IsUserInUse(User user)
