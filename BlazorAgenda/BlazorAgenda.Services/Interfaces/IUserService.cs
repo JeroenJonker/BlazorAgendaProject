@@ -10,6 +10,5 @@ namespace BlazorAgenda.Services.Interfaces
     {
         Task<User> CheckUser(User user);
         Task<List<User>> GetContacts();
-        string ConvertStringToHash(string text);
     }
 }
