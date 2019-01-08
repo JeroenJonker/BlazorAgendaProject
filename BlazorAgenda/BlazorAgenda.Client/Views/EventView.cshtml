@@ -41,6 +41,14 @@
                 <input class="form-control" type="text" bind=service.CurrentObject.Location maxlength="30" />
             </span>
         </div>
+        <div class="form-row">
+            <span class="col-sm-4">
+                <label class="col-form-label">Private</label>
+            </span>
+            <span class="col-sm-4">
+                <input type="checkbox" bind="service.CurrentObject.Isprivate" />
+            </span>
+        </div>
     </ModalContent>
     <FooterContent>
         <ObjectBaseFooterView ObjectState=service.CurrentService.GetObjectState(service.CurrentObject) OnSave=@service.Save OnDelete=@service.Delete />

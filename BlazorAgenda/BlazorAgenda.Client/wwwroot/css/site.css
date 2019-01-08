@@ -53,7 +53,7 @@ app {
         padding-top: 1rem;
     }*/
 
-    /*.nav-item:last-of-type {
+/*.nav-item:last-of-type {
         padding-bottom: 1rem;
     }
 
@@ -134,6 +134,16 @@ app {
     margin-right: auto;
 }
 
+#calendar {
+    display: inline-block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+#sidebar-left, #calendar {
+    padding: 1rem;
+}
+
 table {
     table-layout: fixed;
     border-spacing: 0;
@@ -145,7 +155,6 @@ table {
 
         table thead tr th {
             color: #ffffff;
-            text-align: center;
         }
 
             table thead tr th .day {
@@ -172,19 +181,10 @@ table {
 
         table tbody tr td {
             height: inherit;
-            text-align: center;
             vertical-align: middle;
             position: relative;
             border-left: 1px solid #626E7E;
             padding: .5rem !important;
-        }
-
-        table tbody tr td:not(:empty) {
-            padding: 0 !important;
-        }
-
-        table tbody tr:nth-child(4n+1) td {
-            border-top: 1px solid #626E7E;
         }
 
         table tbody tr td:last-child {
@@ -201,12 +201,25 @@ table {
             background-color: rgba(0, 0, 0, 0.05);
         }
 
-    table tbody tr td:not(.hour) {
-        cursor: pointer;
-    }
-        table tbody tr td:not(.hour):hover {
-            background-color: rgba(0,0,0,.075);
+        table tbody tr td:not(.hour) {
+            cursor: pointer;
         }
+
+    .calendartable thead tr th, .calendartable tbody tr td {
+        text-align: center;
+    }
+
+    .calendartable tbody tr td:not(:empty) {
+        padding: 0 !important;
+    }
+
+    .calendartable tbody tr:nth-child(4n+1) td {
+        border-top: 1px solid #626E7E;
+    }
+
+    .calendartable tbody tr td:not(.hour):hover {
+        background-color: rgba(0,0,0,.075);
+    }
 
     .eventContainer {
         position: absolute;
@@ -236,6 +249,12 @@ table {
         .event:hover {
             z-index: 6;
             min-height: fit-content;
+        }
+
+        .event .oi-lock-locked {
+            position: absolute;
+            top: 0;
+            right: 5px;
         }
 
 @media (max-width: 72em) {
@@ -291,16 +310,6 @@ input[type=checkbox] {
 #sidebar-left {
     float: left;
     width: 20%;
-}
-
-#calendar {
-    display: inline-block;
-    margin: 0 auto;
-    width: 80%;
-}
-
-#sidebar-left, #calendar {
-    padding: 1rem;
 }
 
 .row {
