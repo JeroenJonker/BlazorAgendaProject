@@ -17,9 +17,11 @@ namespace BlazorAgenda.Client.Viewmodels
         [Inject] protected IUserService UserService { get; set; }
 
         public string Style { get; set; }
+        public bool IsLoggingIn { get; set; } = false;
 
         public async void LoginAsync()
         {
+            IsLoggingIn = true;
             Regex r = new Regex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
             if (User.Emailadress != null && User.Password != null && r.IsMatch(User.Emailadress))
             {
@@ -38,7 +40,8 @@ namespace BlazorAgenda.Client.Viewmodels
             else
             {
                 Style = "border-color: red;";
-            } 
+            }
+            IsLoggingIn = false;
         }
     }
 }

@@ -15,5 +15,7 @@
         </div>
         <input id="password" type="password" bind=User.Password class="form-control" style="@Style" name="password" placeholder="Password" />
     </div>
-    <button class="btn btn-primary" onclick=@LoginAsync>Log in</button>
+    <button class="btn btn-primary" onclick=@LoginAsync>
+        @((IsLoggingIn) ? "Loading..." : "Log in")
+    </button>
 </div>
