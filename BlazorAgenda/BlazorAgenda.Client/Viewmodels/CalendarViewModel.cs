@@ -68,12 +68,12 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public async Task UpdateEvents()
         {
-            List<Event> events = await GetCalendarEvents();
-            DragDropHelper.Items = events.OrderBy(x => x.Start).ToList();
+            List<CalendarEvent> events = await GetCalendarEvents();
+            DragDropHelper.Items = events.OrderBy(x => x.Event.Start).ToList();
             StateHasChanged();
         }
 
-        public async Task<List<Event>> GetCalendarEvents()
+        public async Task<List<CalendarEvent>> GetCalendarEvents()
         {
             List<CalendarEvent> events = new List<CalendarEvent>();
             for (int i = 0; i < StateService.ChosenContacts.Count; i++)

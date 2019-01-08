@@ -7,46 +7,59 @@
             <span class="col-sm-4">
                 <label class="col-form-label">Description</label>
             </span>
-            <span class="col-sm-8">
-                <input class="form-control" type="text" bind=service.CurrentObject.Summary maxlength="30" />
+            <span class="col-sm-8 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-text"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Description" bind=service.CurrentObject.Summary maxlength="30" />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-4">
                 <label class="col-form-label">Begin</label>
             </span>
-            <span class="col-sm-4">
-                <input class="form-control" type="date" bind=service.Start format-value="yyyy-MM-dd" required="required" />
-            </span>
-            <span class="col-sm-4">
-                <input class="form-control" type="time" bind=service.Start format-value="HH:mm" required="required" />
+            <span class="col-sm-8 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-clock"></i></span>
+                </div>
+                <input class="form-control col-sm-8" type="date" bind=service.Start format-value="yyyy-MM-dd" required="required" />
+                <input class="form-control col-sm-4" type="time" bind=service.Start format-value="HH:mm" required="required" />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-4">
                 <label class="col-form-label">End</label>
             </span>
-            <span class="col-sm-4">
-                <input class="form-control" type="date" bind=service.End format-value="yyyy-MM-dd" required="required" />
-            </span>
-            <span class="col-sm-4">
-                <input class="form-control" type="time" bind=service.End format-value="HH:mm" required="required" />
+            <span class="col-sm-8 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-clock"></i></span>
+                </div>
+                <input class="form-control col-sm-8" type="date" bind=service.End format-value="yyyy-MM-dd" required="required" />
+                <input class="form-control col-sm-4" type="time" bind=service.End format-value="HH:mm" required="required" />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-4">
                 <label class="col-form-label">Location</label>
             </span>
-            <span class="col-sm-8">
-                <input class="form-control" type="text" bind=service.CurrentObject.Location maxlength="30" />
+            <span class="col-sm-8 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-map-marker"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Location" bind=service.CurrentObject.Location maxlength="30" />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-4">
                 <label class="col-form-label">Private</label>
             </span>
-            <span class="col-sm-4">
-                <input type="checkbox" bind="service.CurrentObject.Isprivate" />
+            <span class="col-sm-4 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <input type="checkbox" bind="service.CurrentObject.Isprivate" />
+                    </span>
+                </div>
+                <input class="form-control" type="text" value="@(service.CurrentObject.Isprivate ? "Yes": "No")" disabled="disabled" />
             </span>
         </div>
     </ModalContent>
