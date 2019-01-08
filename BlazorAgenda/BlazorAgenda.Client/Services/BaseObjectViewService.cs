@@ -2,8 +2,6 @@
 using BlazorAgenda.Shared;
 using BlazorAgenda.Shared.Interfaces.BaseObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Services

@@ -1,12 +1,6 @@
-﻿using BlazorAgenda.Services;
-using BlazorAgenda.Shared;
-using BlazorAgenda.Shared.Models;
-using Microsoft.AspNetCore.Blazor;
+﻿using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlazorAgenda.Client.Viewmodels.BaseViewModels
 {

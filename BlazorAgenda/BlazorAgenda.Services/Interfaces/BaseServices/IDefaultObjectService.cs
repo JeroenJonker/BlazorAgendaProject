@@ -3,8 +3,6 @@ using BlazorAgenda.Shared.Interfaces.BaseObjects;
 using BlazorAgenda.Shared.Enums;
 using BlazorAgenda.Shared.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorAgenda.Services

@@ -1,6 +1,5 @@
 ﻿using BlazorAgenda.Shared.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace BlazorAgenda.Shared.Models
 {

@@ -1,8 +1,5 @@
-﻿using BlazorAgenda.Client.Views;
-using Microsoft.AspNetCore.Blazor.Components;
-using System;
+﻿using Microsoft.AspNetCore.Blazor.Components;
 using BlazorAgenda.Services.Interfaces;
-using Microsoft.AspNetCore.Blazor;
 using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
