@@ -330,3 +330,9 @@ input[type=checkbox] {
     .nav-link:hover {
         color: #ffffff;
     }
+
+
+.overflow-80 {
+    overflow: auto;
+    height: 80vh;
+}
