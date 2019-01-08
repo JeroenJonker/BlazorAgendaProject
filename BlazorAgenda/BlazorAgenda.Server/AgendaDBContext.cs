@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAgenda.Shared.Models
 {
@@ -10,8 +8,7 @@ namespace BlazorAgenda.Shared.Models
         {
         }
 
-        public AgendaDBContext(DbContextOptions<AgendaDBContext> options)
-            : base(options)
+        public AgendaDBContext(DbContextOptions<AgendaDBContext> options) : base(options)
         {
         }
 

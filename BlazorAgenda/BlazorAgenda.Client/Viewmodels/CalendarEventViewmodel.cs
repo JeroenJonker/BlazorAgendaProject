@@ -1,13 +1,6 @@
-﻿using BlazorAgenda.Shared;
-using BlazorAgenda.Services;
-using Microsoft.AspNetCore.Blazor;
+﻿using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
-using Microsoft.JSInterop;
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using BlazorAgenda.Shared.Models;
 using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Client.Services;

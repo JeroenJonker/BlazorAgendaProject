@@ -1,7 +1,4 @@
-﻿using BlazorAgenda.Shared.Models;
-using System.Collections.Generic;
-
-namespace BlazorAgenda.Client.Services
+﻿namespace BlazorAgenda.Client.Services
 {
     public static class Colors
     {

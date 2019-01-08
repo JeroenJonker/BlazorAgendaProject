@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using BlazorAgenda.Client.Viewmodels;
 using BlazorAgenda.Services;
-using BlazorAgenda.Shared;
 using BlazorAgenda.Services.Interfaces;
 using BlazorAgenda.Shared.Models;
 using BlazorAgenda.Client.Services;

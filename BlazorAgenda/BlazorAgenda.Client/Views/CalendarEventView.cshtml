@@ -5,7 +5,11 @@
 <div class="event" draggable="true" ondragstart="@(e => DragStart?.Invoke(e, CalendarEvent as CalendarEvent))" ondragenter="$(this).css('z-index', 'unset');"
      ondragleave="$(this).css('z-index', 'auto');" ondragend="$('.event').css('z-index', '');" onclick=@ChangeShowModalEvent
      style="background-color:@(CalendarEvent.Color); height: @(Rowspan * 16)px; width: @((float)100 / NumEvents)%">
-    @CalendarEvent.Event.Summary @if(CalendarEvent.Event.Isprivate) { <span class="oi oi-lock-locked" title="This event is private and not visible for other users."></span> }
+    @CalendarEvent.Event.Summary
+    @if(CalendarEvent.Event.Isprivate)
+    {
+        <span class="oi oi-lock-locked" title="This event is private and not visible for other users."></span>
+    }
     <br />
     <span class="oi oi-clock"></span> @CalendarEvent.Event.Start.ToString("HH:mm") - @CalendarEvent.Event.End.ToString("HH:mm")
     @if(CalendarEvent.Event.Location != null)

@@ -1,9 +1,5 @@
-﻿using BlazorAgenda.Shared;
-using BlazorAgenda.Client.Services;
-using Microsoft.AspNetCore.Blazor;
+﻿using BlazorAgenda.Client.Services;
 using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
-using Microsoft.JSInterop;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -128,12 +124,14 @@ namespace BlazorAgenda.Client.Viewmodels
             {
                 return SelectedDate.ToString("dd MMMM yyyy");
             }
+
             string startMonth = StartOfWeekDate.ToString("MMMM");
             string startYear = StartOfWeekDate.ToString("yyyy");
             DateTime endOfWeekDate = StartOfWeekDate.AddDays(6);
             string endMonth = endOfWeekDate.ToString("MMMM");
             string endYear = endOfWeekDate.ToString("yyyy");
             string monthAndYear;
+
             if (endYear == startYear)
             {
                 if (endMonth == startMonth)
@@ -142,7 +140,10 @@ namespace BlazorAgenda.Client.Viewmodels
                     monthAndYear = startMonth + " - " + endMonth + " " + startYear;
             }
             else
+            {
                 monthAndYear = startMonth + " " + startYear + " - " + endMonth + " " + endYear;
+            }
+
             return monthAndYear;
         }
 
