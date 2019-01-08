@@ -3,16 +3,21 @@
 @using BlazorAgenda.Shared.Models
 @inherits ContactsViewModel
 <div id="sidebar-left">
-    <h3>Select user(s)</h3>
+    <h3 class="mb-3">Select user(s)</h3>
     @if (Contacts != null)
     {
         @foreach (User user in Contacts)
         {
             int index = StateService.ChosenContacts.FindIndex(x => x.Id == user.Id);
-            string color = index > -1 ? Colors.Items[index % 11] : "#000";
-            <div class="form-row">
-                <input type="checkbox" onchange=@(e => SelectContact(user.Id, (bool)e.Value)) checked=@(index > -1) />
-                <span style="color:@color;">@user.Firstname @user.Lastname</span>
+            string color = index > -1 ? Colors.Items[index % 11] : null;
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" onchange=@(e => SelectContact(user.Id, (bool)e.Value)) checked=@(index > -1) />
+                    </div>
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" value="@user.Firstname @user.Lastname" 
+                       style="background-color:@color;" disabled="disabled"/>
             </div>
         }
     }
