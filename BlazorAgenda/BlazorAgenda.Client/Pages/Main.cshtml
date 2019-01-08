@@ -1,7 +1,8 @@
 ﻿@using BlazorAgenda.Client.Viewmodels
 @using BlazorAgenda.Shared.Models
+@using BlazorAgenda.Shared.Enums
 @page "/"
-@inherits AgendaViewmodel
+@inherits MainViewmodel
 
 
 @if (StateService.LoginUser == default(User) || StateService.LoginUser == null)
@@ -12,11 +13,11 @@ else
 {
     <NavigationBarView />
     <div id="main">
-        @if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Agenda)
+        @if (StateService.CurrentPage == Pages.Agenda)
         {
             <CalendarView />
         }
-        else if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Users)
+        else if (StateService.CurrentPage == Pages.Users)
         {
             <UsersView/>
         }

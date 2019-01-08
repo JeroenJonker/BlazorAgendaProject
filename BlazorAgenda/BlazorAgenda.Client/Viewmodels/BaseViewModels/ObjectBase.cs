@@ -1,5 +1,6 @@
 ﻿using BlazorAgenda.Services;
 using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Interfaces.BaseObjects;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;

@@ -63,7 +63,6 @@ namespace BlazorAgenda.Client.Services
             StateService = StateService;
             Start = Start == default ? SetDateTime(CurrentObject.Start) : Start;
             End = End == default ? SetDateTime(CurrentObject.End) : End;
-            //CurrentObject.Userid = CurrentObject.Userid == default ? StateService.LoginUser.Id : CurrentObject.Userid;
         }
 
         protected DateTime SetDateTime(DateTime time)

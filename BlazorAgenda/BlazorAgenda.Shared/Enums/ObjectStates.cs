@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorAgenda.Shared.Models
+namespace BlazorAgenda.Shared.Enums
 {
     public enum ObjectState
     {

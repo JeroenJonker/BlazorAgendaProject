@@ -1,6 +1,6 @@
 ﻿using BlazorAgenda.Client.Services;
 using BlazorAgenda.Services.Interfaces;
-using BlazorAgenda.Shared.Models;
+using BlazorAgenda.Shared.Enums;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;
@@ -28,13 +28,13 @@ namespace BlazorAgenda.Client.Viewmodels
 
         public void ViewUsers()
         {
-            StateService.CurrentPage = BlazorAgenda.Services.Pages.Users;
+            StateService.CurrentPage = BlazorAgenda.Shared.Enums.Pages.Users;
             StateService.NotifyStateChanged();
         }
 
         public void ViewAgenda()
         {
-            StateService.CurrentPage = BlazorAgenda.Services.Pages.Agenda;
+            StateService.CurrentPage = BlazorAgenda.Shared.Enums.Pages.Agenda;
             StateService.NotifyStateChanged();
         }
     }

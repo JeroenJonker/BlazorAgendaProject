@@ -1,4 +1,4 @@
-﻿using BlazorAgenda.Shared;
+﻿using BlazorAgenda.Shared.Enums;
 using BlazorAgenda.Shared.Models;
 using System;
 using System.Collections.Generic;

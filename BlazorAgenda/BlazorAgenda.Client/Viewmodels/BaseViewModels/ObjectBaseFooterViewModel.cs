@@ -1,4 +1,5 @@
-﻿using BlazorAgenda.Shared.Models;
+﻿using BlazorAgenda.Shared.Enums;
+using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 using System.Collections.Generic;

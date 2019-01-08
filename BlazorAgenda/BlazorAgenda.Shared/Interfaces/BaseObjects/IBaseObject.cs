@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorAgenda.Shared
+namespace BlazorAgenda.Shared.Interfaces.BaseObjects
 {
     public interface IBaseObject
     {
