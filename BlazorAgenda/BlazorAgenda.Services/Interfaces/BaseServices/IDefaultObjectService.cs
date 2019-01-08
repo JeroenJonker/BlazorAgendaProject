@@ -1,4 +1,6 @@
 ﻿using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Interfaces.BaseObjects;
+using BlazorAgenda.Shared.Enums;
 using BlazorAgenda.Shared.Models;
 using System;
 using System.Threading.Tasks;

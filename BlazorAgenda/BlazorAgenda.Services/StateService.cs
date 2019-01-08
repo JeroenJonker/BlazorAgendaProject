@@ -1,4 +1,6 @@
 ﻿using BlazorAgenda.Services.Interfaces;
+using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Enums;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;

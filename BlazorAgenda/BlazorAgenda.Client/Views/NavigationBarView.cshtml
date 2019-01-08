@@ -1,4 +1,5 @@
 ﻿@using BlazorAgenda.Client.Viewmodels;
+@using BlazorAgenda.Shared.Enums;
 @inherits NavigationBarViewModel
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -12,13 +13,13 @@
         </li>
         @if (StateService.LoginUser.Isadmin)
         {
-            if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Agenda)
+            if (StateService.CurrentPage == Pages.Agenda)
             {
                 <li class="nav-item" onclick=@ViewUsers>
                     <a class="nav-link"><span class="oi oi-person"></span> View users </a>
                 </li>
             }
-            else if (StateService.CurrentPage == BlazorAgenda.Services.Pages.Users)
+            else if (StateService.CurrentPage == Pages.Users)
             {
                 <li class="nav-item" onclick=@ViewAgenda>
                     <a class="nav-link">

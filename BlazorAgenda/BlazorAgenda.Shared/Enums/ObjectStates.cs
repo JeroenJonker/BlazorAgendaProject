@@ -1,4 +1,4 @@
-﻿namespace BlazorAgenda.Shared.Models
+﻿namespace BlazorAgenda.Shared.Enums
 {
     public enum ObjectState
     {

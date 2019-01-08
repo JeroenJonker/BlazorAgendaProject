@@ -1,4 +1,6 @@
 ﻿using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Interfaces.BaseObjects;
+using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAgenda.Server

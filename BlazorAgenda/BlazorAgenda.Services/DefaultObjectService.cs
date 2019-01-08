@@ -1,4 +1,6 @@
 ﻿using BlazorAgenda.Shared;
+using BlazorAgenda.Shared.Enums;
+using BlazorAgenda.Shared.Interfaces.BaseObjects;
 using BlazorAgenda.Shared.Models;
 using BlazorAgenda.Shared.Properties;
 using Microsoft.AspNetCore.Blazor;
@@ -6,7 +8,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BlazorAgenda.Services.Interfaces
+namespace BlazorAgenda.Services
 {
     public abstract class DefaultObjectService<T> where T : IBaseObject
     {

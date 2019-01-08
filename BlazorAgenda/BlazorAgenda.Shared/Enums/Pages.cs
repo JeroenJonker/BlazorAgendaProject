@@ -1,4 +1,4 @@
-﻿namespace BlazorAgenda.Services
+﻿namespace BlazorAgenda.Shared.Enums
 {
     public enum Pages { Agenda, Users }
 }

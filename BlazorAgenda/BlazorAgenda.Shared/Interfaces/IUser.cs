@@ -1,4 +1,5 @@
-﻿using BlazorAgenda.Shared.Models;
+﻿using BlazorAgenda.Shared.Interfaces.BaseObjects;
+using BlazorAgenda.Shared.Models;
 using System.Collections.Generic;
 
 namespace BlazorAgenda.Shared.Interfaces

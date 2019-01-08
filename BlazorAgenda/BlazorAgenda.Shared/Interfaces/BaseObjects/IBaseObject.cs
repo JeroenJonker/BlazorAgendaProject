@@ -1,4 +1,4 @@
-﻿namespace BlazorAgenda.Shared
+﻿namespace BlazorAgenda.Shared.Interfaces.BaseObjects
 {
     public interface IBaseObject
     {

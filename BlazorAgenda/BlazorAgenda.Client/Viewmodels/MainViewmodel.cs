@@ -4,7 +4,7 @@ using BlazorAgenda.Shared.Models;
 
 namespace BlazorAgenda.Client.Viewmodels
 {
-    public class AgendaViewmodel : BlazorComponent
+    public class MainViewmodel : BlazorComponent
     {
         [Inject]
         protected IStateService StateService { get; set; }

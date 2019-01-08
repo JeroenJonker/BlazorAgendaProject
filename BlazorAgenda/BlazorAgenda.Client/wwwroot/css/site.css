@@ -85,6 +85,7 @@ table {
     table-layout: fixed;
     border-spacing: 0;
     border-bottom: 1px solid #000;
+    max-width: 99.9% !important;
 }
     table thead tr {
         background-color: #0069d9;
@@ -256,8 +257,8 @@ input[type=checkbox] {
 
 #add-event-btn {
     position: fixed;
-    bottom: 1rem;
-    right: 3rem;
+    bottom: 1.5rem;
+    right: 4rem;
     z-index: 9;
 }
 
@@ -267,3 +268,8 @@ input[type=checkbox] {
     .nav-link:hover {
         color: #ffffff;
     }
+
+.overflow-75 {
+    overflow: auto;
+    height: 75vh;
+}
