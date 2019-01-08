@@ -331,8 +331,7 @@ input[type=checkbox] {
         color: #ffffff;
     }
 
-
-.overflow-80 {
+.overflow-75 {
     overflow: auto;
-    height: 80vh;
+    height: 75vh;
 }
