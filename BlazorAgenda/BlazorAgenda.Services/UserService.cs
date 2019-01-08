@@ -20,7 +20,6 @@ namespace BlazorAgenda.Services
 
         public async Task<User> CheckUser(User user)
         {
-            user.Password = ConvertStringToHash(user.Password);
             try
             {
                 return await http.PostJsonAsync<User>(Resources.UserApi_IsValidUser, user);
@@ -39,19 +38,6 @@ namespace BlazorAgenda.Services
         public async Task<List<User>> GetContacts()
         {
             return await http.GetJsonAsync<List<User>>(Resources.UserApi_GetAllUsers);
-        }
-
-        public string ConvertStringToHash(string text)
-        {
-            if (string.IsNullOrEmpty(text))
-                return default(string);
-
-            using (var sha = new SHA256Managed())
-            {
-                byte[] textData = Encoding.UTF8.GetBytes(text);
-                byte[] hash = sha.ComputeHash(textData);
-                return BitConverter.ToString(hash).Replace("-", string.Empty);
-            }
         }
     }
 }

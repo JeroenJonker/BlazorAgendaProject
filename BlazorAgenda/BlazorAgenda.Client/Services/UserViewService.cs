@@ -20,11 +20,5 @@ namespace BlazorAgenda.Client.Services
             DefaultBaseObject = CurrentObject = user as User;
             CurrentService = userService;
         }
-
-        public override void Save()
-        {
-            CurrentObject.Password = CurrentService.ConvertStringToHash(CurrentObject.Password);
-            base.Save();
-        }
     }
 }

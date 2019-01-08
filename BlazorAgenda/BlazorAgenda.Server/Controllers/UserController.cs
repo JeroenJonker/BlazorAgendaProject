@@ -6,6 +6,8 @@ using BlazorAgenda.Server.DataAccess;
 using BlazorAgenda.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BlazorAgenda.Server.Controllers
 {
@@ -17,6 +19,7 @@ namespace BlazorAgenda.Server.Controllers
         [HttpPost("[action]")]
         public IActionResult Add([FromBody]User newuser)
         {
+            newuser.Password = ConvertStringToHash(newuser.Password);
             if (UserAccess.GetUserByEmail(newuser.Emailadress) == null &&
                 new MailAddress(newuser.Emailadress).Address == newuser.Emailadress &&
                 UserAccess.TryAddUser(newuser))
@@ -29,6 +32,7 @@ namespace BlazorAgenda.Server.Controllers
         [HttpPut("[action]")]
         public IActionResult Edit([FromBody]User updateUser)
         {
+            updateUser.Password = ConvertStringToHash(updateUser.Password);
             if (UserAccess.TryUpdateUser(updateUser))
             {
                 return Ok(updateUser);
@@ -69,10 +73,12 @@ namespace BlazorAgenda.Server.Controllers
         [HttpPost("[action]")]
         public IActionResult IsValidUser([FromBody] User loginuser)
         {
+            loginuser.Password = ConvertStringToHash(loginuser.Password);
             User dbUser = UserAccess.GetUserByEmail(loginuser.Emailadress);
             if (dbUser != null && loginuser.Emailadress!= null && dbUser.Password.SequenceEqual(loginuser.Password) &&
                 new MailAddress(loginuser.Emailadress).Address == loginuser.Emailadress)
             {
+                dbUser.Password = "";
                 return Ok(dbUser);
             }
             else
@@ -89,6 +95,19 @@ namespace BlazorAgenda.Server.Controllers
                 return Ok(true);
             }
             return BadRequest();
+        }
+
+        public string ConvertStringToHash(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return default(string);
+
+            using (var sha = new SHA256Managed())
+            {
+                byte[] textData = Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(textData);
+                return BitConverter.ToString(hash).Replace("-", string.Empty);
+            }
         }
     }
 }
