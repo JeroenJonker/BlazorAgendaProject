@@ -9,32 +9,44 @@
             <span class="col-sm-5">
                 <label class="col-form-label">Email</label>
             </span>
-            <span class="col-sm-7">
-                <input class="form-control" type="text" bind=service.CurrentObject.Emailadress />
+            <span class="col-sm-7 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">&#64;</span>
+                </div>
+                <input class="form-control" type="text" placeholder="Email" bind=service.CurrentObject.Emailadress />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-5">
-                <label class="col-form-label">Firstname</label>
+                <label class="col-form-label">First Name</label>
             </span>
-            <span class="col-sm-7">
-                <input class="form-control" type="text" bind=service.CurrentObject.Firstname />
+            <span class="col-sm-7 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-person"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="First name" bind=service.CurrentObject.Firstname />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-5">
-                <label class="col-form-label">Lastname</label>
+                <label class="col-form-label">Last Name</label>
             </span>
-            <span class="col-sm-7">
-                <input class="form-control" type="text" bind=service.CurrentObject.Lastname />
+            <span class="col-sm-7 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-person"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Last Name" bind=service.CurrentObject.Lastname />
             </span>
         </div>
         <div class="form-row">
             <span class="col-sm-5">
                 <label class="col-form-label">Password</label>
             </span>
-            <span class="col-sm-7">
-                <input class="form-control" type="password" bind=service.CurrentObject.Password />
+            <span class="col-sm-7 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="oi oi-lock-locked"></i></span>
+                </div>
+                <input class="form-control" type="password" placeholder="Password" bind=service.CurrentObject.Password />
             </span>
         </div>
     </ModalContent>
