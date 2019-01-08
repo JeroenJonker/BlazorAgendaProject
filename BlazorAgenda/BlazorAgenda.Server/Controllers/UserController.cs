@@ -58,7 +58,12 @@ namespace BlazorAgenda.Server.Controllers
         [HttpGet("[action]")]
         public IActionResult GetAllUsers()
         {
-            return Ok(UserAccess.GetAllUsers());
+            List<User> users = UserAccess.GetAllUsers();
+            foreach (User user in users)
+            {
+                user.Password = "";
+            }
+            return Ok(users);
         }
 
         [HttpPost("[action]")]
